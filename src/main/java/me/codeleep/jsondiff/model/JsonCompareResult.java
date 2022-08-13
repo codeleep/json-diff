@@ -1,12 +1,10 @@
 package me.codeleep.jsondiff.model;
 
-import lombok.Data;
 import me.codeleep.jsondiff.handle.RunTimeDataFactory;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@Data
 public class JsonCompareResult {
 
     private Boolean match = true;
@@ -41,4 +39,19 @@ public class JsonCompareResult {
         }
     }
 
+    public Boolean getMatch() {
+        return match;
+    }
+
+    public void setMatch(Boolean match) {
+        this.match = match;
+    }
+
+    public List<Defects> getDefectsList() {
+        return defectsList;
+    }
+
+    public void setDefectsList(List<Defects> defectsList) {
+        this.defectsList = defectsList;
+    }
 }

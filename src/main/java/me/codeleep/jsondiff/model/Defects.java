@@ -1,8 +1,6 @@
 package me.codeleep.jsondiff.model;
 
-import lombok.Data;
 
-@Data
 public class Defects {
 
     /**
@@ -44,5 +42,21 @@ public class Defects {
     public Defects setIllustrate(String illustrate) {
         this.illustrate = illustrate;
         return this;
+    }
+
+    public Object getExpect() {
+        return expect;
+    }
+
+    public Object getActual() {
+        return actual;
+    }
+
+    public String getIndexPath() {
+        return indexPath;
+    }
+
+    public String getIllustrate() {
+        return illustrate;
     }
 }
