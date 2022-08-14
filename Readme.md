@@ -25,6 +25,17 @@
 ## 使用文档
 
 ### 快速开始
+
+引入依赖：
+```xml
+<!-- 版本请以maven仓库最版为准 -->
+<dependency>
+    <groupId>cn.xiaoandcai</groupId>
+    <artifactId>jsonDiff</artifactId>
+    <version>1.0.0</version>
+</dependency>
+```
+
 ```java
 class {
     public void diffKeepOrder() {
