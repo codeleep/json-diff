@@ -12,8 +12,10 @@ class JsonDiffApplicationTests {
         String array1 = "[1, 2, 3, 4, 5]";
         String array2 = "[1, 6, 3, 4, 5]";
 
-        DefaultJsonDifference defaultJsonDifference = new DefaultJsonDifference();
-        JsonCompareResult jsonCompareResult = defaultJsonDifference.detectDiff(JSON.parseArray(array1), JSON.parseArray(array2));
+        JsonComparedOption jsonComparedOption = new JsonComparedOption().setIgnoreOrder(true);
+        JsonCompareResult jsonCompareResult = new DefaultJsonDifference()
+                .option(jsonComparedOption)
+                .detectDiff(JSON.parseArray(array1), JSON.parseArray(array2));
         System.out.println(JSON.toJSONString(jsonCompareResult));
     }
 

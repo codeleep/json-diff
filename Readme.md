@@ -2,14 +2,13 @@
 <div style="text-align: center">
 
 [![AUR](https://img.shields.io/badge/license-Apache%20License%202.0-blue.svg)](https://gitee.com/local-li/json-diff/blob/master/LICENSE)
-[![star](https://gitee.com/local-li/json-diff/badge/star.svg?theme=white)](https://gitee.com/wangjiabin-x/uh5)
-[![fork](https://gitee.com/local-li/json-diff/badge/fork.svg?theme=white)](https://gitee.com/wangjiabin-x/uh5)
-
+[![star](https://gitee.com/local-li/json-diff/badge/star.svg?theme=white)](https://gitee.com/local-li/json-diff/stargazers)
+<a href='https://gitee.com/local-li/json-diff/members'><img src='https://gitee.com/local-li/json-diff/badge/fork.svg?theme=white' alt='fork'></img></a>
 </div>
 
 ## 介绍
 
-它几乎可以发现任何JSON结果的差异，并且将错误信息反馈给用户。
+它几乎可以发现任何JSON结构的差异，并且将错误信息反馈给用户。
 
 ### 优点
 
@@ -39,11 +38,13 @@
 ```java
 class {
     public void diffKeepOrder() {
-        MetaData metaData = load(expectPath, actualPath);
+        String array1 = "[1, 2, 3, 4, 5]";
+        String array2 = "[1, 6, 3, 4, 5]";
+
         JsonComparedOption jsonComparedOption = new JsonComparedOption().setIgnoreOrder(true);
-        JsonCompareResult jsonCompareResult = new DefaultJsonDifference().defaultJsonDifference
-                .option(jsonComparedOption)
-                .detectDiff((JSONObject) metaData.getExpect(), (JSONObject) metaData.getActual());
+        JsonCompareResult jsonCompareResult = new DefaultJsonDifference()
+        .option(jsonComparedOption)
+        .detectDiff(JSON.parseArray(array1), JSON.parseArray(array2));
         System.out.println(JSON.toJSONString(jsonCompareResult));
     }
 }
@@ -55,15 +56,15 @@ class {
 
 ```json
 {
-    "defectsList": [
-        {
-            "actual": "23日星期五",
-            "expect": "23日星期五-------",
-            "illustrate": "properties are different",
-            "indexPath": "root[4].date"
-        }
-    ],
-    "match": false
+  "defectsList": [
+    {
+      "actual": 6,
+      "expect": 2,
+      "illustrate": "The 1 element is inconsistent",
+      "indexPath": "root[1]"
+    }
+  ],
+  "match": false
 }
 ```
 
