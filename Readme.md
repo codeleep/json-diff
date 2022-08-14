@@ -1,9 +1,13 @@
 <h1 style="text-align: center">JsonDiff 高性能json差异发现工具</h1>
 <div style="text-align: center">
 
-[![AUR](https://img.shields.io/badge/license-Apache%20License%202.0-blue.svg)](https://gitee.com/local-li/json-diff/blob/master/LICENSE)
+[![GitHub license](https://img.shields.io/github/license/local-li/jsonDiff)](https://github.com/local-li/jsonDiff/blob/master/LICENSE)
 [![star](https://gitee.com/local-li/json-diff/badge/star.svg?theme=white)](https://gitee.com/local-li/json-diff/stargazers)
 <a href='https://gitee.com/local-li/json-diff/members'><img src='https://gitee.com/local-li/json-diff/badge/fork.svg?theme=white' alt='fork'></img></a>
+[![GitHub stars](https://img.shields.io/github/stars/local-li/jsonDiff)](https://github.com/local-li/jsonDiff/stargazers)
+[![GitHub forks](https://img.shields.io/github/forks/local-li/jsonDiff)](https://github.com/local-li/jsonDiff/network)
+[![GitHub issues](https://img.shields.io/github/issues/local-li/jsonDiff)](https://github.com/local-li/jsonDiff/issues)
+
 </div>
 
 ## 介绍
