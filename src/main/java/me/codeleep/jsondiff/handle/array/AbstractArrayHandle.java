@@ -28,6 +28,10 @@ public abstract class AbstractArrayHandle extends AbstractDiffHandle implements 
             RunTimeDataFactory.getResultInstance().addDefects(defects);
             return RunTimeDataFactory.getResultInstance();
         }
+        // 空数组
+        if (actualLen == 0) {
+            return RunTimeDataFactory.getResultInstance();
+        }
 
         // 转化数组, 遍历加速
         Object[] expect = expectArray.toArray();
