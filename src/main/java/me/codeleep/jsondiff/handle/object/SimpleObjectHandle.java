@@ -6,6 +6,7 @@ import me.codeleep.jsondiff.handle.HandleExampleFactory;
 import me.codeleep.jsondiff.handle.RunTimeDataFactory;
 import me.codeleep.jsondiff.handle.array.AbstractArrayHandle;
 import me.codeleep.jsondiff.model.Defects;
+import me.codeleep.jsondiff.utils.ComparedUtil;
 import me.codeleep.jsondiff.utils.JsonDiffUtil;
 
 import java.util.HashSet;
@@ -123,22 +124,7 @@ public class SimpleObjectHandle extends AbstractObjectHandle {
     }
 
     private void compared(Object expect, Object actual) throws IllegalAccessException {
-        if (JsonDiffUtil.isPrimitiveType(expect)) {
-            if (!expect.equals(actual)) {
-                Defects defects = new Defects()
-                        .setActual(actual)
-                        .setExpect(expect)
-                        .setIndexPath(getCurrentPath())
-                        .setIllustrate("properties are different");
-                RunTimeDataFactory.getResultInstance().addDefects(defects);
-            }
-        }else if (expect instanceof JSONArray) {
-            AbstractArrayHandle handle = (AbstractArrayHandle) HandleExampleFactory.getHandle(JsonDiffUtil.getArrayHandleClass((JSONArray) expect, (JSONArray) actual));
-            handle.handle((JSONArray) expect, (JSONArray) actual);
-        }else if (expect instanceof JSONObject) {
-            AbstractObjectHandle handle = (AbstractObjectHandle) HandleExampleFactory.getHandle(JsonDiffUtil.getObjectHandleClass((JSONObject) expect, (JSONObject) actual));
-            handle.handle((JSONObject) expect, (JSONObject) actual);
-        }
+        ComparedUtil.notSureAboutComparison(expect, actual);
     }
 
 }

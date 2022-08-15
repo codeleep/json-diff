@@ -3,6 +3,7 @@ package me.codeleep.jsondiff.utils;
 import com.alibaba.fastjson2.JSONArray;
 import com.alibaba.fastjson2.JSONObject;
 import me.codeleep.jsondiff.exception.JsonDiffException;
+import me.codeleep.jsondiff.handle.array.IntricacyArrayHandle;
 import me.codeleep.jsondiff.handle.array.MultidimensionalArrayHandle;
 import me.codeleep.jsondiff.handle.array.ObjectArrayHandle;
 import me.codeleep.jsondiff.handle.array.SimpleArrayHandle;
@@ -58,7 +59,7 @@ public class JsonDiffUtil {
         }
 
         if (typeSet.size() > 1) {
-            throw new JsonDiffException("暂不支持类型不唯一的数组元素");
+            return IntricacyArrayHandle.class;
         }
 
         if (typeSet.size() == 0) {
@@ -77,7 +78,7 @@ public class JsonDiffUtil {
      * @param item
      * @return
      */
-    private static Class<?> parseItemClass(Object item) {
+    public static Class<?> parseItemClass(Object item) {
         if(isPrimitiveType(item)) {
             return SimpleArrayHandle.class;
         }
@@ -107,6 +108,22 @@ public class JsonDiffUtil {
             }
         }
         return stringBuilder.toString();
+    }
+
+    /**
+     * 转化当前的临时path
+     * @param root
+     * @param tempPath
+     * @return
+     */
+    public static String convertPath(String root, Stack<String> tempPath) {
+        if (root.trim().equals("")) {
+            return JsonDiffUtil.getCurrentPath(tempPath);
+        }
+        if (tempPath == null || tempPath.size() == 0) {
+            return root;
+        }
+        return String.format("%s.%s", root, JsonDiffUtil.getCurrentPath(tempPath));
     }
 
 

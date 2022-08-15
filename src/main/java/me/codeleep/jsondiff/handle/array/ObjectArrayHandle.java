@@ -6,6 +6,7 @@ import me.codeleep.jsondiff.handle.HandleExampleFactory;
 import me.codeleep.jsondiff.handle.RunTimeDataFactory;
 import me.codeleep.jsondiff.handle.object.AbstractObjectHandle;
 import me.codeleep.jsondiff.model.Defects;
+import me.codeleep.jsondiff.utils.ComparedUtil;
 import me.codeleep.jsondiff.utils.JsonDiffUtil;
 
 import java.util.Arrays;
@@ -70,7 +71,7 @@ public class ObjectArrayHandle extends AbstractArrayHandle {
         Function<String, Stack<String>> keyFunction = RunTimeDataFactory.getOptionInstance().getKeyFunction();
         Stack<String> keys = null;
         if (keyFunction != null) {
-            keys = keyFunction.apply(convertPath(getCurrentPath(), RunTimeDataFactory.getTempDataInstance().getPath()));
+            keys = keyFunction.apply(JsonDiffUtil.convertPath(getCurrentPath(), RunTimeDataFactory.getTempDataInstance().getPath()));
         }
 
         for (int i = 0; i < expect.length; i++) {
@@ -87,16 +88,18 @@ public class ObjectArrayHandle extends AbstractArrayHandle {
         // 遍历未匹配到的元素
         int i,j = 0;
         for (i = 0; i < expectSign.length; i++) {
-            RunTimeDataFactory.getCurrentPathInstance().push(String.format("[%d]", i));
             if (expectSign[i]) {
-                RunTimeDataFactory.getCurrentPathInstance().pop();
                 continue;
             }
+            RunTimeDataFactory.getCurrentPathInstance().push(String.format("[%d]", i));
             // 找到j的位置
             for (j = 0; j < actualSign.length; j++) {
                 if (!actualSign[j]) {
                     break;
                 }
+            }
+            if (j >= actualSign.length) {
+                break;
             }
             try {
                 actualSign[j] = true;
@@ -157,28 +160,7 @@ public class ObjectArrayHandle extends AbstractArrayHandle {
         if (keys == null || keys.size() == 0) {
             return actualSign;
         }
-        boolean flag = true;
-        for (String key: keys) {
-            if (expect.get(key) != null && actual.get(key) != null) {
-                if (JsonDiffUtil.isPrimitiveType(expect.get(key)) && JsonDiffUtil.isPrimitiveType(actual.get(key))) {
-                    flag = !expect.get(key).equals(actual.get(key));
-                }
-            }
-            if (!flag) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    private String convertPath(String root, Stack<String> tempPath) {
-        if (root.trim().equals("")) {
-            return JsonDiffUtil.getCurrentPath(tempPath);
-        }
-        if (tempPath == null || tempPath.size() == 0) {
-            return root;
-        }
-        return String.format("%s.%s", root, JsonDiffUtil.getCurrentPath(tempPath));
+        return ComparedUtil.isItWorthComparing(expect, actual, keys);
     }
 
 }
