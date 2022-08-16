@@ -157,6 +157,10 @@ public class ObjectArrayHandle extends AbstractArrayHandle {
      * @return
      */
     private boolean isMatchComparison(JSONObject expect, JSONObject actual, boolean actualSign, Stack<String> keys) {
+        // 都是空对象
+        if (expect.size() == 0 && actual.size() == 0) {
+            return false;
+        }
         if (keys == null || keys.size() == 0) {
             return actualSign;
         }

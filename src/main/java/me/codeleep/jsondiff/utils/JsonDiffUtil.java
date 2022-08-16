@@ -50,6 +50,10 @@ public class JsonDiffUtil {
      */
     public static Class<?> getArrayHandleClass(JSONArray expect, JSONArray actual) {
 
+        if (expect.size() == 0 && actual.size() == 0) {
+            return SimpleArrayHandle.class;
+        }
+
         Set<Class<?>> typeSet = new HashSet<>();
         for (Object item: expect) {
             typeSet.add(parseItemClass(item));

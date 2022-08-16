@@ -48,6 +48,9 @@ public class RunTimeDataFactory {
     }
 
     public static void setOptionInstance(JsonComparedOption jsonComparedOption) {
+        if (jsonComparedOption == null) {
+            return;
+        }
         optionThreadLocal.remove();
         optionThreadLocal.set(jsonComparedOption);
     }

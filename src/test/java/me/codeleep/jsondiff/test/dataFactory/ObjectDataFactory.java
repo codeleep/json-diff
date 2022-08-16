@@ -112,7 +112,7 @@ public class ObjectDataFactory {
      */
     private static void SetMax(String type, int count) {
         for (String name : loadDataName) {
-            maxMap.put(name, count);
+            maxMap.put(name, count - 1);
         }
     }
 }

@@ -4,6 +4,7 @@ import com.alibaba.fastjson2.JSON;
 import com.alibaba.fastjson2.JSONArray;
 import me.codeleep.jsondiff.DefaultJsonDifference;
 import me.codeleep.jsondiff.model.JsonCompareResult;
+import me.codeleep.jsondiff.model.JsonComparedOption;
 import me.codeleep.jsondiff.model.MetaData;
 import me.codeleep.jsondiff.test.dataFactory.ArrayDataFactory;
 import org.testng.Assert;
@@ -23,6 +24,7 @@ public class MultAllArrayTest {
         DefaultJsonDifference defaultJsonDifference = new DefaultJsonDifference();
         JsonCompareResult jsonCompareResult = defaultJsonDifference
                 .detectDiff((JSONArray) metaData.getExpect(), (JSONArray) metaData.getActual());
+        System.out.println(JSON.toJSONString(jsonCompareResult));
         Assert.assertEquals(JSON.toJSONString(metaData.getRet()), JSON.toJSONString(jsonCompareResult));
     }
     @Test(dataProvider = "optionRight",dataProviderClass = ArrayDataFactory.class)

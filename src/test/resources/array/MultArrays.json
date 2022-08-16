@@ -923,21 +923,7 @@
         },
         {}
       ],
-      "ret": {
-        "defectsList": [
-          {
-            "actual": "a",
-            "illustrate": "extra field 'a'",
-            "indexPath": "root[0]"
-          },
-          {
-            "expect": "b",
-            "illustrate": "missing field 'b'",
-            "indexPath": "root[0]"
-          }
-        ],
-        "match": false
-      }
+      "ret": {"defectsList":[{"actual":"a","illustrate":"extra field 'a'","indexPath":"root[0]"},{"actual":"b","illustrate":"missing field 'b'","indexPath":"root[0]"}],"match":false}
     },
     {
       "actual": [
@@ -946,7 +932,7 @@
       "expect": [
         []
       ],
-      "ret": null
+      "ret": {"defectsList":[{"actual":{},"expect":[],"illustrate":"The 0 element is inconsistent","indexPath":"root[0][0]"}],"match":false}
     }
   ],
   "optionRight": [
