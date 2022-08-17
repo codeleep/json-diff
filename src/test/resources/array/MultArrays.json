@@ -161,7 +161,8 @@
           ]
         ]
       ]
-    },{
+    },
+    {
       "actual": [
         "星期一",
         [
@@ -1114,7 +1115,8 @@
         "ignorePath": [".a/a"],
         "ignoreKey": [".a.b"]
       }
-    },    {
+    },
+    {
       "actual": [
         {
           "a": [
@@ -1140,7 +1142,8 @@
         "ignorePath": [".a/a"],
         "ignoreKey": [".a.b"]
       }
-    },    {
+    },
+    {
       "actual": [
         [
           [
@@ -1354,7 +1357,8 @@
         "ignorePath": [".a/a"],
         "ignoreKey": [".a.b"]
       }
-    },    {
+    },
+    {
       "actual": [
         {
           "a": {
@@ -1393,7 +1397,8 @@
         "ignorePath": [".a/a"],
         "ignoreKey": [".a.b"]
       }
-    },    {
+    },
+    {
       "actual": [{"a": 1}],
       "expect": [{"b": 2}],
       "ret": {},
