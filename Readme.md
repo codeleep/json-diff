@@ -87,3 +87,62 @@ class {
 
 
 
+## 测试用例编写规范
+### 测试用例文件字段
+文件中数据结构
+```json
+{
+  "right": [
+    {
+      "actual": [{"a": 1}],
+      "expect": [{"b": 2}],
+      "ret": {},
+      "option": {
+        "ignoreOrder": false,
+        "mapping": {"a": 1},
+        "ignorePath": [".a/a"],
+        "ignoreKey": [".a.b"]
+      }
+    }
+  ],
+  "err"[.....],
+  "optionRight":[......],
+  "optionErr":[........],
+}
+```
+每一个测试文件结构都如上，right，err，optionRight，optionErr分别为测试种类名称，测试名称下对应的是每一个测试用例[]中每一个object都是对应的一个用例每一测试用例为如下类似的object
+
+| 名称          | 类型   | 备注      |
+|-------------|------|:--------|
+| right       | 数组   | 正常用例    |
+| err         | 数组   | 异常用例    |
+| optionRight | 数组   | 配置正常用例  |
+| optionErr   | 数组   | 配置异常用例  |
+注： right，err，不会加载配置
+```json
+    {
+      "actual": [{"a": 1}],
+      "expect": [{"b": 2}],
+      "ret": {},
+      "option": {
+        "ignoreOrder": false,
+        "mapping": {"a": 1},
+        "ignorePath": [".a/a"],
+        "ignoreKey": [".a.b"]
+      }
+```
+"actual": 实际需要对比的值 类型：测试array文件为array 测试object文件为object   
+"expect": 期望该值为什么   类型：测试array文件为array 测试object文件为object  
+"ret": 返回内容，如果用例为right中的自动判断返回内容中match是否为true进行判断   类型：object  
+"option": 配置信息 对应本项目中的配置文件  类型：Object  
+&emsp;&emsp; "ignoreOrder": 是否忽略数组书序 类型：Boolean  
+&emsp;&emsp; "mapping": key 是 actual   value 是 expect 映射 类型：Object   
+&emsp;&emsp; "ignorePath": 忽略的path. 以 . 来区分json层级; 会精准匹配路径  类型：array  
+&emsp;&emsp; "ignoreKey": 忽略的key。actual中有的字段，但expect没有的，会被忽略掉    类型：array  
+
+### 执行测试
+#### 直接进入测试代码执行
+进入src/test/java/me/codeleep/jsondiff/test/ 中有两个后缀为Test的java文件，可直接运行该文件，也能进入其中运行指定方法
+注：每一个方法运行都会把对应集合的方法全部运行一遍
+#### 通过TestNG xml文件执行
+进入src/test/resources/testNG 其中有三个文件，分别是执行全部的case，执行全部异常或者匹配错误错误的用例，执行全部应当匹配正确
