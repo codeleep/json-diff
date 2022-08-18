@@ -5,6 +5,7 @@ import me.codeleep.jsondiff.handle.AbstractDiffHandle;
 import me.codeleep.jsondiff.handle.RunTimeDataFactory;
 import me.codeleep.jsondiff.model.Defects;
 import me.codeleep.jsondiff.model.JsonCompareResult;
+import me.codeleep.jsondiff.utils.ComparedUtil;
 
 /**
  * @author: codeleep
@@ -16,6 +17,10 @@ public abstract class AbstractArrayHandle extends AbstractDiffHandle implements 
 
     @Override
     public JsonCompareResult handle(JSONArray expectArray, JSONArray actualArray) {
+        // 忽略的path
+        if (ComparedUtil.matchIgnoredPath(RunTimeDataFactory.getCurrentPathInstance().getPath(), RunTimeDataFactory.getOptionInstance().getIgnorePath())) {
+            return RunTimeDataFactory.getResultInstance();
+        }
         int expectLen = expectArray.size();
         int actualLen = actualArray.size();
 

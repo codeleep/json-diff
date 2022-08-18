@@ -910,7 +910,7 @@
         },
         {}
       ],
-      "ret": {"defectsList":[{"actual":"a","illustrate":"extra field 'a'","indexPath":"root[0]"},{"actual":"b","illustrate":"missing field 'b'","indexPath":"root[0]"}],"match":false}
+      "ret": {"defectsList":[{"actual":"a","illustrate":"real excess field 'a'","indexPath":"root[0]"},{"actual":"b","illustrate":"expect missing fields 'b'","indexPath":"root[0]"}],"match":false}
     },
     {
       "actual": [
@@ -1095,12 +1095,12 @@
     {
       "actual": [{"a": 1}],
       "expect": [{"b": 2}],
-      "ret": {"defectsList":[{"actual":"b","illustrate":"missing field 'b'","indexPath":"root[0]"},{"actual":"a","expect":1,"illustrate":"field parsing error","indexPath":"root[0].a"}],"match":false},
+      "ret": {"defectsList":[{"actual":1,"expect":2,"illustrate":"properties are different","indexPath":"root[0].a"}],"match":false},
       "option": {
         "ignoreOrder": false,
-        "mapping": {"a": 1},
-        "ignorePath": [".a/a"],
-        "ignoreKey": [".a.b"]
+        "mapping": {"a": "b"},
+        "ignorePath": [],
+        "ignoreKey": []
       }
     },
     {
@@ -1122,14 +1122,15 @@
           ]
         }
       ],
-      "ret": {},
+      "ret": {"match":true},
       "option": {
         "ignoreOrder": false,
-        "mapping": {"a": 1},
-        "ignorePath": [".a/a"],
-        "ignoreKey": [".a.b"]
+        "mapping": {"a": "a"},
+        "ignorePath": ["root[]"],
+        "ignoreKey": []
       }
-    },    {
+    },
+    {
       "actual": [
         [
           [
@@ -1336,14 +1337,15 @@
           ]
         ]
       ],
-      "ret": {},
+      "ret": {"match":true},
       "option": {
         "ignoreOrder": false,
-        "mapping": {"a": 1},
-        "ignorePath": [".a/a"],
-        "ignoreKey": [".a.b"]
+        "mapping": {},
+        "ignorePath": [],
+        "ignoreKey": ["a"]
       }
-    },    {
+    },
+    {
       "actual": [
         {
           "a": {
@@ -1357,17 +1359,17 @@
         {
           "a": {
             "a": {
-              "b": "a"
+              "b": "asss"
             }
           }
         }
       ],
-      "ret": {},
+      "ret": {"match":true},
       "option": {
         "ignoreOrder": false,
-        "mapping": {"a": 1},
-        "ignorePath": [".a/a"],
-        "ignoreKey": [".a.b"]
+        "mapping": {},
+        "ignorePath": ["root[].a.a"],
+        "ignoreKey": ["b"]
       }
     }
   ],
@@ -1375,22 +1377,23 @@
     {
       "actual": [{"a": 1}],
       "expect": [{"b": 2}],
-      "ret": {},
+      "ret": {"defectsList":[{"actual":"a","expect":"v","illustrate":"field parsing error","indexPath":"root[0].a"},{"actual":"b","expect":"a","illustrate":"field parsing error","indexPath":"root[0].b"}],"match":false},
       "option": {
         "ignoreOrder": false,
-        "mapping": {"a": 1},
-        "ignorePath": [".a/a"],
-        "ignoreKey": [".a.b"]
+        "mapping": {"a": "v", "b": "a"},
+        "ignorePath": [""],
+        "ignoreKey": [""]
       }
-    },    {
+    },
+    {
       "actual": [{"a": 1}],
       "expect": [{"b": 2}],
-      "ret": {},
+      "ret": {"defectsList":[{"actual":1,"expect":2,"illustrate":"properties are different","indexPath":"root[0].a"}],"match":false},
       "option": {
         "ignoreOrder": false,
-        "mapping": {"a": 1},
-        "ignorePath": [".a/a"],
-        "ignoreKey": [".a.b"]
+        "mapping": {"a": "b"},
+        "ignorePath": [],
+        "ignoreKey": []
       }
     },
     {
@@ -1404,29 +1407,23 @@
           "b": 2
         }
       ],
-      "ret": {},
+      "ret": {"match":true},
       "option": {
         "ignoreOrder": false,
-        "mapping": {
-          "a": 1
-        },
-        "ignorePath": [
-          ".a/a"
-        ],
-        "ignoreKey": [
-          ".a.b"
-        ]
+        "mapping": { },
+        "ignorePath": ["root"],
+        "ignoreKey": []
       }
     },
     {
       "actual": [{"a": 1}],
       "expect": [{"b": 2}],
-      "ret": {},
+      "ret": {"defectsList":[{"actual":"b","illustrate":"expect missing fields 'b'","indexPath":"root[0]"}],"match":false},
       "option": {
         "ignoreOrder": false,
-        "mapping": {"a": 1},
-        "ignorePath": [".a/a"],
-        "ignoreKey": [".a.b"]
+        "mapping": {},
+        "ignorePath": [],
+        "ignoreKey": ["a"]
       }
     }
   ]

@@ -79,7 +79,6 @@ public class ComparedUtil {
             return false;
         }
         String currentPath = JsonDiffUtil.getCurrentPath(stack);
-        System.out.println(currentPath);
         for (String path: ignorePath) {
             if (StringUtil.pathPattern(currentPath, path)) {
                 return true;

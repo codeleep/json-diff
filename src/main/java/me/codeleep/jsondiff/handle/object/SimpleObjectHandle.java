@@ -1,16 +1,11 @@
 package me.codeleep.jsondiff.handle.object;
 
-import com.alibaba.fastjson2.JSONArray;
 import com.alibaba.fastjson2.JSONObject;
-import me.codeleep.jsondiff.handle.HandleExampleFactory;
 import me.codeleep.jsondiff.handle.RunTimeDataFactory;
-import me.codeleep.jsondiff.handle.array.AbstractArrayHandle;
 import me.codeleep.jsondiff.model.Defects;
 import me.codeleep.jsondiff.utils.ComparedUtil;
-import me.codeleep.jsondiff.utils.JsonDiffUtil;
 
 import java.util.HashSet;
-import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -26,13 +21,13 @@ public class SimpleObjectHandle extends AbstractObjectHandle {
         Set<String> actualKeys = actualObject.keySet();
 
         // 求两种集合的差集
-        Set<String> conditionsActual = conditionsActual(expectKeys, actualKeys);
-        Set<String> conditionsExpect = conditionsExpect(expectKeys, actualKeys);
+        //Set<String> conditionsActual = conditionsActual(expectKeys, actualKeys);
+        //Set<String> conditionsExpect = conditionsExpect(expectKeys, actualKeys);
 
         // 对比交集
         Set<String> intersect = intersect(expectKeys, actualKeys);
 
-        // 遍历交集
+        // 遍历 交集 - 忽略的字段 - 映射的字段
         for (String key: intersect) {
             RunTimeDataFactory.getCurrentPathInstance().push(key);
             try {
@@ -64,55 +59,48 @@ public class SimpleObjectHandle extends AbstractObjectHandle {
             }
             RunTimeDataFactory.getCurrentPathInstance().pop();
         }
-    }
 
-    /**
-     * actualKeys 有 但是expectKeys 没有的
-     * 先匹配出真实存在，但是期望不存在的字段信息。并且这些字段没有被映射, 且没有被忽略
-     * @param expectKeys
-     * @param actualKeys
-     */
-    private Set<String> conditionsActual(Set<String> expectKeys, Set<String> actualKeys) {
-        Set<String> conditions = new HashSet<>(actualKeys);
-        conditions.removeAll(expectKeys);
-        Map<String, String> mapping = RunTimeDataFactory.getOptionInstance().getMapping();
-        List<String> ignoreKey = RunTimeDataFactory.getOptionInstance().getIgnoreKey();
-        for (String key: conditions) {
-            if (mapping.get(key) == null && !ignoreKey.contains(key)) {
-                Defects defects = new Defects()
-                        .setActual(key)
-                        .setIndexPath(getCurrentPath())
-                        .setIllustrate(String.format("extra field '%s'", key));
-                RunTimeDataFactory.getResultInstance().addDefects(defects);
-            }
+        // 处理除开交集和映射字段之外的字段
+        Set<String> actualLegacyFields = legacyFields(actualKeys, intersect);
+        Set<String> expectLegacyFields = legacyFields(expectKeys, intersect);
+
+        for (String key: actualLegacyFields) {
+            Defects defects = new Defects()
+                    .setActual(key)
+                    .setExpect(null)
+                    .setIndexPath(getCurrentPath())
+                    .setIllustrate(String.format("real excess field '%s'", key));
+            RunTimeDataFactory.getResultInstance().addDefects(defects);
         }
-        return conditions;
-    }
 
-    /**
-     * expectKeys 有 但是actualKeys 没有的
-     * 期望字段有，但是真实信息没有的字段信息。并且这些字段信息没有被忽略
-     * @param expectKeys
-     * @param actualKeys
-     */
-    private Set<String> conditionsExpect(Set<String> expectKeys, Set<String> actualKeys) {
-        Set<String> conditions = new HashSet<>(expectKeys);
-        conditions.removeAll(actualKeys);
-        List<String> ignoreKey = RunTimeDataFactory.getOptionInstance().getIgnoreKey();
-        for (String key: conditions) {
-            if (!ignoreKey.contains(key)) {
-                Defects defects = new Defects()
-                        .setActual(key)
-                        .setIndexPath(getCurrentPath())
-                        .setIllustrate(String.format("missing field '%s'", key));
-                RunTimeDataFactory.getResultInstance().addDefects(defects);
-            }
+        for (String key: expectLegacyFields) {
+            Defects defects = new Defects()
+                    .setActual(key)
+                    .setExpect(null)
+                    .setIndexPath(getCurrentPath())
+                    .setIllustrate(String.format("expect missing fields '%s'", key));
+            RunTimeDataFactory.getResultInstance().addDefects(defects);
         }
-        return conditions;
+
     }
 
     /**
-     * 求交集
+     * 求 集合 - 交集 - 忽略的字段 - 映射的字段
+     * @param keys
+     * @return
+     */
+    private Set<String> legacyFields(Set<String> keys, Set<String> intersect) {
+        Set<String> tempKeys = new HashSet<>(keys);
+        tempKeys.removeAll(intersect);
+        tempKeys.removeAll(new HashSet<>(RunTimeDataFactory.getOptionInstance().getIgnoreKey()));
+        tempKeys.removeAll(RunTimeDataFactory.getOptionInstance().getMapping().keySet());
+        tempKeys.removeAll(new HashSet<>(RunTimeDataFactory.getOptionInstance().getMapping().values()));
+        return tempKeys;
+    }
+
+
+    /**
+     * 求 交集 - 忽略的字段 - 映射的字段
      * @param expectKeys
      * @param actualKeys
      * @return
@@ -120,6 +108,9 @@ public class SimpleObjectHandle extends AbstractObjectHandle {
     private Set<String> intersect(Set<String> expectKeys, Set<String> actualKeys) {
         Set<String> intersect = new HashSet<>(expectKeys);
         intersect.retainAll(actualKeys);
+        intersect.removeAll(new HashSet<>(RunTimeDataFactory.getOptionInstance().getIgnoreKey()));
+        intersect.removeAll(RunTimeDataFactory.getOptionInstance().getMapping().keySet());
+        intersect.removeAll(new HashSet<>(RunTimeDataFactory.getOptionInstance().getMapping().values()));
         return intersect;
     }
 
