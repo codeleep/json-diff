@@ -4,6 +4,7 @@ import com.alibaba.fastjson2.JSONObject;
 import me.codeleep.jsondiff.handle.AbstractDiffHandle;
 import me.codeleep.jsondiff.handle.RunTimeDataFactory;
 import me.codeleep.jsondiff.model.JsonCompareResult;
+import me.codeleep.jsondiff.utils.ComparedUtil;
 
 import java.util.Set;
 
@@ -17,6 +18,11 @@ public abstract class AbstractObjectHandle extends AbstractDiffHandle implements
 
     @Override
     public JsonCompareResult handle(JSONObject expectObject, JSONObject actualObject) {
+        // 忽略的path
+        if (ComparedUtil.matchIgnoredPath(RunTimeDataFactory.getCurrentPathInstance().getPath(), RunTimeDataFactory.getOptionInstance().getIgnorePath())) {
+            return RunTimeDataFactory.getResultInstance();
+        }
+
         // 两个都为null
         if (expectObject == null && actualObject == null) {
             return RunTimeDataFactory.getResultInstance();

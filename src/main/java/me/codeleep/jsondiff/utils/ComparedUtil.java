@@ -8,7 +8,11 @@ import me.codeleep.jsondiff.handle.array.AbstractArrayHandle;
 import me.codeleep.jsondiff.handle.object.AbstractObjectHandle;
 import me.codeleep.jsondiff.model.Defects;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Stack;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * @author: codeleep
@@ -64,6 +68,24 @@ public class ComparedUtil {
             }
         }
         return true;
+    }
+
+    /**
+     * 是否符合忽略的path
+     * @return
+     */
+    public static boolean matchIgnoredPath(Stack<String> stack, List<String> ignorePath) {
+        if (stack == null || ignorePath == null) {
+            return false;
+        }
+        String currentPath = JsonDiffUtil.getCurrentPath(stack);
+        System.out.println(currentPath);
+        for (String path: ignorePath) {
+            if (StringUtil.pathPattern(currentPath, path)) {
+                return true;
+            }
+        }
+        return false;
     }
 
 }
