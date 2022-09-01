@@ -8,11 +8,8 @@ import me.codeleep.jsondiff.handle.array.AbstractArrayHandle;
 import me.codeleep.jsondiff.handle.object.AbstractObjectHandle;
 import me.codeleep.jsondiff.model.Defects;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 /**
  * @author: codeleep
@@ -29,6 +26,10 @@ public class ComparedUtil {
      * @throws IllegalAccessException
      */
     public static void notSureAboutComparison(Object expect, Object actual) throws IllegalAccessException {
+        // 忽略的path
+        if (ComparedUtil.matchIgnoredPath(RunTimeDataFactory.getCurrentPathInstance().getPath(), RunTimeDataFactory.getOptionInstance().getIgnorePath())) {
+            return;
+        }
         if (JsonDiffUtil.isPrimitiveType(expect)) {
             if (!expect.equals(actual)) {
                 Defects defects = new Defects()
