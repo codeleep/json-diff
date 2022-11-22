@@ -1,8 +1,7 @@
 package me.codeleep.jsondiff.jsonimpl.fastjson;
 
-import com.alibaba.fastjson2.JSON;
 import com.alibaba.fastjson2.JSONArray;
-import me.codeleep.jsondiff.model.json.DiffJsonArray;
+import me.codeleep.jsondiff.spi.array.DiffJsonArray;
 
 /**
  * @author: codeleep
@@ -13,19 +12,12 @@ public class FastJsonArray implements DiffJsonArray {
 
     private JSONArray target;
 
-    @Override
-    public int size() {
-        return target.size();
+    public FastJsonArray() {
+        target = new JSONArray();
     }
 
     @Override
-    public Object[] toArray() {
-        return target.toArray();
-    }
-
-    @Override
-    public DiffJsonArray build(String text) {
-        target = JSON.parseArray(text);
-        return this;
+    public DiffJsonArray getDiffJsonArray(int index) {
+        return (DiffJsonArray)super.getJSONArray(index);
     }
 }

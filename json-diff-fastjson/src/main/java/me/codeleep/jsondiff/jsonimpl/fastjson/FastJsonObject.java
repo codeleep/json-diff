@@ -2,8 +2,8 @@ package me.codeleep.jsondiff.jsonimpl.fastjson;
 
 import com.alibaba.fastjson2.JSON;
 import com.alibaba.fastjson2.JSONObject;
-import me.codeleep.jsondiff.model.json.DiffJsonArray;
-import me.codeleep.jsondiff.model.json.DiffJsonObject;
+import me.codeleep.jsondiff.spi.array.DiffJsonArray;
+import me.codeleep.jsondiff.spi.object.DiffJsonObject;
 
 import java.util.Set;
 

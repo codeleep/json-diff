@@ -1,7 +1,7 @@
 package me.codeleep.jsondiff;
 
-import me.codeleep.jsondiff.model.json.DiffJsonArray;
-import me.codeleep.jsondiff.model.json.DiffJsonObject;
+import me.codeleep.jsondiff.spi.array.DiffJsonArray;
+import me.codeleep.jsondiff.spi.object.DiffJsonObject;
 import me.codeleep.jsondiff.model.JsonCompareResult;
 
 public interface JsonDifference {

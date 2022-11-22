@@ -5,7 +5,7 @@ import me.codeleep.jsondiff.facade.DiffJsonFactory;
 import me.codeleep.jsondiff.model.DIFFJSON;
 import me.codeleep.jsondiff.model.JsonCompareResult;
 import me.codeleep.jsondiff.model.MetaData;
-import me.codeleep.jsondiff.model.json.DiffJsonArray;
+import me.codeleep.jsondiff.spi.array.DiffJsonArray;
 import me.codeleep.jsondiff.test.dataFactory.ArrayDataFactory;
 import org.testng.Assert;
 import org.testng.annotations.Test;

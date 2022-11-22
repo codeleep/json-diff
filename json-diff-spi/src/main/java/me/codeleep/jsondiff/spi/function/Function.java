@@ -1,4 +1,4 @@
-package me.codeleep.jsondiff.function;
+package me.codeleep.jsondiff.spi.function;
 
 import java.util.Objects;
 

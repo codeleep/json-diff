@@ -5,7 +5,7 @@ import me.codeleep.jsondiff.facade.DiffJsonFactory;
 import me.codeleep.jsondiff.model.DIFFJSON;
 import me.codeleep.jsondiff.model.JsonCompareResult;
 import me.codeleep.jsondiff.model.JsonComparedOption;
-import me.codeleep.jsondiff.model.json.DiffJsonObject;
+import me.codeleep.jsondiff.spi.object.DiffJsonObject;
 
 import java.util.ArrayList;
 import java.util.List;
