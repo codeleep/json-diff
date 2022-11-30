@@ -1,7 +1,7 @@
 package me.codeleep.jsondiff.utils;
 
-import me.codeleep.jsondiff.spi.array.DiffJsonArray;
-import me.codeleep.jsondiff.spi.object.DiffJsonObject;
+import me.codeleep.jsondiff.spi.model.array.DiffJsonArray;
+import me.codeleep.jsondiff.spi.model.object.DiffJsonObject;
 import me.codeleep.jsondiff.exception.JsonDiffException;
 import me.codeleep.jsondiff.handle.array.IntricacyArrayHandle;
 import me.codeleep.jsondiff.handle.array.MultidimensionalArrayHandle;
@@ -48,7 +48,7 @@ public class JsonDiffUtil {
      *  一共可以划分出四种可能
      * @return
      */
-    public static Class<?> getArrayHandleClass(DiffJsonArray expect, DiffJsonArray actual) {
+    public static Class<?> getArrayHandleClass(A expect, DiffJsonArray actual) {
 
         if (expect.size() == 0 && actual.size() == 0) {
             return SimpleArrayHandle.class;

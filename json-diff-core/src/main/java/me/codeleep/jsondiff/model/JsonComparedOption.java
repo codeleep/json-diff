@@ -1,6 +1,6 @@
 package me.codeleep.jsondiff.model;
 
-import me.codeleep.jsondiff.spi.function.Function;
+import me.codeleep.jsondiff.common.function.Function;
 
 import java.util.*;
 

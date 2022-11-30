@@ -4,7 +4,7 @@ import me.codeleep.jsondiff.DefaultJsonDifference;
 import me.codeleep.jsondiff.model.DIFFJSON;
 import me.codeleep.jsondiff.model.JsonCompareResult;
 import me.codeleep.jsondiff.model.MetaData;
-import me.codeleep.jsondiff.spi.object.DiffJsonObject;
+import me.codeleep.jsondiff.spi.model.object.DiffJsonObject;
 import me.codeleep.jsondiff.test.dataFactory.ObjectDataFactory;
 import org.testng.Assert;
 import org.testng.annotations.Test;

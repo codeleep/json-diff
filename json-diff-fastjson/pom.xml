@@ -19,7 +19,7 @@
     <dependencies>
         <dependency>
             <groupId>cn.xiaoandcai</groupId>
-            <artifactId>json-diff-core</artifactId>
+            <artifactId>json-diff-spi</artifactId>
             <version>1.2.1</version>
         </dependency>
         <dependency>

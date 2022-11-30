@@ -9,6 +9,8 @@
         <module>json-diff-fastjson</module>
         <module>json-diff-facade</module>
         <module>json-diff-spi</module>
+        <module>json-diff-common</module>
+        <module>json-diff-main</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>

@@ -1,6 +1,6 @@
 package me.codeleep.jsondiff.handle.object;
 
-import me.codeleep.jsondiff.spi.object.DiffJsonObject;
+import me.codeleep.jsondiff.spi.model.object.DiffJsonObject;
 import me.codeleep.jsondiff.handle.Handle;
 import me.codeleep.jsondiff.model.JsonCompareResult;
 

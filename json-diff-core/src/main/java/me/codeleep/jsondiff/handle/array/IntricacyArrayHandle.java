@@ -1,10 +1,10 @@
 package me.codeleep.jsondiff.handle.array;
 
 import me.codeleep.jsondiff.exception.JsonDiffException;
-import me.codeleep.jsondiff.spi.function.Function;
+import me.codeleep.jsondiff.common.function.Function;
 import me.codeleep.jsondiff.handle.RunTimeDataFactory;
 import me.codeleep.jsondiff.model.Defects;
-import me.codeleep.jsondiff.spi.object.DiffJsonObject;
+import me.codeleep.jsondiff.spi.model.object.DiffJsonObject;
 import me.codeleep.jsondiff.utils.ComparedUtil;
 import me.codeleep.jsondiff.utils.JsonDiffUtil;
 

@@ -1,8 +1,8 @@
 package me.codeleep.jsondiff.facade;
 
 import me.codeleep.jsondiff.exception.JsonDiffException;
-import me.codeleep.jsondiff.spi.array.DiffJsonArray;
-import me.codeleep.jsondiff.spi.object.DiffJsonObject;
+import me.codeleep.jsondiff.spi.model.array.DiffJsonArray;
+import me.codeleep.jsondiff.spi.model.object.DiffJsonObject;
 /**
  * @author: codeleep
  * @createTime: 2022/09/29 23:56

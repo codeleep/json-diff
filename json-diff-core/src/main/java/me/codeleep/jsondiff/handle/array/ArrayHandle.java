@@ -1,7 +1,7 @@
 package me.codeleep.jsondiff.handle.array;
 
 
-import me.codeleep.jsondiff.spi.array.DiffJsonArray;
+import me.codeleep.jsondiff.spi.model.array.DiffJsonArray;
 import me.codeleep.jsondiff.handle.Handle;
 import me.codeleep.jsondiff.model.JsonCompareResult;
 

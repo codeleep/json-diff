@@ -1,7 +1,7 @@
 package me.codeleep.jsondiff.utils;
 
-import me.codeleep.jsondiff.spi.array.DiffJsonArray;
-import me.codeleep.jsondiff.spi.object.DiffJsonObject;
+import me.codeleep.jsondiff.spi.model.array.DiffJsonArray;
+import me.codeleep.jsondiff.spi.model.object.DiffJsonObject;
 import me.codeleep.jsondiff.handle.HandleExampleFactory;
 import me.codeleep.jsondiff.handle.RunTimeDataFactory;
 import me.codeleep.jsondiff.handle.array.AbstractArrayHandle;

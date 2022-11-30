@@ -3,7 +3,7 @@ package me.codeleep.jsondiff.handle.array;
 import me.codeleep.jsondiff.handle.HandleExampleFactory;
 import me.codeleep.jsondiff.handle.RunTimeDataFactory;
 import me.codeleep.jsondiff.model.Defects;
-import me.codeleep.jsondiff.spi.array.DiffJsonArray;
+import me.codeleep.jsondiff.spi.model.array.DiffJsonArray;
 import me.codeleep.jsondiff.utils.JsonDiffUtil;
 
 import java.util.Arrays;

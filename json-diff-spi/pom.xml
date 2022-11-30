@@ -16,4 +16,12 @@
         <maven.compiler.target>8</maven.compiler.target>
     </properties>
 
+    <dependencies>
+        <dependency>
+            <groupId>cn.xiaoandcai</groupId>
+            <artifactId>json-diff-common</artifactId>
+            <version>1.2.1</version>
+        </dependency>
+    </dependencies>
+
 </project>

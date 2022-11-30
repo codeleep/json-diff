@@ -34,4 +34,15 @@ public class HandleExampleFactory {
         return bucket.get(handle);
     }
 
+
+    /**
+     * 根据类型 获取对应的处理器
+     * @param expect 期望对象
+     * @param actual 实际对象
+     * @return 返回的处理器
+     */
+    public static Handle getHandle(Object expect, Object actual) {
+
+    }
+
 }
