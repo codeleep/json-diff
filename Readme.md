@@ -34,8 +34,8 @@
 <!-- 版本请以maven仓库最版为准 -->
 <dependency>
     <groupId>cn.xiaoandcai</groupId>
-    <artifactId>jsonDiff</artifactId>
-    <version>1.1.0</version>
+    <artifactId>JsonDiff</artifactId>
+    <version>1.2.1</version>
 </dependency>
 ```
 
