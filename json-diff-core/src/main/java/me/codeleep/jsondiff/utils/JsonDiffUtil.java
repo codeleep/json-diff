@@ -1,12 +1,9 @@
 package me.codeleep.jsondiff.utils;
 
-import me.codeleep.jsondiff.spi.model.array.DiffJsonArray;
-import me.codeleep.jsondiff.spi.model.object.DiffJsonObject;
+import com.alibaba.fastjson2.JSONArray;
+import com.alibaba.fastjson2.JSONObject;
 import me.codeleep.jsondiff.exception.JsonDiffException;
-import me.codeleep.jsondiff.handle.array.IntricacyArrayHandle;
-import me.codeleep.jsondiff.handle.array.MultidimensionalArrayHandle;
-import me.codeleep.jsondiff.handle.array.ObjectArrayHandle;
-import me.codeleep.jsondiff.handle.array.SimpleArrayHandle;
+import me.codeleep.jsondiff.neat.JsonNeat;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -15,6 +12,18 @@ import java.util.Stack;
 import static me.codeleep.jsondiff.handle.JsonDiffConstants.SIGN;
 
 public class JsonDiffUtil {
+
+
+
+    public static JsonNeat getJsonNeat(JSONObject expect, JSONObject actual) {
+        return null;
+    }
+
+    public static JsonNeat getJsonNeat(JSONArray expect, JSONArray actual) {
+        return null;
+    }
+
+
 
     /**
      * 判断当前对象是否为json数据格式中的基本类型
@@ -75,6 +84,10 @@ public class JsonDiffUtil {
     public static Class<?> getObjectHandleClass(DiffJsonObject expect, DiffJsonObject actual) {
         return HandleBucket.getObjectHandle();
     }
+
+
+
+
 
     /**
      * 数组的元素 1. 基本类型  2. 对象  3. 数组

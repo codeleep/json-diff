@@ -1,7 +1,5 @@
 package me.codeleep.jsondiff.common.model;
 
-import me.codeleep.jsondiff.common.function.Function;
-
 import java.util.*;
 
 /**
@@ -25,17 +23,12 @@ public class JsonComparedOption {
     /**
      * 忽略的path. 以 . 来区分json层级; 会精准匹配路径
      */
-    private List<String> ignorePath;
+    private HashSet<String> ignorePath;
 
     /**
-     * 忽略的key。actual中有的字段，但expect没有的，会被忽略掉
+     * 忽略的key。不会比较该key
      */
-    private List<String> ignoreKey;
-
-    /**
-     * ignoreOrder=true时，数组是元素对象时, 指定根据哪些key联系对象
-     */
-    private Function<String, Stack<String>> keyFunction;
+    private HashSet<String> ignoreKey;
 
 
     public JsonComparedOption() {
@@ -52,12 +45,12 @@ public class JsonComparedOption {
         return this;
     }
 
-    public JsonComparedOption setIgnorePath(List<String> ignorePath) {
+    public JsonComparedOption setIgnorePath(HashSet<String> ignorePath) {
         this.ignorePath = ignorePath;
         return this;
     }
 
-    public JsonComparedOption setIgnoreKey(List<String> ignoreKey) {
+    public JsonComparedOption setIgnoreKey(HashSet<String> ignoreKey) {
         this.ignoreKey = ignoreKey;
         return this;
     }
@@ -73,25 +66,17 @@ public class JsonComparedOption {
         return mapping;
     }
 
-    public List<String> getIgnorePath() {
+    public HashSet<String> getIgnorePath() {
         if (ignorePath == null) {
-            ignorePath = new ArrayList<>();
+            ignorePath = new HashSet<>();
         }
         return ignorePath;
     }
 
-    public List<String> getIgnoreKey() {
+    public HashSet<String> getIgnoreKey() {
         if (ignoreKey == null) {
-            ignoreKey = new ArrayList<>();
+            ignoreKey = new HashSet<>();
         }
         return ignoreKey;
-    }
-    public Function<String, Stack<String>> getKeyFunction() {
-        return keyFunction;
-    }
-
-    public JsonComparedOption setKeyFunction(Function<String, Stack<String>> keyFunction) {
-        this.keyFunction = keyFunction;
-        return this;
     }
 }

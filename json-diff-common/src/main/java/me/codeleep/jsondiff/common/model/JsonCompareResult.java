@@ -45,6 +45,14 @@ public class JsonCompareResult {
         return true;
     }
 
+    public void mergeDefects(List<Defects> defectsList) {
+        if (defectsList == null || defectsList.size() == 0) {
+            return;
+        }
+        match = false;
+        this.defectsList.addAll(defectsList);
+    }
+
     public Boolean getMatch() {
         return match;
     }

@@ -1,8 +1,8 @@
 package me.codeleep.jsondiff.model;
 
-import me.codeleep.jsondiff.common.function.Function;
 
 import java.util.*;
+import java.util.function.Function;
 
 /**
  * @author: codeleep
