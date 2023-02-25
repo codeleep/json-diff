@@ -1,6 +1,7 @@
 package me.codeleep.jsondiff.handle.array;
 
 import com.alibaba.fastjson2.JSONArray;
+import com.alibaba.fastjson2.JSONObject;
 import me.codeleep.jsondiff.common.model.Defects;
 import me.codeleep.jsondiff.common.model.JsonCompareResult;
 import me.codeleep.jsondiff.common.utils.RunTimeDataFactory;
@@ -133,6 +134,11 @@ public class ComplexArrayJsonNeat extends AbstractArrayJsonNeat {
     public JsonCompareResult diff(JSONArray expect, JSONArray actual, String path) {
         this.path = path;
         return detectDiff(expect, actual);
+    }
+
+    @Override
+    public JsonCompareResult diff(Object expect, Object actual, String path) {
+        return diff((JSONArray) expect, (JSONArray) actual, path);
     }
 
 }

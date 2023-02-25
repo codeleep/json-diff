@@ -50,6 +50,9 @@ public class JsonCompareResult {
             return;
         }
         match = false;
+        if (this.defectsList == null) {
+            this.defectsList = new ArrayList<>();
+        }
         this.defectsList.addAll(defectsList);
     }
 

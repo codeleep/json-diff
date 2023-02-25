@@ -1,6 +1,7 @@
 package me.codeleep.jsondiff.handle.object;
 
 import com.alibaba.fastjson2.JSONObject;
+import me.codeleep.jsondiff.common.exception.JsonDiffException;
 import me.codeleep.jsondiff.common.model.Defects;
 import me.codeleep.jsondiff.common.model.JsonCompareResult;
 import me.codeleep.jsondiff.common.utils.RunTimeDataFactory;
@@ -45,21 +46,21 @@ public class ComplexObjectJsonNeat extends AbstractObjectJsonNeat {
         keySetConversion(expect.keySet(), actual.keySet());
         // 遍历比较
         for (MappingKey mappingKey : keyMap) {
-            JSONObject expectDiffJson = expect.getJSONObject(mappingKey.getExpectKey());
-            JSONObject actualDiffJson = actual.getJSONObject(mappingKey.getActualKey());
+            Object expectDiffJson = expect.get(mappingKey.getExpectKey());
+            Object actualDiffJson = actual.get(mappingKey.getActualKey());
             // 判断类型, 根据类型去实例化JsonNeat。
             JsonNeat jsonNeat = JsonDiffUtil.getJsonNeat(expectDiffJson, actualDiffJson);
             if (jsonNeat == null) {
                 Defects defects = new Defects()
-                        .setActual(actual)
-                        .setExpect(expect)
+                        .setActual(actualDiffJson)
+                        .setExpect(expectDiffJson)
                         .setIndexPath(path)
-                        .setIllustrateTemplate(DATA_TYPE_INCONSISTENT, expect.getClass().getName(), actual.getClass().getName());
+                        .setIllustrateTemplate(DATA_TYPE_INCONSISTENT, expectDiffJson.getClass().getName(), actualDiffJson.getClass().getName());
                 result.addDefects(defects);
                 continue;
             }
             // 比较非基础类型
-            JsonCompareResult diff = jsonNeat.diff(expect, actual, PathUtil.getObjectPath(path, mappingKey));
+            JsonCompareResult diff = jsonNeat.diff(expectDiffJson, actualDiffJson, PathUtil.getObjectPath(path, mappingKey));
             // 将结果合并
             if (!diff.isMatch()) {
                 result.mergeDefects(diff.getDefectsList());
@@ -109,4 +110,10 @@ public class ComplexObjectJsonNeat extends AbstractObjectJsonNeat {
         this.path = path;
         return detectDiff(expect, actual);
     }
+
+    @Override
+    public JsonCompareResult diff(Object expect, Object actual, String path) {
+        return diff((JSONObject) expect, (JSONObject) actual, path);
+    }
+
 }
