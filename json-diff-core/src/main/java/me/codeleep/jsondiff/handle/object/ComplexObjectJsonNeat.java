@@ -1,7 +1,6 @@
 package me.codeleep.jsondiff.handle.object;
 
 import com.alibaba.fastjson2.JSONObject;
-import me.codeleep.jsondiff.common.exception.JsonDiffException;
 import me.codeleep.jsondiff.common.model.Defects;
 import me.codeleep.jsondiff.common.model.JsonCompareResult;
 import me.codeleep.jsondiff.common.utils.RunTimeDataFactory;
@@ -13,6 +12,7 @@ import me.codeleep.jsondiff.utils.PathUtil;
 import java.util.*;
 
 import static me.codeleep.jsondiff.common.model.Constant.DATA_TYPE_INCONSISTENT;
+import static me.codeleep.jsondiff.common.model.Constant.SEPARATE_KEY;
 
 /**
  * @author: codeleep
@@ -46,6 +46,17 @@ public class ComplexObjectJsonNeat extends AbstractObjectJsonNeat {
         keySetConversion(expect.keySet(), actual.keySet());
         // 遍历比较
         for (MappingKey mappingKey : keyMap) {
+            // 未找到另外一个key。只存存在其中一个为null情况
+            if (mappingKey.getExpectKey() == null || mappingKey.getActualKey() == null) {
+                Defects defects = new Defects()
+                        .setActual(actual.get(mappingKey.getActualKey()))
+                        .setExpect(expect.get(mappingKey.getExpectKey()))
+                        .setIndexPath(PathUtil.getObjectPath(path, mappingKey))
+                        .setIllustrateTemplate(SEPARATE_KEY, mappingKey.getExpectKey(), mappingKey.getActualKey());
+                result.addDefects(defects);
+                return result;
+            }
+
             Object expectDiffJson = expect.get(mappingKey.getExpectKey());
             Object actualDiffJson = actual.get(mappingKey.getActualKey());
             // 判断类型, 根据类型去实例化JsonNeat。
@@ -54,7 +65,7 @@ public class ComplexObjectJsonNeat extends AbstractObjectJsonNeat {
                 Defects defects = new Defects()
                         .setActual(actualDiffJson)
                         .setExpect(expectDiffJson)
-                        .setIndexPath(path)
+                        .setIndexPath(PathUtil.getObjectPath(path, mappingKey))
                         .setIllustrateTemplate(DATA_TYPE_INCONSISTENT, expectDiffJson.getClass().getName(), actualDiffJson.getClass().getName());
                 result.addDefects(defects);
                 continue;
@@ -94,6 +105,9 @@ public class ComplexObjectJsonNeat extends AbstractObjectJsonNeat {
                 continue;
             }
             neatExpectKeys.add(key);
+            if (actualKeys.contains(key)) {
+                neatActualKeys.add(key);
+            }
             keyMap.add(new MappingKey(key, actualKeys.contains(key) ? key : null));
         }
         for (String key: actualKeys) {
