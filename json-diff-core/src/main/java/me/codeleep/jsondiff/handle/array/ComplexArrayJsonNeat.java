@@ -1,13 +1,14 @@
 package me.codeleep.jsondiff.handle.array;
 
 import com.alibaba.fastjson2.JSONArray;
+import me.codeleep.jsondiff.common.model.Defects;
 import me.codeleep.jsondiff.common.model.JsonCompareResult;
 import me.codeleep.jsondiff.common.utils.RunTimeDataFactory;
-import me.codeleep.jsondiff.utils.JsonCompareUtil;
+import me.codeleep.jsondiff.neat.JsonNeat;
+import me.codeleep.jsondiff.utils.JsonDiffUtil;
 import me.codeleep.jsondiff.utils.PathUtil;
 
-import java.util.Map;
-import java.util.stream.Collectors;
+import static me.codeleep.jsondiff.common.model.Constant.DATA_TYPE_INCONSISTENT;
 
 /**
  * @author: codeleep
@@ -39,12 +40,6 @@ public class ComplexArrayJsonNeat extends AbstractArrayJsonNeat {
 
     @Override
     public JsonCompareResult ignoreOrder(JSONArray expect, JSONArray actual) {
-        Map<Object, Long> expectMap = expect.stream().collect(Collectors.groupingBy(s -> s, Collectors.counting()));
-        Map<Object, Long> actualMap = actual.stream().collect(Collectors.groupingBy(s -> s, Collectors.counting()));
-
-
-
-
 
         return null;
     }
@@ -53,10 +48,23 @@ public class ComplexArrayJsonNeat extends AbstractArrayJsonNeat {
     public JsonCompareResult keepOrder(JSONArray expect, JSONArray actual) {
         int len = expect.size();
         for (int i = 0; i < len; i++) {
-            // 数据都是基础类型
-            JsonCompareResult jsonCompareResult = JsonCompareUtil.handlePrimitiveType(expect.get(i), actual.get(i), PathUtil.getIndexPath(this.path, i));
-            if (!jsonCompareResult.isMatch()) {
-                result.mergeDefects(jsonCompareResult.getDefectsList());
+            // 判断类型, 根据类型去实例化JsonNeat。
+            JsonNeat jsonNeat = JsonDiffUtil.getJsonNeat(expect.get(i), actual.get(i));
+            // 类型不一致
+            if (jsonNeat == null) {
+                Defects defects = new Defects()
+                        .setActual(actual)
+                        .setExpect(expect)
+                        .setIndexPath(path)
+                        .setIllustrateTemplate(DATA_TYPE_INCONSISTENT, expect.getClass().getName(), actual.getClass().getName());
+                result.addDefects(defects);
+                continue;
+            }
+            // 比较非基础类型
+            JsonCompareResult diff = jsonNeat.diff(expect, actual, PathUtil.getIndexPath(path, i));
+            // 将结果合并
+            if (!diff.isMatch()) {
+                result.mergeDefects(diff.getDefectsList());
             }
         }
         return result;

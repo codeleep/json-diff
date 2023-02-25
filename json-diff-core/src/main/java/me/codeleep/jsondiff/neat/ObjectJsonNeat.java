@@ -2,7 +2,6 @@ package me.codeleep.jsondiff.neat;
 
 import com.alibaba.fastjson2.JSONObject;
 import me.codeleep.jsondiff.common.model.JsonCompareResult;
-import me.codeleep.jsondiff.spi.model.object.DiffJsonObject;
 
 /**
  * @author: codeleep

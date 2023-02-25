@@ -1,15 +1,17 @@
 package me.codeleep.jsondiff.handle.object;
 
 import com.alibaba.fastjson2.JSONObject;
+import me.codeleep.jsondiff.common.model.Defects;
 import me.codeleep.jsondiff.common.model.JsonCompareResult;
 import me.codeleep.jsondiff.common.utils.RunTimeDataFactory;
 import me.codeleep.jsondiff.model.MappingKey;
 import me.codeleep.jsondiff.neat.JsonNeat;
-import me.codeleep.jsondiff.utils.JsonCompareUtil;
 import me.codeleep.jsondiff.utils.JsonDiffUtil;
 import me.codeleep.jsondiff.utils.PathUtil;
 
 import java.util.*;
+
+import static me.codeleep.jsondiff.common.model.Constant.DATA_TYPE_INCONSISTENT;
 
 /**
  * @author: codeleep
@@ -48,10 +50,12 @@ public class ComplexObjectJsonNeat extends AbstractObjectJsonNeat {
             // 判断类型, 根据类型去实例化JsonNeat。
             JsonNeat jsonNeat = JsonDiffUtil.getJsonNeat(expectDiffJson, actualDiffJson);
             if (jsonNeat == null) {
-                JsonCompareResult jsonCompareResult = JsonCompareUtil.handlePrimitiveType(expectDiffJson, actualDiffJson, PathUtil.getObjectPath(this.path, mappingKey));
-                if (!jsonCompareResult.isMatch()) {
-                    result.mergeDefects(jsonCompareResult.getDefectsList());
-                }
+                Defects defects = new Defects()
+                        .setActual(actual)
+                        .setExpect(expect)
+                        .setIndexPath(path)
+                        .setIllustrateTemplate(DATA_TYPE_INCONSISTENT, expect.getClass().getName(), actual.getClass().getName());
+                result.addDefects(defects);
                 continue;
             }
             // 比较非基础类型
@@ -105,5 +109,4 @@ public class ComplexObjectJsonNeat extends AbstractObjectJsonNeat {
         this.path = path;
         return detectDiff(expect, actual);
     }
-
 }
