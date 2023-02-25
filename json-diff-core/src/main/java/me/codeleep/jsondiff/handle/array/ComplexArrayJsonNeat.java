@@ -40,8 +40,67 @@ public class ComplexArrayJsonNeat extends AbstractArrayJsonNeat {
 
     @Override
     public JsonCompareResult ignoreOrder(JSONArray expect, JSONArray actual) {
+        int expectIndex = 0;
+        int actualIndex = 0;
+        int len = expect.size();
+        boolean[] expectFlag = new boolean[len];
+        boolean[] actualFlag = new boolean[len];
 
-        return null;
+
+        // 判断出所有能匹配的数据
+        for (expectIndex = 0; expectIndex < len; expectIndex++) {
+            if (expectFlag[expectIndex]) {
+                continue;
+            }
+            for (actualIndex = 0; actualIndex < len; actualIndex++) {
+                if (actualFlag[actualIndex]) {
+                    continue;
+                }
+                JsonNeat jsonNeat = JsonDiffUtil.getJsonNeat(expect.get(expectIndex), actual.get(actualIndex));
+                if (jsonNeat == null) {
+                    continue;
+                }
+                JsonCompareResult compareResult = jsonNeat.diff(expect.get(expectIndex), actual.get(actualIndex), PathUtil.getIndexPath(this.path, actualIndex));
+                if (compareResult != null && compareResult.isMatch()) {
+                    expectFlag[expectIndex] = true;
+                    actualFlag[actualIndex] = true;
+                }
+            }
+        }
+
+        // 对所有未匹配数据进行报错
+        for (expectIndex = 0; expectIndex < len; expectIndex++) {
+            if (expectFlag[expectIndex]) {
+                continue;
+            }
+            for (actualIndex = 0; actualIndex < len; actualIndex++) {
+                if (actualFlag[actualIndex]) {
+                    continue;
+                }
+                Object expectItem = expect.get(expectIndex);
+                Object actualItem = actual.get(actualIndex);
+                // 判断类型, 根据类型去实例化JsonNeat。
+                JsonNeat jsonNeat = JsonDiffUtil.getJsonNeat(expectItem, actualItem);
+                // 类型不一致
+                if (jsonNeat != null) {
+                    JsonCompareResult diff = jsonNeat.diff(expectItem, actualItem, PathUtil.getIndexPath(path, actualIndex));
+                    // 将结果合并
+                    if (!diff.isMatch()) {
+                        result.mergeDefects(diff.getDefectsList());
+                    }
+                    continue;
+                }
+                //
+                Defects defects = new Defects()
+                        .setActual(actualItem)
+                        .setExpect(expectItem)
+                        .setIndexPath(path)
+                        .setIllustrateTemplate(DATA_TYPE_INCONSISTENT, expectItem.getClass().getName(), actualItem.getClass().getName());
+                result.addDefects(defects);
+
+            }
+        }
+        return result;
     }
 
     @Override
@@ -60,7 +119,6 @@ public class ComplexArrayJsonNeat extends AbstractArrayJsonNeat {
                 result.addDefects(defects);
                 continue;
             }
-            // 比较非基础类型
             JsonCompareResult diff = jsonNeat.diff(expect, actual, PathUtil.getIndexPath(path, i));
             // 将结果合并
             if (!diff.isMatch()) {
