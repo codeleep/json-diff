@@ -53,10 +53,6 @@ public class JsonCompareResult {
         this.defectsList.addAll(defectsList);
     }
 
-    public Boolean getMatch() {
-        return match;
-    }
-
     public void setMatch(Boolean match) {
         this.match = match;
     }

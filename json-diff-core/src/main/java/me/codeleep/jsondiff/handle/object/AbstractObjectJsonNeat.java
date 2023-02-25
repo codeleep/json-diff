@@ -26,7 +26,6 @@ public abstract class AbstractObjectJsonNeat extends AbstractTypeCheck implement
         throw new JsonDiffException("类型调用错误");
     }
 
-
     /**
      * 前置检查
      * @param expect

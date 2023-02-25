@@ -29,10 +29,6 @@ public abstract class AbstractPrimitiveJsonNeat extends AbstractTypeCheck implem
 
     @Override
     public boolean check(Object expect, Object actual) {
-
-
-
-
         return ClassUtil.isSameClass(expect, actual);
     }
 

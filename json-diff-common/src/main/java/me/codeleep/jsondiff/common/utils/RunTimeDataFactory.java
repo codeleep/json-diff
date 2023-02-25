@@ -1,13 +1,7 @@
 package me.codeleep.jsondiff.common.utils;
 
 
-import me.codeleep.jsondiff.common.exception.JsonDiffException;
-import me.codeleep.jsondiff.common.model.DiffProcessResultStack;
 import me.codeleep.jsondiff.common.model.JsonComparedOption;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Stack;
 
 /**
  * @author: codeleep
@@ -21,17 +15,6 @@ public class RunTimeDataFactory {
      * 配置
      */
     private final static ThreadLocal<JsonComparedOption> optionThreadLocal = new ThreadLocal<>();
-
-    /**
-     * id 序列生成器
-     */
-    private final static ThreadLocal<Long> sequenceThreadLocal = new ThreadLocal<>();
-
-    /**
-     * 运行时差异堆栈
-     */
-    private final static ThreadLocal<DiffProcessResultStack> stackThreadLocal = new ThreadLocal<>();
-
 
     /**
      * 获取对比配置
@@ -55,37 +38,6 @@ public class RunTimeDataFactory {
         }
         optionThreadLocal.remove();
         optionThreadLocal.set(jsonComparedOption);
-    }
-
-
-    /**
-     * 获取id, 这里似乎不用考虑竞争。直接使用Long即可
-     * @return 获取id
-     */
-    public static long getId() {
-        if (sequenceThreadLocal.get() == null) {
-            sequenceThreadLocal.set(1L);
-        }
-        // 依次递增
-        long seq = sequenceThreadLocal.get() + 1;
-        sequenceThreadLocal.set(seq);
-        return seq;
-    }
-
-
-    /**
-     * 获取当前的path
-     * @param id 当前节点的id
-     * @param ex 期望对象 ｜ 真实对象
-     * @return 当前节点的路径
-     */
-    public static String getPath(long id, boolean ex) {
-        if (stackThreadLocal.get() == null) {
-            throw new JsonDiffException("Found no initialization stackThreadLocal");
-        }
-        Stack<String> nodeStack = new Stack<>();
-        DiffUtils.getPathToTarget(stackThreadLocal.get(), id, nodeStack, ex);
-        return DiffUtils.getCurrentPath(nodeStack);
     }
 
 
