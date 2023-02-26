@@ -1,5 +1,6 @@
 package me.codeleep.jsondiff.handle;
 
+import me.codeleep.jsondiff.common.model.JsonCompareResult;
 import me.codeleep.jsondiff.neat.TypeCheck;
 import me.codeleep.jsondiff.utils.ClassUtil;
 
@@ -11,7 +12,7 @@ import me.codeleep.jsondiff.utils.ClassUtil;
 public class AbstractTypeCheck implements TypeCheck {
 
     @Override
-    public boolean check(Object expect, Object actual) {
+    public boolean check(Object expect, Object actual, JsonCompareResult result, String path) {
         return ClassUtil.isSameClass(expect, actual);
     }
 

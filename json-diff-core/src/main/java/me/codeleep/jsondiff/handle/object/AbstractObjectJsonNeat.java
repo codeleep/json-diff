@@ -2,11 +2,11 @@ package me.codeleep.jsondiff.handle.object;
 
 
 import com.alibaba.fastjson2.JSONArray;
-import com.alibaba.fastjson2.JSONObject;
 import me.codeleep.jsondiff.common.exception.JsonDiffException;
 import me.codeleep.jsondiff.common.model.JsonCompareResult;
 import me.codeleep.jsondiff.handle.AbstractTypeCheck;
 import me.codeleep.jsondiff.neat.ObjectJsonNeat;
+import me.codeleep.jsondiff.utils.ClassUtil;
 
 /**
  * @author: codeleep
@@ -21,13 +21,12 @@ public abstract class AbstractObjectJsonNeat extends AbstractTypeCheck implement
         throw new JsonDiffException("类型调用错误");
     }
 
-    /**
-     * 前置检查
-     * @param expect
-     * @param actual
-     */
-    public void preCheck(JSONObject expect, JSONObject actual) {
-
+    @Override
+    public boolean check(Object expect, Object actual, JsonCompareResult result, String path) {
+        if (expect == null && actual == null) {
+            return false;
+        }
+        return true;
     }
 
 }

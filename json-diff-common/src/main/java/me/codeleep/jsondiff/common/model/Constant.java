@@ -29,6 +29,8 @@ public class Constant {
     // 预期的值类型和实际的值类型不一致
     public static final String DATA_TYPE_INCONSISTENT = "The expect type ('%s') is inconsistent with the actual type ('%s')";
 
+    public static final String INCONSISTENT_ARRAY_LENGTH = "The expect array length ('%s') is inconsistent with the actual array length ('%s')";
+
     // 发现异常
     public static final String FINDING_ANOMALY = "expect('%s') are found when comparing the actual('%s') and expected results。msg: %s";
 

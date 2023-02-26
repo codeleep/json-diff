@@ -41,7 +41,10 @@ public class ComplexObjectJsonNeat extends AbstractObjectJsonNeat {
 
     @Override
     public JsonCompareResult detectDiff(JSONObject expect, JSONObject actual) {
-        preCheck(expect, actual);
+        // 前置校验失败
+        if (!check(expect, actual, result, path)) {
+            return result;
+        }
         // 计算出; 应该比较的key集合
         keySetConversion(expect.keySet(), actual.keySet());
         // 遍历比较

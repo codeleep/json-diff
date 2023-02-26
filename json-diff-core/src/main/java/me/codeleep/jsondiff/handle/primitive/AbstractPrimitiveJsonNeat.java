@@ -28,16 +28,8 @@ public abstract class AbstractPrimitiveJsonNeat extends AbstractTypeCheck implem
     }
 
     @Override
-    public boolean check(Object expect, Object actual) {
+    public boolean check(Object expect, Object actual, JsonCompareResult result, String path) {
         return ClassUtil.isSameClass(expect, actual);
     }
 
-    /**
-     * 前置检查
-     * @param expect
-     * @param actual
-     */
-    public void preCheck(JSONArray expect, JSONArray actual) {
-
-    }
 }

@@ -1,7 +1,6 @@
 package me.codeleep.jsondiff.handle.array;
 
 import com.alibaba.fastjson2.JSONArray;
-import com.alibaba.fastjson2.JSONObject;
 import me.codeleep.jsondiff.common.model.Defects;
 import me.codeleep.jsondiff.common.model.JsonCompareResult;
 import me.codeleep.jsondiff.common.utils.RunTimeDataFactory;
@@ -30,7 +29,10 @@ public class ComplexArrayJsonNeat extends AbstractArrayJsonNeat {
 
     @Override
     public JsonCompareResult detectDiff(JSONArray expect, JSONArray actual) {
-        preCheck(expect, actual);
+        // 前置校验失败
+        if (!check(expect, actual, result, path)) {
+            return result;
+        }
         boolean ignoreOrder = RunTimeDataFactory.getOptionInstance().isIgnoreOrder();
         // 测试
         if (ignoreOrder) {
