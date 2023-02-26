@@ -17,11 +17,15 @@ public class PrimitiveTypeJsonNeat extends AbstractPrimitiveJsonNeat {
 
     @Override
     public JsonCompareResult diff(Object expect, Object actual, String path) {
+        JsonCompareResult result = new JsonCompareResult();
+        if (!check(expect, actual, result, path)) {
+            return result;
+        }
         if (!ClassUtil.isPrimitiveType(expect) || !ClassUtil.isPrimitiveType(actual)) {
             throw new JsonDiffException("类型调用错误");
         }
 
-        JsonCompareResult result = new JsonCompareResult();
+
         // 都为null
         if (expect == null && actual == null) {
             return result;

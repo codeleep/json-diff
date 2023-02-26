@@ -6,8 +6,11 @@ import com.alibaba.fastjson2.JSONObject;
 import me.codeleep.jsondiff.common.exception.JsonDiffException;
 import me.codeleep.jsondiff.common.model.Defects;
 import me.codeleep.jsondiff.common.model.JsonCompareResult;
+import me.codeleep.jsondiff.common.utils.RunTimeDataFactory;
 import me.codeleep.jsondiff.handle.AbstractTypeCheck;
 import me.codeleep.jsondiff.neat.ArrayJsonNeat;
+
+import java.util.HashSet;
 
 import static me.codeleep.jsondiff.common.model.Constant.INCONSISTENT_ARRAY_LENGTH;
 
@@ -26,6 +29,10 @@ public abstract class AbstractArrayJsonNeat extends AbstractTypeCheck implements
 
     @Override
     public boolean check(Object expect, Object actual, JsonCompareResult result, String path) {
+        HashSet<String> ignorePath = RunTimeDataFactory.getOptionInstance().getIgnorePath();
+        if (ignorePath.contains(path)) {
+            return false;
+        }
         if (expect == null && actual == null) {
             return false;
         }

@@ -5,9 +5,12 @@ import com.alibaba.fastjson2.JSONArray;
 import com.alibaba.fastjson2.JSONObject;
 import me.codeleep.jsondiff.common.exception.JsonDiffException;
 import me.codeleep.jsondiff.common.model.JsonCompareResult;
+import me.codeleep.jsondiff.common.utils.RunTimeDataFactory;
 import me.codeleep.jsondiff.handle.AbstractTypeCheck;
 import me.codeleep.jsondiff.neat.JsonNeat;
 import me.codeleep.jsondiff.utils.ClassUtil;
+
+import java.util.HashSet;
 
 /**
  * @author: codeleep
@@ -29,7 +32,11 @@ public abstract class AbstractPrimitiveJsonNeat extends AbstractTypeCheck implem
 
     @Override
     public boolean check(Object expect, Object actual, JsonCompareResult result, String path) {
-        return ClassUtil.isSameClass(expect, actual);
+        HashSet<String> ignorePath = RunTimeDataFactory.getOptionInstance().getIgnorePath();
+        if (ignorePath.contains(path)) {
+            return false;
+        }
+        return true;
     }
 
 }
