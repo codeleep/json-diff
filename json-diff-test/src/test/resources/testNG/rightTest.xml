@@ -4,14 +4,14 @@
         <classes>
             <class name="me.codeleep.jsondiff.test.MultAllArrayTest">
                 <methods>
-                    <include name="right"></include>
-                    <include name="optionRight"></include>
+                    <include name="right"/>
+                    <include name="optionRight"/>
                 </methods>
             </class>
-            <class name="me.codeleep.jsondiff.test.MultAllObject">
+            <class name="me.codeleep.jsondiff.test.MultAllObjectTest">
                 <methods>
-                    <include name="right"></include>
-                    <include name="optionRight"></include>
+                    <include name="right"/>
+                    <include name="optionRight"/>
                 </methods>
             </class>
         </classes>

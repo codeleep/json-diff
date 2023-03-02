@@ -239,11 +239,37 @@
             "VISHAY",
             "1200m",
             "120",
+            "2.5sss",
+            "250u"
+          ]
+        ],
+        [
+          [
+            "08020092",
+            "AVX",
+            "1200m",
+            "120",
+            "0.3",
+            "30u"
+          ],
+          [
+            "08020098",
+            "KEMET",
+            "1200m",
+            "120",
+            "1.0",
+            "100u"
+          ],
+          [
+            "08020000",
+            "VISHAY",
+            "1200m",
+            "120",
             "2.5",
             "250u"
           ]
         ],
-        "星期六",
+        "星期二",
         "星期三",
         {
           "date": "23日星期五",
@@ -292,18 +318,6 @@
           "fl": "<3级",
           "type": "晴",
           "notice": "愿你拥有比阳光明媚的心情"
-        },
-        {
-          "date": "26日星期一",
-          "sunrise": "06:11",
-          "high": "高温 21.0℃",
-          "low": "低温 8.0℃",
-          "sunset": "18:31",
-          "aqi": 97,
-          "fx": "西南风",
-          "fl": "<3级",
-          "type": "多云",
-          "notice": "阴晴之间，谨防紫外线侵扰"
         }
       ],
       "expect": [
@@ -910,7 +924,7 @@
         },
         {}
       ],
-      "ret": {"defectsList":[{"actual":"a","illustrate":"real excess field 'a'","indexPath":"root[0]"},{"actual":"b","illustrate":"expect missing fields 'b'","indexPath":"root[0]"}],"match":false}
+      "ret": {"defectsList":[{"actual":"a","illustrate":"extra field 'a'","indexPath":"root[0]"},{"actual":"b","illustrate":"missing field 'b'","indexPath":"root[0]"}],"match":false}
     },
     {
       "actual": [
@@ -1084,7 +1098,17 @@
           ]
         ]
       ],
-      "ret": {"match":true},
+      "ret": {},
+      "option": {
+        "ignoreOrder": false,
+        "mapping": {"a": 1},
+        "ignorePath": [".a/a"],
+        "ignoreKey": [".a.b"]
+      }
+    },    {
+      "actual": [{"a": 1}],
+      "expect": [{"b": 2}],
+      "ret": {},
       "option": {
         "ignoreOrder": false,
         "mapping": {"a": 1},
@@ -1093,17 +1117,6 @@
       }
     },
     {
-      "actual": [{"a": 1}],
-      "expect": [{"b": 2}],
-      "ret": {"defectsList":[{"actual":1,"expect":2,"illustrate":"properties are different","indexPath":"root[0].a"}],"match":false},
-      "option": {
-        "ignoreOrder": false,
-        "mapping": {"a": "b"},
-        "ignorePath": [],
-        "ignoreKey": []
-      }
-    },
-    {
       "actual": [
         {
           "a": [
@@ -1122,12 +1135,12 @@
           ]
         }
       ],
-      "ret": {"match":true},
+      "ret": {},
       "option": {
         "ignoreOrder": false,
-        "mapping": {"a": "a"},
-        "ignorePath": ["root[]"],
-        "ignoreKey": []
+        "mapping": {"a": 1},
+        "ignorePath": [".a/a"],
+        "ignoreKey": [".a.b"]
       }
     },
     {
@@ -1337,12 +1350,12 @@
           ]
         ]
       ],
-      "ret": {"match":true},
+      "ret": {},
       "option": {
         "ignoreOrder": false,
-        "mapping": {},
-        "ignorePath": [],
-        "ignoreKey": ["a"]
+        "mapping": {"a": 1},
+        "ignorePath": [".a/a"],
+        "ignoreKey": [".a.b"]
       }
     },
     {
@@ -1359,17 +1372,17 @@
         {
           "a": {
             "a": {
-              "b": "asss"
+              "b": "a"
             }
           }
         }
       ],
-      "ret": {"match":true},
+      "ret": {},
       "option": {
         "ignoreOrder": false,
-        "mapping": {},
-        "ignorePath": ["root[].a.a"],
-        "ignoreKey": ["b"]
+        "mapping": {"a": 1},
+        "ignorePath": [".a/a"],
+        "ignoreKey": [".a.b"]
       }
     }
   ],
@@ -1377,23 +1390,23 @@
     {
       "actual": [{"a": 1}],
       "expect": [{"b": 2}],
-      "ret": {"defectsList":[{"actual":"a","expect":"v","illustrate":"field parsing error","indexPath":"root[0].a"},{"actual":"b","expect":"a","illustrate":"field parsing error","indexPath":"root[0].b"}],"match":false},
+      "ret": {},
       "option": {
         "ignoreOrder": false,
-        "mapping": {"a": "v", "b": "a"},
-        "ignorePath": [""],
-        "ignoreKey": [""]
+        "mapping": {"a": 1},
+        "ignorePath": [".a/a"],
+        "ignoreKey": [".a.b"]
       }
     },
     {
       "actual": [{"a": 1}],
       "expect": [{"b": 2}],
-      "ret": {"defectsList":[{"actual":1,"expect":2,"illustrate":"properties are different","indexPath":"root[0].a"}],"match":false},
+      "ret": {},
       "option": {
         "ignoreOrder": false,
-        "mapping": {"a": "b"},
-        "ignorePath": [],
-        "ignoreKey": []
+        "mapping": {"a": 1},
+        "ignorePath": [".a/a"],
+        "ignoreKey": [".a.b"]
       }
     },
     {
@@ -1407,23 +1420,29 @@
           "b": 2
         }
       ],
-      "ret": {"match":true},
+      "ret": {},
       "option": {
         "ignoreOrder": false,
-        "mapping": { },
-        "ignorePath": ["root"],
-        "ignoreKey": []
+        "mapping": {
+          "a": 1
+        },
+        "ignorePath": [
+          ".a/a"
+        ],
+        "ignoreKey": [
+          ".a.b"
+        ]
       }
     },
     {
       "actual": [{"a": 1}],
       "expect": [{"b": 2}],
-      "ret": {"defectsList":[{"actual":"b","illustrate":"expect missing fields 'b'","indexPath":"root[0]"}],"match":false},
+      "ret": {},
       "option": {
         "ignoreOrder": false,
-        "mapping": {},
-        "ignorePath": [],
-        "ignoreKey": ["a"]
+        "mapping": {"a": 1},
+        "ignorePath": [".a/a"],
+        "ignoreKey": [".a.b"]
       }
     }
   ]
