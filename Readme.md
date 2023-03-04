@@ -93,7 +93,7 @@ public class UseExample {
 | ignorePath  | Set<String>         | 当对比的路径完全匹配时会被跳过。遇到数组使用 `[]` 即可。无需填入下标 |
 | ignoreKey   | Set<String>         | 对比object时。或忽略该key。对整个json生效                    |
 
-> 在 `2.0.1-RC1-RELEASE` 版本中移除了 `keyFunction` 配置参数。可以使用 `ignorePath` 来代替达到同样的效果。
+> 在 `2.0.2-RC1-RELEASE` 版本中移除了 `keyFunction` 配置参数。可以使用 `ignorePath` 来代替达到同样的效果。
 
 工具提供了四个配置，来之对比过程中一些其他的要求。工具还在积极开发中，如果有新的需求，可以给作者提一个issuse。
 
