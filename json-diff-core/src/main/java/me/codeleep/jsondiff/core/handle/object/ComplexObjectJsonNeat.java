@@ -57,7 +57,7 @@ public class ComplexObjectJsonNeat extends AbstractObjectJsonNeat {
                         .setIndexPath(PathUtil.getObjectPath(path, mappingKey))
                         .setIllustrateTemplate(SEPARATE_KEY, mappingKey.getExpectKey(), mappingKey.getActualKey());
                 result.addDefects(defects);
-                return result;
+                continue;
             }
 
             Object expectDiffJson = expect.get(mappingKey.getExpectKey());
