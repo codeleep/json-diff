@@ -35,13 +35,13 @@
 ```xml
 <dependency>
     <groupId>cn.xiaoandcai</groupId>
-    <artifactId>JsonDiff</artifactId>
+    <artifactId>json-diff</artifactId>
     <!-- 旧版本可能存在某些缺陷。版本请以maven仓库最版为准。 -->
     <version>${version}</version>
 </dependency>
 ```
-[版本查看](https://central.sonatype.com/artifact/cn.xiaoandcai/JsonDiff/1.2.1/versions)
-
+[版本查看](https://central.sonatype.com/artifact/cn.xiaoandcai/json-diff/2.0.2-RC1-RELEASE)
+2022-03-04 最新版本：2.0.2-RC1-RELEASE
 
 ```java
 /**
