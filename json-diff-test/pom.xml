@@ -3,32 +3,31 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <artifactId>JsonDiff</artifactId>
+        <artifactId>json-diff-parent</artifactId>
         <groupId>cn.xiaoandcai</groupId>
-        <version>${project.build.version}</version>
+        <version>2.0.1-RC1-RELEASE</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>json-diff-test</artifactId>
-    <version>${project.build.version}</version>
+    <version>2.0.1-RC1-RELEASE</version>
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
-        <project.build.version>2.0.1</project.build.version>
     </properties>
 
     <dependencies>
         <dependency>
             <groupId>cn.xiaoandcai</groupId>
             <artifactId>json-diff-common</artifactId>
-            <version>${project.build.version}</version>
+            <version>${project.version}</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>cn.xiaoandcai</groupId>
             <artifactId>json-diff-core</artifactId>
-            <version>${project.build.version}</version>
+            <version>${project.version}</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
