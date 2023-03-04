@@ -1,57 +1,63 @@
 package me.codeleep.jsondiff.test;
 
 import com.alibaba.fastjson2.JSON;
-import com.alibaba.fastjson2.JSONObject;
+import com.alibaba.fastjson2.JSONArray;
 import me.codeleep.jsondiff.core.DefaultJsonDifference;
 import me.codeleep.jsondiff.common.model.JsonCompareResult;
 import me.codeleep.jsondiff.test.model.MetaData;
-import me.codeleep.jsondiff.test.dataFactory.ObjectDataFactory;
+import me.codeleep.jsondiff.test.dataFactory.ArrayDataFactory;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 /**
  * @author: chenfeng
  * @createTime: 2023/3/2 21:55
- * @description: 字典类型的测试类
+ * @description: 数组类型的测试类
  */
-public class MultAllObjectTest {
+public class MultAllArrayTest {
 
-    @Test(dataProvider = "right",dataProviderClass = ObjectDataFactory.class)
-    public void noOptionRightTest(MetaData metaData){
+    @Test(dataProvider = "right", dataProviderClass = ArrayDataFactory.class)
+    public void noOptionRightTest(MetaData metaData) {
         DefaultJsonDifference defaultJsonDifference = new DefaultJsonDifference();
         JsonCompareResult jsonCompareResult = defaultJsonDifference
-                .detectDiff((JSONObject) metaData.getExpect(), (JSONObject) metaData.getActual());
+                .detectDiff((JSONArray) metaData.getExpect(), (JSONArray) metaData.getActual());
         System.out.println(JSON.toJSONString(metaData.getRet()) + "\n" + JSON.toJSONString(jsonCompareResult));
-        if (metaData.getRet() != null)
+        if (metaData.getRet() != null) {
             Assert.assertEquals(JSON.toJSONString(metaData.getRet()), JSON.toJSONString(jsonCompareResult));
-        else
+        }else {
             Assert.assertEquals("{\"match\":true}", JSON.toJSONString(jsonCompareResult));
+        }
     }
-    @Test(dataProvider = "err",dataProviderClass = ObjectDataFactory.class)
-    public void noOptionErrTest(MetaData metaData){
+
+    @Test(dataProvider = "err", dataProviderClass = ArrayDataFactory.class)
+    public void noOptionErrTest(MetaData metaData) {
         DefaultJsonDifference defaultJsonDifference = new DefaultJsonDifference();
         JsonCompareResult jsonCompareResult = defaultJsonDifference
-                .detectDiff((JSONObject) metaData.getExpect(), (JSONObject) metaData.getActual());
+                .detectDiff((JSONArray) metaData.getExpect(), (JSONArray) metaData.getActual());
         System.out.println(JSON.toJSONString(metaData.getRet()) + "\n" + JSON.toJSONString(jsonCompareResult));
         Assert.assertEquals(JSON.toJSONString(metaData.getRet()), JSON.toJSONString(jsonCompareResult));
+
     }
-    @Test(dataProvider = "optionRight",dataProviderClass = ObjectDataFactory.class)
-    public void optionRight(MetaData metaData){
+
+    @Test(dataProvider = "optionRight", dataProviderClass = ArrayDataFactory.class)
+    public void optionRight(MetaData metaData) {
         DefaultJsonDifference defaultJsonDifference = new DefaultJsonDifference();
         JsonCompareResult jsonCompareResult = defaultJsonDifference
                 .option(metaData.getOption())
-                .detectDiff((JSONObject) metaData.getExpect(), (JSONObject) metaData.getActual());
+                .detectDiff((JSONArray) metaData.getExpect(), (JSONArray) metaData.getActual());
         System.out.println(JSON.toJSONString(metaData.getRet()) + "\n" + JSON.toJSONString(jsonCompareResult));
-        if (metaData.getRet() != null)
+        if (metaData.getRet() != null) {
             Assert.assertEquals(JSON.toJSONString(metaData.getRet()), JSON.toJSONString(jsonCompareResult));
-        else
+        }else {
             Assert.assertEquals("{\"match\":true}", JSON.toJSONString(jsonCompareResult));
+        }
     }
-    @Test(dataProvider = "optionErr",dataProviderClass = ObjectDataFactory.class)
-    public void optionErr(MetaData metaData){
+
+    @Test(dataProvider = "optionErr", dataProviderClass = ArrayDataFactory.class)
+    public void optionErr(MetaData metaData) {
         DefaultJsonDifference defaultJsonDifference = new DefaultJsonDifference();
         JsonCompareResult jsonCompareResult = defaultJsonDifference
                 .option(metaData.getOption())
-                .detectDiff((JSONObject) metaData.getExpect(), (JSONObject) metaData.getActual());
+                .detectDiff((JSONArray) metaData.getExpect(), (JSONArray) metaData.getActual());
         System.out.println(JSON.toJSONString(metaData.getRet()) + "\n" + JSON.toJSONString(jsonCompareResult));
         Assert.assertEquals(JSON.toJSONString(metaData.getRet()), JSON.toJSONString(jsonCompareResult));
     }
