@@ -5,16 +5,18 @@
     <parent>
         <artifactId>JsonDiff</artifactId>
         <groupId>cn.xiaoandcai</groupId>
-        <version>1.2.1</version>
+        <version>${project.build.version}</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>json-diff-core</artifactId>
+    <version>${project.build.version}</version>
+
     <dependencies>
         <dependency>
             <groupId>cn.xiaoandcai</groupId>
             <artifactId>json-diff-common</artifactId>
-            <version>1.2.1</version>
+            <version>${project.build.version}</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
@@ -27,6 +29,7 @@
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
+        <project.build.version>2.0.1</project.build.version>
     </properties>
 
 </project>

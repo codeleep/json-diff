@@ -35,7 +35,7 @@
 ```xml
 <dependency>
     <groupId>cn.xiaoandcai</groupId>
-    <artifactId>jsonDiff</artifactId>
+    <artifactId>JsonDiff</artifactId>
     <!-- 旧版本可能存在某些缺陷。版本请以maven仓库最版为准。 -->
     <version>${version}</version>
 </dependency>

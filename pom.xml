@@ -18,7 +18,7 @@
     <artifactId>JsonDiff</artifactId>
 
     <!-- mvn clean deploy - -settings /Users/weidian/.m2/settings-out.xml   -->
-    <version>1.2.1</version>
+    <version>${project.build.version}</version>
     <name>JsonDiff</name>
     <url>https://gitee.com/local-li/json-diff</url>
     <description>一款高性能的Json差异发现工具</description>
@@ -27,6 +27,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
+        <project.build.version>2.0.1</project.build.version>
     </properties>
 
     <dependencyManagement>
@@ -34,12 +35,12 @@
             <dependency>
                 <groupId>cn.xiaoandcai</groupId>
                 <artifactId>json-diff-core</artifactId>
-                <version>${project.version}</version>
+                <version>${project.build.version}</version>
             </dependency>
             <dependency>
                 <groupId>cn.xiaoandcai</groupId>
                 <artifactId>json-diff-test</artifactId>
-                <version>${project.version}</version>
+                <version>${project.build.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
