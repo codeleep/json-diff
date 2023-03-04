@@ -1,14 +1,14 @@
 package me.codeleep.jsondiff.test.dataFactory;
 
-import me.codeleep.jsondiff.model.MetaData;
+import me.codeleep.jsondiff.test.model.MetaData;
 import org.testng.annotations.DataProvider;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-import static me.codeleep.jsondiff.model.Constant.LOAD_DATE_NAME;
-import static me.codeleep.jsondiff.model.Constant.OBJECT_PATH;
+import static me.codeleep.jsondiff.test.model.Constant.LOAD_DATE_NAME;
+import static me.codeleep.jsondiff.test.model.Constant.OBJECT_PATH;
 
 /**
  * @author: chenfeng
