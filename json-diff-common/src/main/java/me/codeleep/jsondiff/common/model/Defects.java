@@ -1,7 +1,5 @@
 package me.codeleep.jsondiff.common.model;
 
-import me.codeleep.jsondiff.common.utils.PathUtil;
-
 /**
  * @author: codeleep
  * @createTime: 2022/07/30 19:26
