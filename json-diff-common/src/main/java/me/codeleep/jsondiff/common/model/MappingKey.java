@@ -1,4 +1,4 @@
-package me.codeleep.jsondiff.core.model;
+package me.codeleep.jsondiff.common.model;
 
 /**
  * @author: codeleep
