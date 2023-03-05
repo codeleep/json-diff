@@ -72,7 +72,10 @@ public class FactoryUtil {
             e.printStackTrace();
         }
         jsonComparedOption.setIgnoreOrder(ignoreOrder);
-        jsonComparedOption.setMapping((HashMap<String,String>)JSONObject.parseObject(jsonObject.getString("mapping"),Map.class) );
+        String mapping = jsonObject.getString("mapping");
+        if(mapping != null && !mapping.isEmpty()){
+            jsonComparedOption.setMapping((HashMap<String,String>)JSONObject.parseObject(mapping,Map.class) );
+        }
         jsonComparedOption.setIgnorePath(ArrStringToSet(jsonObject.getString("ignorePath")));
         jsonComparedOption.setIgnoreKey(ArrStringToSet(jsonObject.getString("ignoreKey")));
         return jsonComparedOption;
@@ -84,7 +87,10 @@ public class FactoryUtil {
      * @return HashSet 转化后的set对象
      */
      private static HashSet<String> ArrStringToSet(String stringList){
-       List<String> arrayList = JSON.parseArray(stringList,String.class);
+         if (stringList == null || stringList.isEmpty()){
+             return null;
+         }
+         List<String> arrayList = JSON.parseArray(stringList,String.class);
        return new HashSet<>(arrayList);
      }
 
