@@ -43,7 +43,7 @@ public class FactoryUtil {
         int count = 0;
         for (Object i : jsonArray) {
             JSONObject jsonObject = (JSONObject) i;
-            MetaData metaData = new MetaData(jsonObject.get("expect"),
+            MetaData metaData = new MetaData(jsonObject.getString("caseName"),jsonObject.get("expect"),
                     jsonObject.get("actual"),
                     jsonObject.get("ret"),
                     getOptionObject((JSONObject) jsonObject.get("option")));

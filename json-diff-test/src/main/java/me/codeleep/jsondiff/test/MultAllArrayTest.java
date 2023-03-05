@@ -6,6 +6,8 @@ import me.codeleep.jsondiff.core.DefaultJsonDifference;
 import me.codeleep.jsondiff.common.model.JsonCompareResult;
 import me.codeleep.jsondiff.test.model.MetaData;
 import me.codeleep.jsondiff.test.dataFactory.ArrayDataFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 /**
@@ -14,51 +16,53 @@ import org.testng.annotations.Test;
  * @description: 数组类型的测试类
  */
 public class MultAllArrayTest {
-
+    private static final Logger logger =  LoggerFactory.getLogger(MultAllArrayTest.class);
     @Test(dataProvider = "right", dataProviderClass = ArrayDataFactory.class)
     public void noOptionRightTest(MetaData metaData) {
         DefaultJsonDifference defaultJsonDifference = new DefaultJsonDifference();
+        logger.info(metaData.getCaseName());
+        logger.debug("\n"+metaData.getExpect().toString()+"\n"+metaData.getActual().toString());
         JsonCompareResult jsonCompareResult = defaultJsonDifference
                 .detectDiff((JSONArray) metaData.getExpect(), (JSONArray) metaData.getActual());
-        System.out.println(JSON.toJSONString(metaData.getRet()) + "\n" + JSON.toJSONString(jsonCompareResult));
-        if (metaData.getRet() != null) {
-            Assert.assertEquals(JSON.toJSONString(metaData.getRet()), JSON.toJSONString(jsonCompareResult));
-        }else {
-            Assert.assertEquals("{\"match\":true}", JSON.toJSONString(jsonCompareResult));
-        }
+       if (metaData.getRet() != null)
+            Assert.assertEquals( JSON.toJSONString(jsonCompareResult),JSON.toJSONString(metaData.getRet()));
+        else
+            Assert.assertEquals( JSON.toJSONString(jsonCompareResult),"{\"match\":true}");
     }
 
     @Test(dataProvider = "err", dataProviderClass = ArrayDataFactory.class)
     public void noOptionErrTest(MetaData metaData) {
         DefaultJsonDifference defaultJsonDifference = new DefaultJsonDifference();
+        logger.info(metaData.getCaseName());
+        logger.debug("\n"+metaData.getExpect().toString()+"\n"+metaData.getActual().toString());
         JsonCompareResult jsonCompareResult = defaultJsonDifference
                 .detectDiff((JSONArray) metaData.getExpect(), (JSONArray) metaData.getActual());
-        System.out.println(JSON.toJSONString(metaData.getRet()) + "\n" + JSON.toJSONString(jsonCompareResult));
-        Assert.assertEquals(JSON.toJSONString(metaData.getRet()), JSON.toJSONString(jsonCompareResult));
+        Assert.assertEquals(JSON.toJSONString(jsonCompareResult),JSON.toJSONString(metaData.getRet()));
 
     }
 
     @Test(dataProvider = "optionRight", dataProviderClass = ArrayDataFactory.class)
     public void optionRight(MetaData metaData) {
         DefaultJsonDifference defaultJsonDifference = new DefaultJsonDifference();
+        logger.info(metaData.getCaseName());
+        logger.debug("\n"+metaData.getExpect().toString()+"\n"+metaData.getActual().toString());
         JsonCompareResult jsonCompareResult = defaultJsonDifference
                 .option(metaData.getOption())
                 .detectDiff((JSONArray) metaData.getExpect(), (JSONArray) metaData.getActual());
-        System.out.println(JSON.toJSONString(metaData.getRet()) + "\n" + JSON.toJSONString(jsonCompareResult));
-        if (metaData.getRet() != null) {
-            Assert.assertEquals(JSON.toJSONString(metaData.getRet()), JSON.toJSONString(jsonCompareResult));
-        }else {
-            Assert.assertEquals("{\"match\":true}", JSON.toJSONString(jsonCompareResult));
-        }
+        if (metaData.getRet() != null)
+            Assert.assertEquals( JSON.toJSONString(jsonCompareResult),JSON.toJSONString(metaData.getRet()));
+        else
+            Assert.assertEquals( JSON.toJSONString(jsonCompareResult),"{\"match\":true}");
     }
 
     @Test(dataProvider = "optionErr", dataProviderClass = ArrayDataFactory.class)
     public void optionErr(MetaData metaData) {
         DefaultJsonDifference defaultJsonDifference = new DefaultJsonDifference();
+        logger.info(metaData.getCaseName());
+        logger.debug("\n"+metaData.getExpect().toString()+"\n"+metaData.getActual().toString());
         JsonCompareResult jsonCompareResult = defaultJsonDifference
                 .option(metaData.getOption())
                 .detectDiff((JSONArray) metaData.getExpect(), (JSONArray) metaData.getActual());
-        System.out.println(JSON.toJSONString(metaData.getRet()) + "\n" + JSON.toJSONString(jsonCompareResult));
         Assert.assertEquals(JSON.toJSONString(metaData.getRet()), JSON.toJSONString(jsonCompareResult));
     }
 }

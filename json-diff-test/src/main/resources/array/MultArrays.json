@@ -1,6 +1,7 @@
 {
   "right": [
     {
+      "caseName": "简单数组嵌套",
       "actual": [
         [
           [
@@ -163,6 +164,7 @@
       ]
     },
     {
+      "caseName": "简单数组外有单独String类型 Object类型",
       "actual": [
         "星期一",
         [
@@ -239,37 +241,11 @@
             "VISHAY",
             "1200m",
             "120",
-            "2.5sss",
-            "250u"
-          ]
-        ],
-        [
-          [
-            "08020092",
-            "AVX",
-            "1200m",
-            "120",
-            "0.3",
-            "30u"
-          ],
-          [
-            "08020098",
-            "KEMET",
-            "1200m",
-            "120",
-            "1.0",
-            "100u"
-          ],
-          [
-            "08020000",
-            "VISHAY",
-            "1200m",
-            "120",
             "2.5",
             "250u"
           ]
         ],
-        "星期二",
+        "星期六",
         "星期三",
         {
           "date": "23日星期五",
@@ -318,6 +294,18 @@
           "fl": "<3级",
           "type": "晴",
           "notice": "愿你拥有比阳光明媚的心情"
+        },
+        {
+          "date": "26日星期一",
+          "sunrise": "06:11",
+          "high": "高温 21.0℃",
+          "low": "低温 8.0℃",
+          "sunset": "18:31",
+          "aqi": 97,
+          "fx": "西南风",
+          "fl": "<3级",
+          "type": "多云",
+          "notice": "阴晴之间，谨防紫外线侵扰"
         }
       ],
       "expect": [
@@ -465,6 +453,7 @@
       ]
     },
     {
+      "caseName": "单数组中存在空Object类型",
       "actual": [
         {}
       ],
@@ -473,6 +462,7 @@
       ]
     },
     {
+      "caseName": "存在数据名 内部存在Object类型",
       "actual": [
         {
           "a": [
@@ -493,6 +483,7 @@
       ]
     },
     {
+      "caseName": "多层无数组名数组嵌套",
       "actual": [
         [
           [
@@ -701,10 +692,12 @@
       ]
     },
     {
+      "caseName": "空数组",
       "actual": [],
       "expect": []
     },
     {
+      "caseName": "数组内嵌套多层Object类型",
       "actual": [
         {
           "a": {
@@ -725,6 +718,7 @@
       ]
     },
     {
+      "caseName": "数组内存在单个多参数Object类型",
       "actual": [
         {
           "date": "22星期四",
@@ -799,12 +793,836 @@
           "fl": "<3级",
           "type": "晴",
           "notice": "愿你拥有比阳光明媚的心情"
+        }
+      ]
+    },
+    {
+      "caseName": "数组内部特殊字符对比",
+      "actual": [
+        {
+          "a": 1.2123
+        },
+        {
+          "1": "root",
+          "&1": "\n",
+          "·q）@": "\t\n\f",
+          "a": "java.lang.AssertionError"
+        },
+        [
+          " ",
+          "    ",
+          "\t\n",
+          "&root*1~"
+        ]
+      ],
+      "expect": [
+        {
+          "a": 1.2123
+        },
+        {
+          "1": "root",
+          "&1": "\n",
+          "·q）@": "\t\n\f",
+          "a": "java.lang.AssertionError"
+        },
+        [
+          " ",
+          "    ",
+          "\t\n",
+          "&root*1~"
+        ]
+      ]
+    },
+    {
+      "caseName": "不等长数组",
+      "actual": [
+        {
+          "a": false,
+          "b": true,
+          "c": "abc"
+        },
+        {
+          "a": false,
+          "b": "abc"
+        },
+        [
+          "a",
+          "b",
+          "c"
+        ],
+        [
+          "c",
+          "b",
+          "a"
+        ]
+      ],
+      "expect": [
+        {
+          "a": false,
+          "b": true,
+          "c": "abc"
+        },
+        {
+          "a": false,
+          "b": "abc"
+        },
+        [
+          "b",
+          "a",
+          "c"
+        ],
+        [
+          "c",
+          "b",
+          "a"
+        ]
+      ]
+    },
+    {
+      "caseName": "大内容对比",
+      "actual": [
+        {
+          "barrageData": {
+            "whiteList": [],
+            "cdntest": 5
+          },
+          "mpMenuData": {
+            "isShow": 1,
+            "title": "创作中心",
+            "maxSegment": "15",
+            "url": "https://mp.csdn.net/",
+            "report": {
+              "dest": "https://mp.csdn.net/",
+              "spm": "3001.8539"
+            },
+            "icon": []
+          },
+          "highSchoolData": {
+            "whiteList": []
+          },
+          "advert": {
+            "checkPlugin": true,
+            "blacklist": [
+              "www.csdn.net",
+              "mp.csdn.net",
+              "download.csdn.net",
+              "mall.csdn.net",
+              "1111.csdn.net"
+            ]
+          },
+          "vipBg": {
+            "defaultBg": "https://img-home.csdnimg.cn/images/20210826055049.png",
+            "darkBg": "https://img-home.csdnimg.cn/images/20210826055052.png"
+          },
+          "redpackData": {
+            "whiteList": [
+              "download.csdn.net",
+              "www.csdn.net/vip",
+              "vip.csdn.net/welfarecenter"
+            ],
+            "defaultSendCoupon": true,
+            "status": {
+              "needCheck": false,
+              "checkType": "vip"
+            },
+            "autoClick": {
+              "need": false,
+              "hasLoginTime": 10,
+              "noLogin": 60
+            }
+          },
+          "barrageRedpackData": {
+            "whiteList": []
+          },
+          "renderBtnData": {
+            "control1": [
+              0,
+              1,
+              2,
+              3
+            ],
+            "exp1": [
+              4,
+              5,
+              6,
+              7
+            ],
+            "exp2": [
+              8,
+              9,
+              10,
+              11
+            ],
+            "exp3": [
+              12,
+              13,
+              14,
+              15
+            ]
+          },
+          "background": {
+            "default": "",
+            "dark": "#242429",
+            "home": ""
+          },
+          "loginBoxData": {
+            "whiteList": [
+              "loc-toolbar.csdn.net"
+            ],
+            "blackList": [],
+            "ratio": 0.5,
+            "hours": 3
+          },
+          "vipItemPath": {
+            "normal": [
+              {
+                "icon": "https://img-home.csdnimg.cn/images/20220215105130.png",
+                "url": "https://mall.csdn.net/vip?utm_source=vip_hyzx_hytbcj#draw",
+                "title": "抽豪礼"
+              },
+              {
+                "icon": "https://img-home.csdnimg.cn/images/20210826043936.png",
+                "url": "https://mall.csdn.net/vip?utm_source=vip_pc_hybjt",
+                "title": "领券中心"
+              },
+              {
+                "icon": "https://img-home.csdnimg.cn/images/20211115095959.png",
+                "url": "https://mall.csdn.net/vip?utm_source=vip_hyzx_fc_xsjz",
+                "title": "赠3个月"
+              },
+              {
+                "icon": "https://img-home.csdnimg.cn/images/20210826043937.png",
+                "url": "https://vip.csdn.net/welfarecenter?utm_source=vip_hyzx_hytblq#discount_center",
+                "title": "会员购"
+              }
+            ],
+            "dark": [
+              {
+                "icon": "https://img-home.csdnimg.cn/images/20220215105130.png",
+                "url": "https://mall.csdn.net/vip?utm_source=vip_hyzx_hytbcj#draw",
+                "title": "抽豪礼"
+              },
+              {
+                "icon": "https://img-home.csdnimg.cn/images/20210826043738.png",
+                "url": "https://mall.csdn.net/vip?utm_source=vip_pc_hybjt",
+                "title": "领券中心"
+              },
+              {
+                "icon": "https://img-home.csdnimg.cn/images/20211115095959.png",
+                "url": "https://mall.csdn.net/vip?utm_source=vip_hyzx_fc_xsjz",
+                "title": "赠3个月"
+              },
+              {
+                "icon": "https://img-home.csdnimg.cn/images/20210826043937.png",
+                "url": "https://vip.csdn.net/welfarecenter?utm_source=vip_hyzx_hytblq#discount_center",
+                "title": "会员购"
+              }
+            ]
+          },
+          "logo": [
+            {
+              "type": "default",
+              "title": "CSDN首页",
+              "link": "https://www.csdn.net/",
+              "qrcode": "",
+              "url": {
+                "default": "https://img-home.csdnimg.cn/images/20201124032511.png",
+                "dark": "https://img-home.csdnimg.cn/images/20211028053651.png",
+                "home": "https://img-home.csdnimg.cn/images/20201124032511.png"
+              }
+            },
+            {
+              "type": "1111",
+              "title": "CSDN会员",
+              "link": "https://mall.csdn.net/vip?utm_source=vip_1111_toolbar_logo",
+              "qrcode": "",
+              "url": {
+                "default": "https://img-home.csdnimg.cn/images/20211108111828.gif",
+                "dark": "https://img-home.csdnimg.cn/images/20211108111834.gif",
+                "home": "https://img-home.csdnimg.cn/images/20211108111828.gif"
+              },
+              "time": {
+                "start": "2021/11/08 00:00:00",
+                "end": "2021/11/15 23:59:59"
+              }
+            }
+          ],
+          "logoAdvertData": {
+            "option": {
+              "bubble": {
+                "showModel": "hover",
+                "imgUrl": "https://img-home.csdnimg.cn/images/20220701012800.png"
+              },
+              "logo": {
+                "imgUrl": "https://img-home.csdnimg.cn/images/20220701062118.gif",
+                "link": " https://dev.csdn.net/activity/codeage/?utm_source=kfy_pc_bkcbl_701",
+                "clickSpm": ""
+              },
+              "viewSpm": "3001.6392",
+              "closeBtn": {
+                "model": "today",
+                "time": 24,
+                "imgUrl": "https://img-home.csdnimg.cn/images/20211203064149.png",
+                "closeSpm": "3001.6393"
+              }
+            },
+            "whiteList": []
+          },
+          "vipBuySideDate": {
+            "whiteList": []
+          },
+          "menus": [
+            {
+              "id": "blog",
+              "name": "博客",
+              "title": "阅读深度、前沿文章",
+              "url": "https://blog.csdn.net/",
+              "report": {
+                "mod": "popu_336",
+                "dest": "https://blog.csdn.net/",
+                "spm": "3001.4477"
+              },
+              "icon": {
+                "url": "https://img-home.csdnimg.cn/images/20201216020332.png",
+                "start": "2020/12/18 00:00:00",
+                "end": "2020/12/20 23:59:59",
+                "style": "position: absolute; vertical-align: middle; width: 16px; top: 3px; right: 3px;"
+              },
+              "children": []
+            },
+            {
+              "id": "download",
+              "name": "下载",
+              "title": "高价值源码课程分享",
+              "url": "https://download.csdn.net/",
+              "report": {
+                "mod": "popu_336",
+                "dest": "https://download.csdn.net/",
+                "spm": "3001.6907"
+              },
+              "children": []
+            },
+            {
+              "id": "edu",
+              "name": "学习",
+              "title": "系统学习·问答·比赛",
+              "url": "https://edu.csdn.net/",
+              "report": {
+                "mod": "popu_336",
+                "dest": "https://edu.csdn.net/",
+                "spm": "3001.4482"
+              },
+              "children": [],
+              "icon": {
+                "url": "https://img-home.csdnimg.cn/images/20220516045836.png",
+                "start": "2022/05/16 00:00:00",
+                "end": "2022/06/14 23:59:59",
+                "style": "vertical-align: middle; width: 19px; height: 32px;margin-top: -2px;"
+              }
+            },
+            {
+              "id": "bbs",
+              "name": "社区",
+              "title": "找到志同道合的伙伴",
+              "url": "https://bbs.csdn.net/",
+              "report": {
+                "mod": "popu_336",
+                "dest": "https://bbs.csdn.net/",
+                "spm": "3001.6068"
+              },
+              "icon": {
+                "url": "https://img-home.csdnimg.cn/images/20230117024648.png",
+                "start": "2023/01/21 00:00:01",
+                "end": "2023/01/27 23:59:59",
+                "style": "vertical-align: middle; width: 19px;margin-top: 0;margin-left: -6px"
+              },
+              "children": []
+            },
+            {
+              "id": "code",
+              "name": "GitCode",
+              "title": "开源代码托管",
+              "url": "https://gitcode.net/csdn_codechina/2.14-3.14?utm_source=csdn_toolbar",
+              "report": {
+                "mod": "",
+                "dest": "https://gitcode.net/explore?utm_source=csdn_toolbar",
+                "spm": "3001.6768"
+              },
+              "icon": {
+                "url": "https://img-home.csdnimg.cn/images/20221027045535.png",
+                "start": "2023/02/14 18:00:00",
+                "end": "2023/03/11 23:59:59",
+                "style": "vertical-align: middle; width: 19px;margin-top: -4px;margin-left: -2px"
+              },
+              "children": []
+            },
+            {
+              "id": "portal",
+              "name": "云服务",
+              "title": "简单高效优惠的云服务",
+              "url": "https://dev-portal.csdn.net/welcome?utm_source=toolbar",
+              "report": {
+                "mod": "popu_336",
+                "dest": "https://dev-portal.csdn.net/",
+                "spm": "3001.8290"
+              },
+              "icon": {
+                "url": "https://img-home.csdnimg.cn/images/20220805045438.png",
+                "start": "2022/08/05 00:00:00",
+                "end": "2022/08/11 24:00:00",
+                "style": "vertical-align: middle; width: 16px;margin-top: -3px;"
+              },
+              "children": []
+            },
+            {
+              "icon": {
+                "url": "https://cdn-static-devbit.csdn.net/devbit-static/img/icon-gpt.png",
+                "start": "2023/01/03 10:00:00",
+                "end": "2023/01/10 10:00:00",
+                "style": "vertical-align: middle;width: 35px;margin-top: -2px;margin-left: -2px;"
+              },
+              "id": "devbit",
+              "name": "猿如意",
+              "title": "程序员的如意兵器",
+              "url": "https://devbit.csdn.net?source=csdn_toolbar",
+              "report": {
+                "mod": "popu_336",
+                "dest": "https://devbit.csdn.net/",
+                "spm": "3001.8967"
+              },
+              "children": []
+            },
+            {
+              "children": [],
+              "id": "vip",
+              "name": "会员中心",
+              "url": "https://mall.csdn.net/vip",
+              "report": {
+                "mod": "popu_336",
+                "dest": "https://mall.csdn.net/vip",
+                "spm": "3001.4496"
+              },
+              "icon": {
+                "url": "https://img-home.csdnimg.cn/images/20220608054756.gif",
+                "start": "2022/06/13 23:00:00",
+                "end": "2022/06/20 23:59:59",
+                "style": "position: relative; vertical-align: middle; width: 14px; top: -2px; left: 0px;"
+              },
+              "iconVip": {
+                "url": "https://img-home.csdnimg.cn/images/20210918025157.gif",
+                "style": "position: relative; vertical-align: middle; width: 14px; top: -2px; left: 0px;",
+                "showIcon": true
+              },
+              "iconNormal": {
+                "url": "https://img-home.csdnimg.cn/images/20210918025138.gif",
+                "style": "position: relative; vertical-align: middle; width: 14px; top: -2px; left: 0px;",
+                "showIcon": true
+              }
+            }
+          ],
+          "activeData": {
+            "whiteList": [
+              "download.csdn.net/download",
+              "download.csdn.net/list",
+              "mall.csdn.net",
+              "marketing.csdn.net",
+              "i.csdn.net",
+              "mp.csdn.net"
+            ]
+          },
+          "wapPopAdvert": {
+            "open": false,
+            "background": "https://img-home.csdnimg.cn/images/20210615094826.png",
+            "url": "https://marketing.csdn.net/p/a594f12e0dbe4aa827b58484b2209d04?utm_source=csdn_618_wappopup",
+            "whiteList": []
+          }
+        }
+      ],
+      "expect": [
+        {
+          "wapPopAdvert": {
+            "open": false,
+            "background": "https://img-home.csdnimg.cn/images/20210615094826.png",
+            "url": "https://marketing.csdn.net/p/a594f12e0dbe4aa827b58484b2209d04?utm_source=csdn_618_wappopup",
+            "whiteList": []
+          },
+          "barrageData": {
+            "whiteList": [],
+            "cdntest": 5
+          },
+          "mpMenuData": {
+            "isShow": 1,
+            "title": "创作中心",
+            "maxSegment": "15",
+            "url": "https://mp.csdn.net/",
+            "report": {
+              "dest": "https://mp.csdn.net/",
+              "spm": "3001.8539"
+            },
+            "icon": []
+          },
+          "highSchoolData": {
+            "whiteList": []
+          },
+          "advert": {
+            "checkPlugin": true,
+            "blacklist": [
+              "www.csdn.net",
+              "mp.csdn.net",
+              "download.csdn.net",
+              "mall.csdn.net",
+              "1111.csdn.net"
+            ]
+          },
+          "vipBg": {
+            "defaultBg": "https://img-home.csdnimg.cn/images/20210826055049.png",
+            "darkBg": "https://img-home.csdnimg.cn/images/20210826055052.png"
+          },
+          "redpackData": {
+            "whiteList": [
+              "download.csdn.net",
+              "www.csdn.net/vip",
+              "vip.csdn.net/welfarecenter"
+            ],
+            "defaultSendCoupon": true,
+            "status": {
+              "needCheck": false,
+              "checkType": "vip"
+            },
+            "autoClick": {
+              "need": false,
+              "hasLoginTime": 10,
+              "noLogin": 60
+            }
+          },
+          "barrageRedpackData": {
+            "whiteList": []
+          },
+          "renderBtnData": {
+            "control1": [
+              0,
+              1,
+              2,
+              3
+            ],
+            "exp1": [
+              4,
+              5,
+              6,
+              7
+            ],
+            "exp2": [
+              8,
+              9,
+              10,
+              11
+            ],
+            "exp3": [
+              12,
+              13,
+              14,
+              15
+            ]
+          },
+          "background": {
+            "default": "",
+            "dark": "#242429",
+            "home": ""
+          },
+          "loginBoxData": {
+            "whiteList": [
+              "loc-toolbar.csdn.net"
+            ],
+            "blackList": [],
+            "ratio": 0.5,
+            "hours": 3
+          },
+          "vipItemPath": {
+            "normal": [
+              {
+                "icon": "https://img-home.csdnimg.cn/images/20220215105130.png",
+                "url": "https://mall.csdn.net/vip?utm_source=vip_hyzx_hytbcj#draw",
+                "title": "抽豪礼"
+              },
+              {
+                "icon": "https://img-home.csdnimg.cn/images/20210826043936.png",
+                "url": "https://mall.csdn.net/vip?utm_source=vip_pc_hybjt",
+                "title": "领券中心"
+              },
+              {
+                "icon": "https://img-home.csdnimg.cn/images/20211115095959.png",
+                "url": "https://mall.csdn.net/vip?utm_source=vip_hyzx_fc_xsjz",
+                "title": "赠3个月"
+              },
+              {
+                "icon": "https://img-home.csdnimg.cn/images/20210826043937.png",
+                "url": "https://vip.csdn.net/welfarecenter?utm_source=vip_hyzx_hytblq#discount_center",
+                "title": "会员购"
+              }
+            ],
+            "dark": [
+              {
+                "icon": "https://img-home.csdnimg.cn/images/20220215105130.png",
+                "url": "https://mall.csdn.net/vip?utm_source=vip_hyzx_hytbcj#draw",
+                "title": "抽豪礼"
+              },
+              {
+                "icon": "https://img-home.csdnimg.cn/images/20210826043738.png",
+                "url": "https://mall.csdn.net/vip?utm_source=vip_pc_hybjt",
+                "title": "领券中心"
+              },
+              {
+                "icon": "https://img-home.csdnimg.cn/images/20211115095959.png",
+                "url": "https://mall.csdn.net/vip?utm_source=vip_hyzx_fc_xsjz",
+                "title": "赠3个月"
+              },
+              {
+                "icon": "https://img-home.csdnimg.cn/images/20210826043937.png",
+                "url": "https://vip.csdn.net/welfarecenter?utm_source=vip_hyzx_hytblq#discount_center",
+                "title": "会员购"
+              }
+            ]
+          },
+          "logo": [
+            {
+              "type": "default",
+              "title": "CSDN首页",
+              "link": "https://www.csdn.net/",
+              "qrcode": "",
+              "url": {
+                "default": "https://img-home.csdnimg.cn/images/20201124032511.png",
+                "dark": "https://img-home.csdnimg.cn/images/20211028053651.png",
+                "home": "https://img-home.csdnimg.cn/images/20201124032511.png"
+              }
+            },
+            {
+              "type": "1111",
+              "title": "CSDN会员",
+              "link": "https://mall.csdn.net/vip?utm_source=vip_1111_toolbar_logo",
+              "qrcode": "",
+              "url": {
+                "default": "https://img-home.csdnimg.cn/images/20211108111828.gif",
+                "dark": "https://img-home.csdnimg.cn/images/20211108111834.gif",
+                "home": "https://img-home.csdnimg.cn/images/20211108111828.gif"
+              },
+              "time": {
+                "start": "2021/11/08 00:00:00",
+                "end": "2021/11/15 23:59:59"
+              }
+            }
+          ],
+          "logoAdvertData": {
+            "option": {
+              "bubble": {
+                "showModel": "hover",
+                "imgUrl": "https://img-home.csdnimg.cn/images/20220701012800.png"
+              },
+              "logo": {
+                "imgUrl": "https://img-home.csdnimg.cn/images/20220701062118.gif",
+                "link": " https://dev.csdn.net/activity/codeage/?utm_source=kfy_pc_bkcbl_701",
+                "clickSpm": ""
+              },
+              "viewSpm": "3001.6392",
+              "closeBtn": {
+                "model": "today",
+                "time": 24,
+                "imgUrl": "https://img-home.csdnimg.cn/images/20211203064149.png",
+                "closeSpm": "3001.6393"
+              }
+            },
+            "whiteList": []
+          },
+          "vipBuySideDate": {
+            "whiteList": []
+          },
+          "menus": [
+            {
+              "id": "blog",
+              "name": "博客",
+              "title": "阅读深度、前沿文章",
+              "url": "https://blog.csdn.net/",
+              "report": {
+                "mod": "popu_336",
+                "dest": "https://blog.csdn.net/",
+                "spm": "3001.4477"
+              },
+              "icon": {
+                "url": "https://img-home.csdnimg.cn/images/20201216020332.png",
+                "start": "2020/12/18 00:00:00",
+                "end": "2020/12/20 23:59:59",
+                "style": "position: absolute; vertical-align: middle; width: 16px; top: 3px; right: 3px;"
+              },
+              "children": []
+            },
+            {
+              "id": "download",
+              "name": "下载",
+              "title": "高价值源码课程分享",
+              "url": "https://download.csdn.net/",
+              "report": {
+                "mod": "popu_336",
+                "dest": "https://download.csdn.net/",
+                "spm": "3001.6907"
+              },
+              "children": []
+            },
+            {
+              "id": "edu",
+              "name": "学习",
+              "title": "系统学习·问答·比赛",
+              "url": "https://edu.csdn.net/",
+              "report": {
+                "mod": "popu_336",
+                "dest": "https://edu.csdn.net/",
+                "spm": "3001.4482"
+              },
+              "children": [],
+              "icon": {
+                "url": "https://img-home.csdnimg.cn/images/20220516045836.png",
+                "start": "2022/05/16 00:00:00",
+                "end": "2022/06/14 23:59:59",
+                "style": "vertical-align: middle; width: 19px; height: 32px;margin-top: -2px;"
+              }
+            },
+            {
+              "id": "bbs",
+              "name": "社区",
+              "title": "找到志同道合的伙伴",
+              "url": "https://bbs.csdn.net/",
+              "report": {
+                "mod": "popu_336",
+                "dest": "https://bbs.csdn.net/",
+                "spm": "3001.6068"
+              },
+              "icon": {
+                "url": "https://img-home.csdnimg.cn/images/20230117024648.png",
+                "start": "2023/01/21 00:00:01",
+                "end": "2023/01/27 23:59:59",
+                "style": "vertical-align: middle; width: 19px;margin-top: 0;margin-left: -6px"
+              },
+              "children": []
+            },
+            {
+              "id": "code",
+              "name": "GitCode",
+              "title": "开源代码托管",
+              "url": "https://gitcode.net/csdn_codechina/2.14-3.14?utm_source=csdn_toolbar",
+              "report": {
+                "mod": "",
+                "dest": "https://gitcode.net/explore?utm_source=csdn_toolbar",
+                "spm": "3001.6768"
+              },
+              "icon": {
+                "url": "https://img-home.csdnimg.cn/images/20221027045535.png",
+                "start": "2023/02/14 18:00:00",
+                "end": "2023/03/11 23:59:59",
+                "style": "vertical-align: middle; width: 19px;margin-top: -4px;margin-left: -2px"
+              },
+              "children": []
+            },
+            {
+              "id": "portal",
+              "name": "云服务",
+              "title": "简单高效优惠的云服务",
+              "url": "https://dev-portal.csdn.net/welcome?utm_source=toolbar",
+              "report": {
+                "mod": "popu_336",
+                "dest": "https://dev-portal.csdn.net/",
+                "spm": "3001.8290"
+              },
+              "icon": {
+                "url": "https://img-home.csdnimg.cn/images/20220805045438.png",
+                "start": "2022/08/05 00:00:00",
+                "end": "2022/08/11 24:00:00",
+                "style": "vertical-align: middle; width: 16px;margin-top: -3px;"
+              },
+              "children": []
+            },
+            {
+              "id": "devbit",
+              "name": "猿如意",
+              "title": "程序员的如意兵器",
+              "url": "https://devbit.csdn.net?source=csdn_toolbar",
+              "report": {
+                "mod": "popu_336",
+                "dest": "https://devbit.csdn.net/",
+                "spm": "3001.8967"
+              },
+              "icon": {
+                "url": "https://cdn-static-devbit.csdn.net/devbit-static/img/icon-gpt.png",
+                "start": "2023/01/03 10:00:00",
+                "end": "2023/01/10 10:00:00",
+                "style": "vertical-align: middle;width: 35px;margin-top: -2px;margin-left: -2px;"
+              },
+              "children": []
+            },
+            {
+              "id": "vip",
+              "name": "会员中心",
+              "url": "https://mall.csdn.net/vip",
+              "report": {
+                "mod": "popu_336",
+                "dest": "https://mall.csdn.net/vip",
+                "spm": "3001.4496"
+              },
+              "icon": {
+                "url": "https://img-home.csdnimg.cn/images/20220608054756.gif",
+                "start": "2022/06/13 23:00:00",
+                "end": "2022/06/20 23:59:59",
+                "style": "position: relative; vertical-align: middle; width: 14px; top: -2px; left: 0px;"
+              },
+              "iconVip": {
+                "url": "https://img-home.csdnimg.cn/images/20210918025157.gif",
+                "style": "position: relative; vertical-align: middle; width: 14px; top: -2px; left: 0px;",
+                "showIcon": true
+              },
+              "iconNormal": {
+                "url": "https://img-home.csdnimg.cn/images/20210918025138.gif",
+                "style": "position: relative; vertical-align: middle; width: 14px; top: -2px; left: 0px;",
+                "showIcon": true
+              },
+              "children": []
+            }
+          ],
+          "activeData": {
+            "whiteList": [
+              "download.csdn.net/download",
+              "download.csdn.net/list",
+              "mall.csdn.net",
+              "marketing.csdn.net",
+              "i.csdn.net",
+              "mp.csdn.net"
+            ]
+          }
         }
       ]
     }
   ],
   "err": [
     {
+      "caseName": "特殊内容对比",
+      "actual": [
+        1.421734293480128429342047109273402814018204371204712348814721987421984721983494217394712384912339,
+        1423413223412421423421412423141234321412342731847239814792873498213784972391474924729,
+        "&&&&&&111111222212121122222",
+        "[]",
+        "{}",
+        "        {\n          \"date\": \"22日星期四\",\n          \"sunrise\": \"06:17\",\n          \"high\": \"123\",\n          \"low\": \"低温 1.0℃\",\n          \"sunset\": \"18:27\",\n          \"aqi\": 98,\n          \"fx\": \"西南风\",\n          \"fl\": \"<3级\",\n          \"type\": \"晴\",\n          \"notice\": \"愿你拥有比阳光明媚的心情\"\n        }"
+      ],
+      "expect": [
+        1.421734293480128429342047109273402814018204371204712348814721987421984721983494217394712384912339,
+        1423413223412421423421412423141234321412342731847239814792873498213784972391474924729,
+        "&&&&&&111111222212121122222",
+        "[]",
+        "{}",
+        "        {\n          \"date\": \"22日星期四\",\n          \"sunrise\": \"06:17\",\n          \"high\": \"123\",\n          \"low\": \"低温 1.0℃\",\n          \"sunset\": \"18:27\",\n          \"aqi\": 98,\n          \"fx\": \"西南风\",\n          \"fl\": \"<3级\",\n          \"type\": \"晴\",\n          \"notice\": \"愿你拥有比阳光明媚的心情\"\n        }"
+      ],
+      "ret": {
+        "match": true
+      }
+    },
+    {
+      "caseName": "叁个简单String字段不一致",
       "actual": [
         {
           "date": "22日星期四",
@@ -886,32 +1704,49 @@
           {
             "actual": "123",
             "expect": "高温 17.0℃",
-            "illustrate": "properties are different",
-            "indexPath": "root[0].high"
+            "illustrate": "The expect('高温 17.0℃') data is inconsistent with the actual('123') data",
+            "travelPath": {
+              "abstractTravelPath": "root[0].high",
+              "actualTravelPath": "root[0].high",
+              "expectTravelPath": "root[0].high"
+            }
           },
           {
             "actual": "21星期四",
             "expect": "21日星期四",
-            "illustrate": "properties are different",
-            "indexPath": "root[1].date"
+            "illustrate": "The expect('21日星期四') data is inconsistent with the actual('21星期四') data",
+            "travelPath": {
+              "abstractTravelPath": "root[].date",
+              "actualTravelPath": "root[1].date",
+              "expectTravelPath": "root[1].date"
+            }
           },
           {
             "actual": "124",
             "expect": "高温 17.0℃",
-            "illustrate": "properties are different",
-            "indexPath": "root[1].high"
+            "illustrate": "The expect('高温 17.0℃') data is inconsistent with the actual('124') data",
+            "travelPath": {
+              "abstractTravelPath": "root[1].high",
+              "actualTravelPath": "root[1].high",
+              "expectTravelPath": "root[1].high"
+            }
           },
           {
             "actual": "125",
             "expect": "高温 17.0℃",
-            "illustrate": "properties are different",
-            "indexPath": "root[2].high"
+            "illustrate": "The expect('高温 17.0℃') data is inconsistent with the actual('125') data",
+            "travelPath": {
+              "abstractTravelPath": "root[2].high",
+              "actualTravelPath": "root[2].high",
+              "expectTravelPath": "root[2].high"
+            }
           }
         ],
         "match": false
       }
     },
     {
+      "caseName": "数组中存在单个对象，实际与预期都存在两边不存在的元素",
       "actual": [
         {
           "a": 1
@@ -924,16 +1759,77 @@
         },
         {}
       ],
-      "ret": {"defectsList":[{"actual":"a","illustrate":"extra field 'a'","indexPath":"root[0]"},{"actual":"b","illustrate":"missing field 'b'","indexPath":"root[0]"}],"match":false}
+      "ret": {
+        "defectsList": [
+          {
+            "expect": 1,
+            "illustrate": "Only one set of keys exists expect('b'),actual('null')",
+            "travelPath": {
+              "abstractTravelPath": "root[0].b",
+              "actualTravelPath": "root[0].null",
+              "expectTravelPath": "root[0].b"
+            }
+          },
+          {
+            "actual": 1,
+            "illustrate": "Only one set of keys exists expect('null'),actual('a')",
+            "travelPath": {
+              "abstractTravelPath": "root[0].a",
+              "actualTravelPath": "root[0].a",
+              "expectTravelPath": "root[0].null"
+            }
+          }
+        ],
+        "match": false
+      }
     },
     {
+      "caseName": "数组内元素类型不一致",
       "actual": [
         {}
       ],
       "expect": [
         []
       ],
-      "ret": {"defectsList":[{"actual":{},"expect":[],"illustrate":"The 0 element is inconsistent","indexPath":"root[0][0]"}],"match":false}
+      "ret": {
+        "defectsList": [
+          {
+            "actual": {},
+            "expect": [],
+            "illustrate": "The expect type ('com.alibaba.fastjson2.JSONArray') is inconsistent with the actual type ('com.alibaba.fastjson2.JSONObject')",
+            "travelPath": {
+              "abstractTravelPath": "root[0]",
+              "actualTravelPath": "root[0]",
+              "expectTravelPath": "root[0]"
+            }
+          }
+        ],
+        "match": false
+      }
+    },
+    {
+      "caseName": "内容相同 类型不同",
+      "actual": [
+        "1.1234"
+      ],
+      "expect": [
+        1.1234
+      ],
+      "ret": {
+        "defectsList": [
+          {
+            "actual": "1.1234",
+            "expect": 1.1234,
+            "illustrate": "The expect type ('java.math.BigDecimal') is inconsistent with the actual type ('java.lang.String')",
+            "travelPath": {
+              "abstractTravelPath": "root[]",
+              "actualTravelPath": "root[0]",
+              "expectTravelPath": "root[0]"
+            }
+          }
+        ],
+        "match": false
+      }
     }
   ],
   "optionRight": [
@@ -1101,312 +1997,15 @@
       "ret": {},
       "option": {
         "ignoreOrder": false,
-        "mapping": {"a": 1},
-        "ignorePath": [".a/a"],
-        "ignoreKey": [".a.b"]
-      }
-    },    {
-      "actual": [{"a": 1}],
-      "expect": [{"b": 2}],
-      "ret": {},
-      "option": {
-        "ignoreOrder": false,
-        "mapping": {"a": 1},
-        "ignorePath": [".a/a"],
-        "ignoreKey": [".a.b"]
-      }
-    },
-    {
-      "actual": [
-        {
-          "a": [
-            {
-              "a": 1
-            }
-          ]
-        }
-      ],
-      "expect": [
-        {
-          "a": [
-            {
-              "a": 1
-            }
-          ]
-        }
-      ],
-      "ret": {},
-      "option": {
-        "ignoreOrder": false,
-        "mapping": {"a": 1},
-        "ignorePath": [".a/a"],
-        "ignoreKey": [".a.b"]
-      }
-    },
-    {
-      "actual": [
-        [
-          [
-            [
-              [
-                [
-                  [
-                    [
-                      [
-                        [
-                          [
-                            [
-                              [
-                                [
-                                  [
-                                    [
-                                      [
-                                        [
-                                          [
-                                            [
-                                              [
-                                                [
-                                                  [
-                                                    [
-                                                      [
-                                                        [
-                                                          [
-                                                            [
-                                                              [
-                                                                [
-                                                                  [
-                                                                    [
-                                                                      [
-                                                                        [
-                                                                          [
-                                                                            [
-                                                                              [
-                                                                                [
-                                                                                  [
-                                                                                    [
-                                                                                      [
-                                                                                        [
-                                                                                          [
-                                                                                            [
-                                                                                              [
-                                                                                                [
-                                                                                                  [
-                                                                                                    [
-                                                                                                      [
-                                                                                                        [
-                                                                                                          {
-                                                                                                            "a": 1
-                                                                                                          }
-                                                                                                        ]
-                                                                                                      ]
-                                                                                                    ]
-                                                                                                  ]
-                                                                                                ]
-                                                                                              ]
-                                                                                            ]
-                                                                                          ]
-                                                                                        ]
-                                                                                      ]
-                                                                                    ]
-                                                                                  ]
-                                                                                ]
-                                                                              ]
-                                                                            ]
-                                                                          ]
-                                                                        ]
-                                                                      ]
-                                                                    ]
-                                                                  ]
-                                                                ]
-                                                              ]
-                                                            ]
-                                                          ]
-                                                        ]
-                                                      ]
-                                                    ]
-                                                  ]
-                                                ]
-                                              ]
-                                            ]
-                                          ]
-                                        ]
-                                      ]
-                                    ]
-                                  ]
-                                ]
-                              ]
-                            ]
-                          ]
-                        ]
-                      ]
-                    ]
-                  ]
-                ]
-              ]
-            ]
-          ]
+        "mapping": {
+          "a": 1
+        },
+        "ignorePath": [
+          ".a/a"
+        ],
+        "ignoreKey": [
+          ".a.b"
         ]
-      ],
-      "expect": [
-        [
-          [
-            [
-              [
-                [
-                  [
-                    [
-                      [
-                        [
-                          [
-                            [
-                              [
-                                [
-                                  [
-                                    [
-                                      [
-                                        [
-                                          [
-                                            [
-                                              [
-                                                [
-                                                  [
-                                                    [
-                                                      [
-                                                        [
-                                                          [
-                                                            [
-                                                              [
-                                                                [
-                                                                  [
-                                                                    [
-                                                                      [
-                                                                        [
-                                                                          [
-                                                                            [
-                                                                              [
-                                                                                [
-                                                                                  [
-                                                                                    [
-                                                                                      [
-                                                                                        [
-                                                                                          [
-                                                                                            [
-                                                                                              [
-                                                                                                [
-                                                                                                  [
-                                                                                                    [
-                                                                                                      [
-                                                                                                        [
-                                                                                                          {
-                                                                                                            "a": 1
-                                                                                                          }
-                                                                                                        ]
-                                                                                                      ]
-                                                                                                    ]
-                                                                                                  ]
-                                                                                                ]
-                                                                                              ]
-                                                                                            ]
-                                                                                          ]
-                                                                                        ]
-                                                                                      ]
-                                                                                    ]
-                                                                                  ]
-                                                                                ]
-                                                                              ]
-                                                                            ]
-                                                                          ]
-                                                                        ]
-                                                                      ]
-                                                                    ]
-                                                                  ]
-                                                                ]
-                                                              ]
-                                                            ]
-                                                          ]
-                                                        ]
-                                                      ]
-                                                    ]
-                                                  ]
-                                                ]
-                                              ]
-                                            ]
-                                          ]
-                                        ]
-                                      ]
-                                    ]
-                                  ]
-                                ]
-                              ]
-                            ]
-                          ]
-                        ]
-                      ]
-                    ]
-                  ]
-                ]
-              ]
-            ]
-          ]
-        ]
-      ],
-      "ret": {},
-      "option": {
-        "ignoreOrder": false,
-        "mapping": {"a": 1},
-        "ignorePath": [".a/a"],
-        "ignoreKey": [".a.b"]
-      }
-    },
-    {
-      "actual": [
-        {
-          "a": {
-            "a": {
-              "b": "a"
-            }
-          }
-        }
-      ],
-      "expect": [
-        {
-          "a": {
-            "a": {
-              "b": "a"
-            }
-          }
-        }
-      ],
-      "ret": {},
-      "option": {
-        "ignoreOrder": false,
-        "mapping": {"a": 1},
-        "ignorePath": [".a/a"],
-        "ignoreKey": [".a.b"]
-      }
-    }
-  ],
-  "optionErr": [
-    {
-      "actual": [{"a": 1}],
-      "expect": [{"b": 2}],
-      "ret": {},
-      "option": {
-        "ignoreOrder": false,
-        "mapping": {"a": 1},
-        "ignorePath": [".a/a"],
-        "ignoreKey": [".a.b"]
-      }
-    },
-    {
-      "actual": [{"a": 1}],
-      "expect": [{"b": 2}],
-      "ret": {},
-      "option": {
-        "ignoreOrder": false,
-        "mapping": {"a": 1},
-        "ignorePath": [".a/a"],
-        "ignoreKey": [".a.b"]
       }
     },
     {
@@ -1435,14 +2034,392 @@
       }
     },
     {
-      "actual": [{"a": 1}],
-      "expect": [{"b": 2}],
+      "actual": [
+        {
+          "a": [
+            {
+              "a": 1
+            }
+          ]
+        }
+      ],
+      "expect": [
+        {
+          "a": [
+            {
+              "a": 1
+            }
+          ]
+        }
+      ],
       "ret": {},
       "option": {
         "ignoreOrder": false,
-        "mapping": {"a": 1},
-        "ignorePath": [".a/a"],
-        "ignoreKey": [".a.b"]
+        "mapping": {
+          "a": 1
+        },
+        "ignorePath": [
+          ".a/a"
+        ],
+        "ignoreKey": [
+          ".a.b"
+        ]
+      }
+    },
+    {
+      "actual": [
+        [
+          [
+            [
+              [
+                [
+                  [
+                    [
+                      [
+                        [
+                          [
+                            [
+                              [
+                                [
+                                  [
+                                    [
+                                      [
+                                        [
+                                          [
+                                            [
+                                              [
+                                                [
+                                                  [
+                                                    [
+                                                      [
+                                                        [
+                                                          [
+                                                            [
+                                                              [
+                                                                [
+                                                                  [
+                                                                    [
+                                                                      [
+                                                                        [
+                                                                          [
+                                                                            [
+                                                                              [
+                                                                                [
+                                                                                  [
+                                                                                    [
+                                                                                      [
+                                                                                        [
+                                                                                          [
+                                                                                            [
+                                                                                              [
+                                                                                                [
+                                                                                                  [
+                                                                                                    [
+                                                                                                      [
+                                                                                                        [
+                                                                                                          {
+                                                                                                            "a": 1
+                                                                                                          }
+                                                                                                        ]
+                                                                                                      ]
+                                                                                                    ]
+                                                                                                  ]
+                                                                                                ]
+                                                                                              ]
+                                                                                            ]
+                                                                                          ]
+                                                                                        ]
+                                                                                      ]
+                                                                                    ]
+                                                                                  ]
+                                                                                ]
+                                                                              ]
+                                                                            ]
+                                                                          ]
+                                                                        ]
+                                                                      ]
+                                                                    ]
+                                                                  ]
+                                                                ]
+                                                              ]
+                                                            ]
+                                                          ]
+                                                        ]
+                                                      ]
+                                                    ]
+                                                  ]
+                                                ]
+                                              ]
+                                            ]
+                                          ]
+                                        ]
+                                      ]
+                                    ]
+                                  ]
+                                ]
+                              ]
+                            ]
+                          ]
+                        ]
+                      ]
+                    ]
+                  ]
+                ]
+              ]
+            ]
+          ]
+        ]
+      ],
+      "expect": [
+        [
+          [
+            [
+              [
+                [
+                  [
+                    [
+                      [
+                        [
+                          [
+                            [
+                              [
+                                [
+                                  [
+                                    [
+                                      [
+                                        [
+                                          [
+                                            [
+                                              [
+                                                [
+                                                  [
+                                                    [
+                                                      [
+                                                        [
+                                                          [
+                                                            [
+                                                              [
+                                                                [
+                                                                  [
+                                                                    [
+                                                                      [
+                                                                        [
+                                                                          [
+                                                                            [
+                                                                              [
+                                                                                [
+                                                                                  [
+                                                                                    [
+                                                                                      [
+                                                                                        [
+                                                                                          [
+                                                                                            [
+                                                                                              [
+                                                                                                [
+                                                                                                  [
+                                                                                                    [
+                                                                                                      [
+                                                                                                        [
+                                                                                                          {
+                                                                                                            "a": 1
+                                                                                                          }
+                                                                                                        ]
+                                                                                                      ]
+                                                                                                    ]
+                                                                                                  ]
+                                                                                                ]
+                                                                                              ]
+                                                                                            ]
+                                                                                          ]
+                                                                                        ]
+                                                                                      ]
+                                                                                    ]
+                                                                                  ]
+                                                                                ]
+                                                                              ]
+                                                                            ]
+                                                                          ]
+                                                                        ]
+                                                                      ]
+                                                                    ]
+                                                                  ]
+                                                                ]
+                                                              ]
+                                                            ]
+                                                          ]
+                                                        ]
+                                                      ]
+                                                    ]
+                                                  ]
+                                                ]
+                                              ]
+                                            ]
+                                          ]
+                                        ]
+                                      ]
+                                    ]
+                                  ]
+                                ]
+                              ]
+                            ]
+                          ]
+                        ]
+                      ]
+                    ]
+                  ]
+                ]
+              ]
+            ]
+          ]
+        ]
+      ],
+      "ret": {},
+      "option": {
+        "ignoreOrder": false,
+        "mapping": {
+          "a": 1
+        },
+        "ignorePath": [
+          ".a/a"
+        ],
+        "ignoreKey": [
+          ".a.b"
+        ]
+      }
+    },
+    {
+      "actual": [
+        {
+          "a": {
+            "a": {
+              "b": "a"
+            }
+          }
+        }
+      ],
+      "expect": [
+        {
+          "a": {
+            "a": {
+              "b": "a"
+            }
+          }
+        }
+      ],
+      "ret": {},
+      "option": {
+        "ignoreOrder": false,
+        "mapping": {
+          "a": 1
+        },
+        "ignorePath": [
+          ".a/a"
+        ],
+        "ignoreKey": [
+          ".a.b"
+        ]
+      }
+    }
+  ],
+  "optionErr": [
+    {
+      "actual": [
+        {
+          "a": 1
+        }
+      ],
+      "expect": [
+        {
+          "b": 2
+        }
+      ],
+      "ret": {},
+      "option": {
+        "ignoreOrder": false,
+        "mapping": {
+          "a": 1
+        },
+        "ignorePath": [
+          ".a/a"
+        ],
+        "ignoreKey": [
+          ".a.b"
+        ]
+      }
+    },
+    {
+      "actual": [
+        {
+          "a": 1
+        }
+      ],
+      "expect": [
+        {
+          "b": 2
+        }
+      ],
+      "ret": {},
+      "option": {
+        "ignoreOrder": false,
+        "mapping": {
+          "a": 1
+        },
+        "ignorePath": [
+          ".a/a"
+        ],
+        "ignoreKey": [
+          ".a.b"
+        ]
+      }
+    },
+    {
+      "actual": [
+        {
+          "a": 1
+        }
+      ],
+      "expect": [
+        {
+          "b": 2
+        }
+      ],
+      "ret": {},
+      "option": {
+        "ignoreOrder": false,
+        "mapping": {
+          "a": 1
+        },
+        "ignorePath": [
+          ".a/a"
+        ],
+        "ignoreKey": [
+          ".a.b"
+        ]
+      }
+    },
+    {
+      "actual": [
+        {
+          "a": 1
+        }
+      ],
+      "expect": [
+        {
+          "b": 2
+        }
+      ],
+      "ret": {},
+      "option": {
+        "ignoreOrder": false,
+        "mapping": {
+          "a": 1
+        },
+        "ignorePath": [
+          ".a/a"
+        ],
+        "ignoreKey": [
+          ".a.b"
+        ]
       }
     }
   ]
