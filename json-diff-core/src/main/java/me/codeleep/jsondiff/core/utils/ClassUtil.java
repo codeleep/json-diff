@@ -40,7 +40,9 @@ public class ClassUtil {
         if (String.class.isAssignableFrom(obj.getClass())) {
             return true;
         }
-
+        if (obj instanceof Number) {
+            return true;
+        }
         try {
             return ((Class<?>)obj.getClass().getField("TYPE").get(null)).isPrimitive();
         } catch (Exception e) {
