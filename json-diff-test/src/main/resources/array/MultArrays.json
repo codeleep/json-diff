@@ -1706,7 +1706,7 @@
             "expect": "高温 17.0℃",
             "illustrate": "The expect('高温 17.0℃') data is inconsistent with the actual('123') data",
             "travelPath": {
-              "abstractTravelPath": "root[0].high",
+              "abstractTravelPath": "root[].high",
               "actualTravelPath": "root[0].high",
               "expectTravelPath": "root[0].high"
             }
@@ -1726,7 +1726,7 @@
             "expect": "高温 17.0℃",
             "illustrate": "The expect('高温 17.0℃') data is inconsistent with the actual('124') data",
             "travelPath": {
-              "abstractTravelPath": "root[1].high",
+              "abstractTravelPath": "root[].high",
               "actualTravelPath": "root[1].high",
               "expectTravelPath": "root[1].high"
             }
@@ -1736,7 +1736,7 @@
             "expect": "高温 17.0℃",
             "illustrate": "The expect('高温 17.0℃') data is inconsistent with the actual('125') data",
             "travelPath": {
-              "abstractTravelPath": "root[2].high",
+              "abstractTravelPath": "root[].high",
               "actualTravelPath": "root[2].high",
               "expectTravelPath": "root[2].high"
             }
@@ -1765,7 +1765,7 @@
             "expect": 1,
             "illustrate": "Only one set of keys exists expect('b'),actual('null')",
             "travelPath": {
-              "abstractTravelPath": "root[0].b",
+              "abstractTravelPath": "root[].b",
               "actualTravelPath": "root[0].null",
               "expectTravelPath": "root[0].b"
             }
@@ -1774,7 +1774,7 @@
             "actual": 1,
             "illustrate": "Only one set of keys exists expect('null'),actual('a')",
             "travelPath": {
-              "abstractTravelPath": "root[0].a",
+              "abstractTravelPath": "root[].a",
               "actualTravelPath": "root[0].a",
               "expectTravelPath": "root[0].null"
             }
@@ -1798,7 +1798,7 @@
             "expect": [],
             "illustrate": "The expect type ('com.alibaba.fastjson2.JSONArray') is inconsistent with the actual type ('com.alibaba.fastjson2.JSONObject')",
             "travelPath": {
-              "abstractTravelPath": "root[0]",
+              "abstractTravelPath": "root[]",
               "actualTravelPath": "root[0]",
               "expectTravelPath": "root[0]"
             }
