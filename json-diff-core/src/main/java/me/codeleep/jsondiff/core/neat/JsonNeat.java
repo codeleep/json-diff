@@ -3,6 +3,7 @@ package me.codeleep.jsondiff.core.neat;
 import com.alibaba.fastjson2.JSONArray;
 import com.alibaba.fastjson2.JSONObject;
 import me.codeleep.jsondiff.common.model.JsonCompareResult;
+import me.codeleep.jsondiff.common.model.TravelPath;
 
 /**
  * @author: codeleep
@@ -10,8 +11,8 @@ import me.codeleep.jsondiff.common.model.JsonCompareResult;
  * @description:
  */
 public interface JsonNeat {
-    JsonCompareResult diff(JSONArray expect, JSONArray actual, String path);
-    JsonCompareResult diff(JSONObject expect, JSONObject actual, String path);
-    JsonCompareResult diff(Object expect, Object actual, String path);
+    JsonCompareResult diff(JSONArray expect, JSONArray actual, TravelPath travelPath);
+    JsonCompareResult diff(JSONObject expect, JSONObject actual, TravelPath travelPath);
+    JsonCompareResult diff(Object expect, Object actual, TravelPath travelPath);
 
 }

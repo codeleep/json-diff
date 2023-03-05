@@ -1,5 +1,7 @@
 package me.codeleep.jsondiff.common.model;
 
+import me.codeleep.jsondiff.common.utils.PathUtil;
+
 /**
  * @author: codeleep
  * @createTime: 2022/07/30 19:26
@@ -20,7 +22,7 @@ public class Defects {
     /**
      * 索引地址
      */
-    private String indexPath;
+    private TravelPath travelPath;
 
     /**
      * 说明
@@ -38,8 +40,12 @@ public class Defects {
         return this;
     }
 
-    public Defects setIndexPath(String indexPath) {
-        this.indexPath = indexPath;
+    public TravelPath getTravelPath() {
+        return travelPath;
+    }
+
+    public Defects setTravelPath(TravelPath travelPath) {
+        this.travelPath = travelPath;
         return this;
     }
 
@@ -59,10 +65,6 @@ public class Defects {
 
     public Object getActual() {
         return actual;
-    }
-
-    public String getIndexPath() {
-        return indexPath;
     }
 
     public String getIllustrate() {

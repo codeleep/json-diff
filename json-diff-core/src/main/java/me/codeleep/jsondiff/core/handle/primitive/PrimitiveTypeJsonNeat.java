@@ -3,6 +3,7 @@ package me.codeleep.jsondiff.core.handle.primitive;
 import me.codeleep.jsondiff.common.exception.JsonDiffException;
 import me.codeleep.jsondiff.common.model.Defects;
 import me.codeleep.jsondiff.common.model.JsonCompareResult;
+import me.codeleep.jsondiff.common.model.TravelPath;
 import me.codeleep.jsondiff.core.utils.ClassUtil;
 
 import static me.codeleep.jsondiff.common.model.Constant.DATA_INCONSISTENT;
@@ -16,9 +17,9 @@ import static me.codeleep.jsondiff.common.model.Constant.DATA_TYPE_INCONSISTENT;
 public class PrimitiveTypeJsonNeat extends AbstractPrimitiveJsonNeat {
 
     @Override
-    public JsonCompareResult diff(Object expect, Object actual, String path) {
+    public JsonCompareResult diff(Object expect, Object actual, TravelPath travelPath) {
         JsonCompareResult result = new JsonCompareResult();
-        if (!check(expect, actual, result, path)) {
+        if (!check(expect, actual, result, travelPath)) {
             return result;
         }
         if (!ClassUtil.isPrimitiveType(expect) || !ClassUtil.isPrimitiveType(actual)) {
@@ -35,7 +36,7 @@ public class PrimitiveTypeJsonNeat extends AbstractPrimitiveJsonNeat {
             Defects defects = new Defects()
                     .setActual(actual)
                     .setExpect(expect)
-                    .setIndexPath(path)
+                    .setTravelPath(travelPath)
                     .setIllustrateTemplate(DATA_TYPE_INCONSISTENT, expect == null ? null : expect.getClass().getName(), actual == null ? null : actual.getClass().getName());
             result.addDefects(defects);
             return result;
@@ -50,7 +51,7 @@ public class PrimitiveTypeJsonNeat extends AbstractPrimitiveJsonNeat {
         Defects defects = new Defects()
                 .setActual(actual)
                 .setExpect(expect)
-                .setIndexPath(path)
+                .setTravelPath(travelPath)
                 .setIllustrateTemplate(DATA_INCONSISTENT, String.valueOf(expect), String.valueOf(actual));
         result.addDefects(defects);
         return result;

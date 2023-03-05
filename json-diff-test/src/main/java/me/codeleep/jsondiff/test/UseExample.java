@@ -15,7 +15,7 @@ public class UseExample {
 
     public static void main(String[] args) {
         String array1 = "[1, 2, 3, 4, 5]";
-        String array2 = "[1, 3, 9, 4, 5]";
+        String array2 = "[1, 3, 4, 5, 9]";
 
         JsonComparedOption jsonComparedOption = new JsonComparedOption().setIgnoreOrder(true);
         JsonCompareResult jsonCompareResult = new DefaultJsonDifference()

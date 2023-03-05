@@ -1,6 +1,7 @@
 package me.codeleep.jsondiff.core.neat;
 
 import me.codeleep.jsondiff.common.model.JsonCompareResult;
+import me.codeleep.jsondiff.common.model.TravelPath;
 
 /**
  * @author: codeleep
@@ -15,6 +16,6 @@ public interface TypeCheck {
      * @param actual
      * @return
      */
-    boolean check(Object expect, Object actual, JsonCompareResult result, String path);
+    boolean check(Object expect, Object actual, JsonCompareResult result, TravelPath travelPath);
 
 }
