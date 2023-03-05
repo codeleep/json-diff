@@ -25,9 +25,9 @@ public class MultAllArrayTest {
         JsonCompareResult jsonCompareResult = defaultJsonDifference
                 .detectDiff((JSONArray) metaData.getExpect(), (JSONArray) metaData.getActual());
        if (metaData.getRet() != null)
-            Assert.assertEquals( JSON.toJSONString(jsonCompareResult),JSON.toJSONString(metaData.getRet()));
+       { Assert.assertEquals( JSON.toJSONString(jsonCompareResult),JSON.toJSONString(metaData.getRet()));}
         else
-            Assert.assertEquals( JSON.toJSONString(jsonCompareResult),"{\"match\":true}");
+       {  Assert.assertEquals( JSON.toJSONString(jsonCompareResult),"{\"match\":true}");}
     }
 
     @Test(dataProvider = "err", dataProviderClass = ArrayDataFactory.class)
@@ -49,10 +49,12 @@ public class MultAllArrayTest {
         JsonCompareResult jsonCompareResult = defaultJsonDifference
                 .option(metaData.getOption())
                 .detectDiff((JSONArray) metaData.getExpect(), (JSONArray) metaData.getActual());
-        if (metaData.getRet() != null)
-            Assert.assertEquals( JSON.toJSONString(jsonCompareResult),JSON.toJSONString(metaData.getRet()));
-        else
-            Assert.assertEquals( JSON.toJSONString(jsonCompareResult),"{\"match\":true}");
+        if (metaData.getRet() != null) {
+            Assert.assertEquals(JSON.toJSONString(jsonCompareResult), JSON.toJSONString(metaData.getRet()));
+        }
+        else {
+            Assert.assertEquals(JSON.toJSONString(jsonCompareResult), "{\"match\":true}");
+        }
     }
 
     @Test(dataProvider = "optionErr", dataProviderClass = ArrayDataFactory.class)

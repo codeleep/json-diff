@@ -26,10 +26,12 @@ public class MultAllObjectTest {
         logger.debug(metaData.getExpect().toString()+"\n"+metaData.getActual().toString());
         JsonCompareResult jsonCompareResult = defaultJsonDifference
                 .detectDiff((JSONObject) metaData.getExpect(), (JSONObject) metaData.getActual());
-        if (metaData.getRet() != null)
-            Assert.assertEquals( JSON.toJSONString(jsonCompareResult),JSON.toJSONString(metaData.getRet()));
-        else
-            Assert.assertEquals( JSON.toJSONString(jsonCompareResult),"{\"match\":true}");
+        if (metaData.getRet() != null) {
+            Assert.assertEquals(JSON.toJSONString(jsonCompareResult), JSON.toJSONString(metaData.getRet()));
+        }
+        else {
+            Assert.assertEquals(JSON.toJSONString(jsonCompareResult), "{\"match\":true}");
+        }
     }
 
     @Test(dataProvider = "err", dataProviderClass = ObjectDataFactory.class)
@@ -51,10 +53,12 @@ public class MultAllObjectTest {
         JsonCompareResult jsonCompareResult = defaultJsonDifference
                 .option(metaData.getOption())
                 .detectDiff((JSONObject) metaData.getExpect(), (JSONObject) metaData.getActual());
-        if (metaData.getRet() != null)
-            Assert.assertEquals( JSON.toJSONString(jsonCompareResult),JSON.toJSONString(metaData.getRet()));
-        else
-            Assert.assertEquals( JSON.toJSONString(jsonCompareResult),"{\"match\":true}");
+        if (metaData.getRet() != null) {
+            Assert.assertEquals(JSON.toJSONString(jsonCompareResult), JSON.toJSONString(metaData.getRet()));
+        }
+        else {
+            Assert.assertEquals(JSON.toJSONString(jsonCompareResult), "{\"match\":true}");
+        }
     }
 
     @Test(dataProvider = "optionErr", dataProviderClass = ObjectDataFactory.class)
