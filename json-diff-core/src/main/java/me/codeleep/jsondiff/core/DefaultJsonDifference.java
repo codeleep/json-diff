@@ -19,11 +19,15 @@ import static me.codeleep.jsondiff.common.model.Constant.PATH_ROOT;
 public class DefaultJsonDifference {
 
     public JsonCompareResult detectDiff(JSONObject expect, JSONObject actual) {
-        return  new ComplexObjectJsonNeat().diff(expect, actual , new TravelPath(PATH_ROOT));
+        JsonCompareResult result = new ComplexObjectJsonNeat().diff(expect, actual, new TravelPath(PATH_ROOT));
+        RunTimeDataFactory.clearOptionInstance();
+        return  result;
     }
 
     public JsonCompareResult detectDiff(JSONArray expect, JSONArray actual) {
-        return  new ComplexArrayJsonNeat().diff(expect, actual , new TravelPath(PATH_ROOT));
+        JsonCompareResult result = new ComplexArrayJsonNeat().diff(expect, actual, new TravelPath(PATH_ROOT));
+        RunTimeDataFactory.clearOptionInstance();
+        return  result;
     }
 
     public DefaultJsonDifference option(JsonComparedOption option) {

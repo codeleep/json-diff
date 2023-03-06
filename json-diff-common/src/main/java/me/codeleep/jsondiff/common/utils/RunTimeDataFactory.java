@@ -40,5 +40,11 @@ public class RunTimeDataFactory {
         optionThreadLocal.set(jsonComparedOption);
     }
 
+    /**
+     * 清理ThreadLocal
+     */
+    public static void clearOptionInstance() {
+        optionThreadLocal.remove();
+    }
 
 }
