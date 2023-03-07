@@ -5534,7 +5534,7 @@
       }
     },
     {
-      "caseName": "对应数组对象中的key",
+      "caseName": "映射对应数组对象中的key",
       "actual": [
         {
           "a": 1,
@@ -5644,6 +5644,817 @@
         "ignoreKey": [
           "a",
           "b"
+        ]
+      }
+    },
+    {
+      "caseName": "配置mapping和ignoreOrder",
+      "actual": [
+        {
+          "a": 2
+        },
+        {
+          "a": 1
+        },
+        {
+          "b": 2
+        },
+        {
+          "b": 1
+        }
+      ],
+      "expect": [
+        {
+          "a": 1
+        },
+        {
+          "c": 2
+        },
+        {
+          "a": 2
+        },
+        {
+          "c": 1
+        }
+      ],
+      "option": {
+        "ignoreOrder": true,
+        "mapping": {
+          "b": "c"
+        }
+      }
+    },
+    {
+      "caseName": "配置ignoreOrder和ignorePath TODO",
+      "actual": [
+        {
+          "a": 2,
+          "c": 3
+        },
+        {
+          "a": 1
+        },
+        {
+          "b": 2
+        },
+        {
+          "b": 1
+        }
+      ],
+      "expect": [
+        {
+          "a": 2
+        },
+        {
+          "b": 2
+        },
+        {
+          "a": 1
+        },
+        {
+          "b": 1
+        }
+      ],
+      "option": {
+        "ignoreOrder": true,
+        "ignorePath": [
+          "root[].c"
+        ]
+      }
+    },
+    {
+      "caseName": "配置ignoreOrder和ignoreKey",
+      "actual": [
+        {
+          "a": 2,
+          "c": 3,
+          "f": 2
+        },
+        {
+          "a": 1
+        },
+        {
+          "b": 2
+        },
+        {
+          "b": 1
+        }
+      ],
+      "expect": [
+        {
+          "a": 2
+        },
+        {
+          "b": 2
+        },
+        {
+          "a": 1
+        },
+        {
+          "b": 1
+        }
+      ],
+      "option": {
+        "ignoreOrder": true,
+        "ignoreKey": [
+          "f","c"
+        ]
+      }
+    },
+    {
+      "caseName": "配置mapping和ignoreKey",
+      "actual": [
+        {
+          "a": 2,
+          "f": 2
+        },
+        {
+          "a": 1
+        },
+        {
+          "b": 2
+        },
+        {
+          "b": 1
+        }
+      ],
+      "expect": [
+        {
+          "a": 2
+        },
+        {
+          "a": 1
+        },
+        {
+          "c": 2
+        },
+        {
+          "c": 1
+        }
+      ],
+      "option": {
+        "mapping": {
+          "b": "c"
+        },
+        "ignoreKey": [
+          "f"
+        ]
+      }
+    },
+    {
+      "caseName": "配置ignorePath和ignoreKey  TODO",
+      "actual": [
+        {
+          "a": 2,
+          "f": 2,
+          "n": 4
+        },
+        {
+          "a": 1
+        },
+        {
+          "b": 2
+        },
+        {
+          "b": 1
+        }
+      ],
+      "expect": [
+        {
+          "a": 2
+        },
+        {
+          "a": 1
+        },
+        {
+          "b": 2
+        },
+        {
+          "b": 1
+        }
+      ],
+      "option": {
+        "ignorePath": [
+          "root[].n"
+        ],
+        "ignoreKey": [
+          "f"
+        ]
+      }
+    },
+    {
+      "caseName": "配置mapping和ignorePath TODO",
+      "actual": [
+        {
+          "a": 2,
+          "f": 2
+        },
+        {
+          "a": 1
+        },
+        {
+          "b": 2
+        },
+        {
+          "b": 1
+        }
+      ],
+      "expect": [
+        {
+          "a": 2
+        },
+        {
+          "a": 1
+        },
+        {
+          "c": 2
+        },
+        {
+          "c": 1
+        }
+      ],
+      "option": {
+        "mapping": {
+          "root[].b": "root[].c"
+        },
+        "ignorePath": [
+          "root[].f"
+        ]
+      }
+    },
+    {
+      "caseName": "配置mapping和ignoreOrder和ignorePath  TODO",
+      "actual": [
+        {
+          "a": 2,
+          "f": 4
+        },
+        {
+          "a": 1
+        },
+        {
+          "b": 2
+        },
+        {
+          "b": 1
+        }
+      ],
+      "expect": [
+        {
+          "a": 1
+        },
+        {
+          "c": 2
+        },
+        {
+          "a": 2
+        },
+        {
+          "c": 1
+        }
+      ],
+      "option": {
+        "ignoreOrder": true,
+        "mapping": {
+          "b": "c"
+        },
+        "ignorePath": [
+          "root[].f"
+        ]
+      }
+    },
+    {
+      "caseName": "配置mapping和ignoreOrder和ignoreKey",
+      "actual": [
+        {
+          "a": 2,
+          "f": 5
+        },
+        {
+          "a": 1
+        },
+        {
+          "b": 2
+        },
+        {
+          "b": 1
+        }
+      ],
+      "expect": [
+        {
+          "a": 1
+        },
+        {
+          "c": 2
+        },
+        {
+          "a": 2
+        },
+        {
+          "c": 1
+        }
+      ],
+      "option": {
+        "ignoreOrder": true,
+        "mapping": {
+          "b": "c"
+        },
+        "ignoreKey": [
+          "f"
+        ]
+      }
+    },
+    {
+      "caseName": "配置mapping和ignorePath和ignoreKey TODO",
+      "actual": [
+        {
+          "a": 2,
+          "f": 2,
+          "n": 5
+        },
+        {
+          "a": 1
+        },
+        {
+          "b": 2
+        },
+        {
+          "b": 1
+        }
+      ],
+      "expect": [
+        {
+          "a": 2
+        },
+        {
+          "a": 1
+        },
+        {
+          "c": 2
+        },
+        {
+          "c": 1
+        }
+      ],
+      "option": {
+        "mapping": {
+          "b": "c"
+        },
+        "ignorePath": [
+          "root[].f"
+        ],
+        "ignoreKey": [
+          "n"
+        ]
+      }
+    },
+    {
+      "caseName": "配置ignoreOrder和ignorePath和ignoreKey TODO",
+      "actual": [
+        {
+          "a": 2,
+          "c": 3,
+          "k": "12312"
+        },
+        {
+          "a": 1
+        },
+        {
+          "b": 2
+        },
+        {
+          "b": 1
+        }
+      ],
+      "expect": [
+        {
+          "a": 2
+        },
+        {
+          "b": 2
+        },
+        {
+          "a": 1
+        },
+        {
+          "b": 1
+        }
+      ],
+      "option": {
+        "ignoreOrder": true,
+        "ignorePath": [
+          "root[].c"
+        ],
+        "ignoreKey": [
+          "k"
+        ]
+      }
+    },
+
+
+    {
+      "caseName": "配置ignoreOrder和ignorePath TODO",
+      "actual": [
+        {
+          "a": 2
+        },
+        {
+          "a": 1
+        },
+        {
+          "b": 2,
+          "c": 3
+        },
+        {
+          "b": 1
+        }
+      ],
+      "expect": [
+        {
+          "a": 2
+        },
+        {
+          "b": 2
+        },
+        {
+          "a": 1
+        },
+        {
+          "b": 1
+        }
+      ],
+      "option": {
+        "ignoreOrder": true,
+        "ignorePath": [
+          "root[].c"
+        ]
+      }
+    },
+    {
+      "caseName": "配置ignoreOrder和ignoreKey 忽略的在两个不同地方",
+      "actual": [
+        {
+          "a": 2,
+          "c": 3
+        },
+        {
+          "a": 1,
+          "f": 2
+        },
+        {
+          "b": 2
+        },
+        {
+          "b": 1
+        }
+      ],
+      "expect": [
+        {
+          "a": 2
+        },
+        {
+          "b": 2
+        },
+        {
+          "a": 1
+        },
+        {
+          "b": 1
+        }
+      ],
+      "option": {
+        "ignoreOrder": true,
+        "ignoreKey": [
+          "f","c"
+        ]
+      }
+    },
+    {
+      "caseName": "配置ignoreOrder和ignoreKey 忽略的在三个不同地方",
+      "actual": [
+        {
+          "a": 2
+        },
+        {
+          "a": 1,
+          "f": 2
+        },
+        {
+          "b": 2,
+          "c": 3
+        },
+        {
+          "b": 1,
+          "c": 3
+        }
+      ],
+      "expect": [
+        {
+          "a": 2
+        },
+        {
+          "b": 2
+        },
+        {
+          "a": 1
+        },
+        {
+          "b": 1
+        }
+      ],
+      "option": {
+        "ignoreOrder": true,
+        "ignoreKey": [
+          "f","c"
+        ]
+      }
+    },
+    {
+      "caseName": "配置mapping和ignoreKey 忽略字段在最后",
+      "actual": [
+        {
+          "a": 2
+        },
+        {
+          "a": 1
+        },
+        {
+          "b": 2
+        },
+        {
+          "b": 1,
+          "f": 2
+        }
+      ],
+      "expect": [
+        {
+          "a": 2
+        },
+        {
+          "a": 1
+        },
+        {
+          "c": 2
+        },
+        {
+          "c": 1
+        }
+      ],
+      "option": {
+        "mapping": {
+          "b": "c"
+        },
+        "ignoreKey": [
+          "f"
+        ]
+      }
+    },
+    {
+      "caseName": "配置ignorePath和ignoreKey 忽略字段在两个位置 TODO ",
+      "actual": [
+        {
+          "a": 2,
+          "f": 2
+        },
+        {
+          "a": 1,
+          "n": 4
+        },
+        {
+          "b": 2
+        },
+        {
+          "b": 1
+        }
+      ],
+      "expect": [
+        {
+          "a": 2
+        },
+        {
+          "a": 1
+        },
+        {
+          "b": 2
+        },
+        {
+          "b": 1
+        }
+      ],
+      "option": {
+        "ignorePath": [
+          "root[].n"
+        ],
+        "ignoreKey": [
+          "f"
+        ]
+      }
+    },
+    {
+      "caseName": "配置mapping和ignorePath 忽略字段在最后 TODO",
+      "actual": [
+        {
+          "a": 2
+        },
+        {
+          "a": 1
+        },
+        {
+          "b": 2
+        },
+        {
+          "b": 1,
+          "f": 2
+        }
+      ],
+      "expect": [
+        {
+          "a": 2
+        },
+        {
+          "a": 1
+        },
+        {
+          "c": 2
+        },
+        {
+          "c": 1
+        }
+      ],
+      "option": {
+        "mapping": {
+          "root[].b": "root[].c"
+        },
+        "ignorePath": [
+          "root[].f"
+        ]
+      }
+    },
+    {
+      "caseName": "配置mapping和ignoreOrder和ignorePath 忽略字段在最后 TODO",
+      "actual": [
+        {
+          "a": 2
+        },
+        {
+          "a": 1
+        },
+        {
+          "b": 2
+        },
+        {
+          "b": 1,
+          "f": 4
+        }
+      ],
+      "expect": [
+        {
+          "a": 1
+        },
+        {
+          "c": 2
+        },
+        {
+          "a": 2
+        },
+        {
+          "c": 1
+        }
+      ],
+      "option": {
+        "ignoreOrder": true,
+        "mapping": {
+          "b": "c"
+        },
+        "ignorePath": [
+          "root[].f"
+        ]
+      }
+    },
+    {
+      "caseName": "配置mapping和ignoreOrder和ignoreKey 忽略字段在最后",
+      "actual": [
+        {
+          "a": 2
+        },
+        {
+          "a": 1
+        },
+        {
+          "b": 2
+        },
+        {
+          "b": 1,
+          "f": 5
+        }
+      ],
+      "expect": [
+        {
+          "a": 1
+        },
+        {
+          "c": 2
+        },
+        {
+          "a": 2
+        },
+        {
+          "c": 1
+        }
+      ],
+      "option": {
+        "ignoreOrder": true,
+        "mapping": {
+          "b": "c"
+        },
+        "ignoreKey": [
+          "f"
+        ]
+      }
+    },
+    {
+      "caseName": "配置mapping和ignorePath和ignoreKey 忽略内容在两个地方 TODO",
+      "actual": [
+        {
+          "a": 2,
+          "f": 2
+        },
+        {
+          "a": 1,
+          "n": 5
+        },
+        {
+          "b": 2
+        },
+        {
+          "b": 1
+        }
+      ],
+      "expect": [
+        {
+          "a": 2
+        },
+        {
+          "a": 1
+        },
+        {
+          "c": 2
+        },
+        {
+          "c": 1
+        }
+      ],
+      "option": {
+        "mapping": {
+          "b": "c"
+        },
+        "ignorePath": [
+          "root[].f"
+        ],
+        "ignoreKey": [
+          "n"
+        ]
+      }
+    },
+    {
+      "caseName": "配置ignoreOrder和ignorePath和ignoreKey 忽略内容在两个地方 TODO",
+      "actual": [
+        {
+          "a": 2,
+          "c": 3
+        },
+        {
+          "a": 1,
+          "k": "12312"
+        },
+        {
+          "b": 2
+        },
+        {
+          "b": 1
+        }
+      ],
+      "expect": [
+        {
+          "a": 2
+        },
+        {
+          "b": 2
+        },
+        {
+          "a": 1
+        },
+        {
+          "b": 1
+        }
+      ],
+      "option": {
+        "ignoreOrder": true,
+        "ignorePath": [
+          "root[].c"
+        ],
+        "ignoreKey": [
+          "k"
         ]
       }
     }
