@@ -4321,7 +4321,7 @@
       }
     },
     {
-      "caseName": "忽略根下的数组 后续改进",
+      "caseName": "忽略根下的数组 后续改进【目前不支持】",
       "actual": [
         [{"a": 1}],
         {"a": 1}
@@ -4362,7 +4362,7 @@
       }
     },
     {
-      "caseName": "多层数组内key 对应",
+      "caseName": "多层数组内key 对应【目前不支持】",
       "actual": [
         [
           "08020098",
@@ -4896,7 +4896,7 @@
       }
     },
     {
-      "caseName": "多层数组内多层object key 对应",
+      "caseName": "多层数组内多层object key 对应【目前不支持】",
       "actual": [
         [
           "08020098",
@@ -5510,7 +5510,7 @@
       }
     },
     {
-      "caseName": "数组对象中key不一致对应",
+      "caseName": "数组对象中key不一致对应【目前不支持】",
       "actual": [
         {
           "a": 1
@@ -5534,7 +5534,7 @@
       }
     },
     {
-      "caseName": "映射对应数组对象中的key",
+      "caseName": "映射对应数组对象中的key【目前不支持】",
       "actual": [
         {
           "a": 1,
@@ -5843,7 +5843,7 @@
       }
     },
     {
-      "caseName": "配置mapping和ignorePath TODO",
+      "caseName": "配置mapping和ignorePath TODO【目前不支持】",
       "actual": [
         {
           "a": 2,
@@ -6251,7 +6251,7 @@
       }
     },
     {
-      "caseName": "配置mapping和ignorePath 忽略字段在最后 TODO",
+      "caseName": "配置mapping和ignorePath 忽略字段在最后 TODO【目前不支持】",
       "actual": [
         {
           "a": 2

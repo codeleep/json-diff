@@ -5,11 +5,13 @@ import me.codeleep.jsondiff.common.model.Defects;
 import me.codeleep.jsondiff.common.model.JsonCompareResult;
 import me.codeleep.jsondiff.common.model.MappingKey;
 import me.codeleep.jsondiff.common.model.TravelPath;
+import me.codeleep.jsondiff.common.utils.PathUtil;
 import me.codeleep.jsondiff.common.utils.RunTimeDataFactory;
 import me.codeleep.jsondiff.core.neat.JsonNeat;
 import me.codeleep.jsondiff.core.utils.JsonDiffUtil;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 import static me.codeleep.jsondiff.common.model.Constant.DATA_TYPE_INCONSISTENT;
 import static me.codeleep.jsondiff.common.model.Constant.SEPARATE_KEY;
@@ -120,6 +122,19 @@ public class ComplexObjectJsonNeat extends AbstractObjectJsonNeat {
             neatActualKeys.add(key);
             keyMap.add(new MappingKey(expectKeys.contains(key) ? key : null, key));
         }
+        // 移除忽略的Path
+        HashSet<String> ignorePath = RunTimeDataFactory.getOptionInstance().getIgnorePath();
+        List<MappingKey>  mappingKeys = keyMap.stream().filter(mappingKey -> {
+            String actualTravelPath = PathUtil.getObjectPath(travelPath.getAbstractTravelPath()) + mappingKey.getActualKey();
+            String expectTravelPath = PathUtil.getObjectPath(travelPath.getAbstractTravelPath()) + mappingKey.getActualKey();
+            if (ignorePath.contains(actualTravelPath) || ignorePath.contains(expectTravelPath) ) {
+                return false;
+            }
+            return true;
+        }).collect(Collectors.toList());
+        // 清理
+        keyMap.clear();
+        keyMap.addAll(mappingKeys);
     }
 
     @Override
