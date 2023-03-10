@@ -1,6 +1,7 @@
 package me.codeleep.jsondiff.common.utils;
 
 
+import me.codeleep.jsondiff.common.JsonDiffOption;
 import me.codeleep.jsondiff.common.model.JsonComparedOption;
 
 /**
@@ -21,6 +22,9 @@ public class RunTimeDataFactory {
      * @return 对比配置
      */
     public static JsonComparedOption getOptionInstance() {
+        if (JsonDiffOption.isUniqueOption()) {
+            return JsonDiffOption.getGloballyUniqueOption();
+        }
         if (optionThreadLocal.get() == null) {
             optionThreadLocal.set(new JsonComparedOption());
         }
