@@ -11,11 +11,11 @@
 
 </div>
 
-## 介绍
+## 一、介绍
 
 它几乎可以发现任何JSON结构的差异，并且将错误信息反馈给用户。
 
-### 优点
+### 1.优点
 
 - 高效的
 - 精准定位差异
@@ -26,9 +26,9 @@
 
 
 
-## 使用文档
+## 二、使用文档
 
-### 快速开始
+### 1.快速开始
 
 引入依赖：
 
@@ -86,14 +86,15 @@ public class UseExample {
 
 
 
-### 配置
+### 2.配置
 
-| 配置        | 类型                | 备注                                                         |
-| ----------- | ------------------- | ------------------------------------------------------------ |
-| ignoreOrder | boolean             | 是否比较过程中忽略数组顺序                                   |
-| mapping     | Map<String, String> | 将真实字段映射到期望字段，key是真实字段name，value是期望的字段name |
-| ignorePath  | Set<String>         | 当对比的路径完全匹配时会被跳过。遇到数组使用 `[]` 即可。无需填入下标 |
-| ignoreKey   | Set<String>         | 对比object时。或忽略该key。对整个json生效                    |
+| 配置             | 类型                           | 备注                                                         |
+| ---------------- | ------------------------------ | ------------------------------------------------------------ |
+| ignoreOrder      | boolean                        | 是否比较过程中忽略数组顺序                                   |
+| mapping          | Map<String, String>            | 将真实字段映射到期望字段，key是真实字段name，value是期望的字段name |
+| ignorePath       | Set\<String\>                  | 当对比的路径完全匹配时会被跳过。遇到数组使用 `[]` 即可。无需填入下标 |
+| ignoreKey        | Set\<String\>                  | 对比object时。或忽略该key。对整个json生效                    |
+| customComparator | Map<String, Class\<JsonNeat\>> | 用户自定义比较器。具体说明见下文                             |
 
 > 在 `2.0.1-RC1-RELEASE` 之后版本中移除了 `keyFunction` 配置参数。可以使用 `ignorePath` 来代替达到同样的效果。
 
@@ -101,12 +102,181 @@ public class UseExample {
 
 在开发中。很多时候对比配置一致。可以使用 `JsonDiffOption` 进行开启唯一配置。这样也将获取更好的性能；
 ```java
+
+```
+
+### 3.进阶
+
+#### 3.1. 全局使用固定配置
+
+由于在设计中考虑到各线程比较配置相互独立。所以默认将配置防止在 `ThreadLocal` 中进行存储。但在大多数情况下，我们在全局比较时，配置并不会发生变化。
+
+工具提供了全局配置方式。采用的方式是静态类属性。这样也会获得更好的性能。
+
+```java
 // 开启并设置全局配置
 JsonDiffOption.openUniqueOption();
 JsonDiffOption.setGloballyUniqueOption(new JsonComparedOption());
+// 不想使用时可以调用调整回线程独有模式
+ JsonDiffOption.closeUniqueOption();
 ```
 
-#### 进阶
+#### 3.2. 数组元素为对象关联
+
+当我们在遇到数组元素是一个对象时。如下：
+
+```json
+[
+    {
+        "date": "23日星期五",
+        "sunrise": "06:16",
+        "high": "高温 18.0℃"
+    },
+    {
+        "date": "24日星期六",
+        "sunrise": "06:14",
+        "high": "高温 21.0℃"
+    }
+]
+```
+
+在比较时, 如果希望 `date` 字段一致，则认为两个对象一致。那么可以将 `sunrise`, `high` 字段都配置到 `ignorePath` 中。如：
+
+```java
+HashSet<String> ignorePath = new HashSet<>();
+ignorePath.add("root[].sunrise");
+ignorePath.add("root[].high");
+```
+
+如果只是不想关注某个字段。即是 `ignorePath` 正常用法。配置如上。
+
+#### 3.3. 字段映射
+
+在比较两个对象时。也许由于字段名变更。导致校验不通过。这时可以使用 `mapping` 配置。将 真实字段名称映射至期望字段名称。在比较过程中会将
+
+actual.mappingKey 与 expect.mappingValue 认为是应该比较的对象。具体配置如下
+
+```java
+// mapping key 是 actual 键名
+// mapping value 是 expect 键名
+HashMap<String, String> mapping = new HashMap<>();
+mapping.put("date", "sunrise");
+```
+
+
+
+#### 3.4. 字段忽略
+
+如果有一些字段是想在整个json都进行忽略的，可以使用 `ignoreKey` 进行全局忽略。当然如果不想全局忽略，但是配置了该项，还是会被忽略掉。
+
+```java
+HashSet<String> ignoreKey = new HashSet<>();
+ignoreKey.add("sunrise");
+ignoreKey.add("high");
+```
+
+
+
+#### 3.5 自定义比较器
+
+在我们一个大json文件下。可能遇到某些节点希望实现自定义比较。可以通过 `customComparator` 来进行实现。
+
+它配置的key是一个 travelPath 。具体格式参照 ignorePath 。value 则是一个自定义比较器。对于自定义比较器需要继承对应的抽象类。并且实现具体的抽象接口。具体如下：
+
+对象比较：
+
+需要继承 `me.codeleep.jsondiff.core.handle.array.AbstractArrayJsonNeat` 并且重写以下方法。
+
+```java
+/**
+* 比较对象
+* @param expect 期望的json对象
+* @param actual 实际的json对象
+* @return 返回比较结果
+* @throws IllegalAccessException 发生异常直接抛出
+*/
+JsonCompareResult detectDiff(JSONObject expect, JSONObject actual);
+
+```
+
+数组比较：
+
+需要继承 `me.codeleep.jsondiff.core.handle.object.AbstractObjectJsonNeat` 并且重写以下方法。
+
+```java
+  /**
+ * 比较数组.调用入口。需要自己去分别调用 ignoreOrder 和  keepOrder。
+ * @param expect 期望的json对象
+ * @param actual 实际的json对象
+ * @return 返回比较结果
+ */
+JsonCompareResult detectDiff(JSONArray expect, JSONArray actual);
+
+// 忽略顺序的比较
+JsonCompareResult ignoreOrder(JSONArray expect, JSONArray actual);
+
+// 保持顺序比较
+JsonCompareResult keepOrder(JSONArray expect, JSONArray actual);
+
+```
+
+基本类型比较：
+
+基本类型指的是java基础类型的包装类型以及Number的实现类型。
+
+需要继承 `me.codeleep.jsondiff.core.handle.primitive.AbstractPrimitiveJsonNeat` 并且重写以下方法。
+
+```java
+   /**
+     * 比较数组
+     * @param expect 基础类型对象
+     * @param actual 基础类型对象
+     * @return 返回比较结果
+     */
+    JsonCompareResult detectDiff(Object expect, Object actual);
+```
+
+
+
+用户可以自己根据 travelPath 来决定使用何种自定义比较。三种比较器都返回 JsonCompareResult 对象作为当前节点的比较结果。对于JsonCompareResult对象。需要填入以下信息：
+
+```java
+// 示例
+JsonCompareResult result = new JsonCompareResult();
+Defects defects = new Defects()
+                  .setActual(actualDiffJson)
+                  .setExpect(expectDiffJson)
+                  .setTravelPath(nextTravelPath)
+                  .setIllustrateTemplate(DATA_TYPE_INCONSISTENT, expectDiffJson.getClass().getName(), actualDiffJson.getClass().getName());
+result.addDefects(defects);
+```
+
+
+
+如果遇到在自定义节点中，还需要使用系统自带的比较器时。
+
+```java
+// 该值可以在上述三个抽象类中获得。但需要经自行处理
+String abstractTravelPath = "root";
+// 下一级是对象
+TravelPath nextTravelPath = new TravelPath(abstractTravelPath, mappingKey);
+// 下一级是数组
+TravelPath nextTravelPath = new TravelPath(abstractTravelPath, expectIndex, actualIndex);
+// 获得比较器
+JsonDiffUtil.getJsonNeat(expectDiffJson, actualDiffJson, nextTravelPath);
+// 执行比较获得结果
+JsonCompareResult diff = jsonNeat.diff(expectDiffJson, actualDiffJson, nextTravelPath);
+// 本级创建的 JsonCompareResult result 将下一级结果合并
+this.result.mergeDefects(diff.getDefectsList());
+```
+
+可以使用上述代码获取系统自带的比较器。
+
+> 自定义比较器值得注意的是: 从匹配到 travelPath 之后，根据不再接管比较操作。一切行为由用户自行定义。但工具依然预留默认的比较器给用户处理后续字段。这需要用户自行进行组合调用。
+
+
+
+### 4.其他说明
 
 前面提到工具几乎可以支持所有json结果的对比校验，并且发现差异。那它到底可以支持哪些呢，不知道是否符合你的需求呢？
 
@@ -134,16 +304,16 @@ JsonDiffOption.setGloballyUniqueOption(new JsonComparedOption());
 
 由于json结构在单个看来，就只有对象和数组两种类型，该工具完美支持了所有类型。
 
+#### 
+
+## 三、交流群：710435809
 
 
-## 交流群：710435809
 
 
+## 四、测试用例编写规范
 
-
-## 测试用例编写规范
-
-### 测试用例文件字段
+### 1.测试用例文件字段
 
 文件中数据结构
 
@@ -156,9 +326,9 @@ JsonDiffOption.setGloballyUniqueOption(new JsonComparedOption());
       "ret": {},
       "option": {
         "ignoreOrder": false,
-        "mapping": {"a": 1},
-        "ignorePath": [".a/a"],
-        "ignoreKey": [".a.b"]
+        "mapping": {"a": "b"},
+        "ignorePath": ["root[].a"],
+        "ignoreKey": ["b"]
       }
     }
   ],
@@ -186,8 +356,8 @@ JsonDiffOption.setGloballyUniqueOption(new JsonComparedOption());
       "option": {
         "ignoreOrder": false,
         "mapping": {"a": 1},
-        "ignorePath": [".a/a"],
-        "ignoreKey": [".a.b"]
+        "ignorePath": ["root[].a"],
+        "ignoreKey": ["b"]
       }
 ```
 
@@ -200,7 +370,7 @@ JsonDiffOption.setGloballyUniqueOption(new JsonComparedOption());
 &emsp;&emsp; "ignorePath": 忽略的path. 以 . 来区分json层级; 会精准匹配路径  类型：array  
 &emsp;&emsp; "ignoreKey": 忽略的key。actual中有的字段，但expect没有的，会被忽略掉    类型：array
 
-### 执行测试
+### 2.执行测试
 
 #### 直接进入测试代码执行
 
