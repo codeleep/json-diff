@@ -99,6 +99,13 @@ public class UseExample {
 
 工具提供了四个配置，来之对比过程中一些其他的要求。工具还在积极开发中，如果有新的需求，可以给作者提一个issuse。
 
+在开发中。很多时候对比配置一致。可以使用 `JsonDiffOption` 进行开启唯一配置。这样也将获取更好的性能；
+```java
+// 开启并设置全局配置
+JsonDiffOption.openUniqueOption();
+JsonDiffOption.setGloballyUniqueOption(new JsonComparedOption());
+```
+
 #### 进阶
 
 前面提到工具几乎可以支持所有json结果的对比校验，并且发现差异。那它到底可以支持哪些呢，不知道是否符合你的需求呢？
