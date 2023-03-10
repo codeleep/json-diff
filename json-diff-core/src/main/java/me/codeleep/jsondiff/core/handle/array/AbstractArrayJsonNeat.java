@@ -9,7 +9,7 @@ import me.codeleep.jsondiff.common.model.JsonCompareResult;
 import me.codeleep.jsondiff.common.model.TravelPath;
 import me.codeleep.jsondiff.common.utils.RunTimeDataFactory;
 import me.codeleep.jsondiff.core.handle.AbstractTypeCheck;
-import me.codeleep.jsondiff.core.neat.ArrayJsonNeat;
+import me.codeleep.jsondiff.common.model.neat.ArrayJsonNeat;
 
 import java.util.HashSet;
 
@@ -22,10 +22,25 @@ import static me.codeleep.jsondiff.common.model.Constant.INCONSISTENT_ARRAY_LENG
  */
 public abstract class AbstractArrayJsonNeat extends AbstractTypeCheck implements ArrayJsonNeat {
 
+    /**
+     * 路径
+     */
+    protected TravelPath travelPath;
 
     @Override
     public JsonCompareResult diff(JSONObject expect, JSONObject actual, TravelPath travelPath) {
         throw new JsonDiffException("类型调用错误");
+    }
+
+    @Override
+    public JsonCompareResult diff(Object expect, Object actual, TravelPath travelPath) {
+        return diff((JSONArray) expect, (JSONArray) actual, travelPath);
+    }
+
+    @Override
+    public JsonCompareResult diff(JSONArray expect, JSONArray actual,TravelPath travelPath) {
+        this.travelPath = travelPath;
+        return detectDiff(expect, actual);
     }
 
     @Override

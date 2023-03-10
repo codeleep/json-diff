@@ -1,5 +1,7 @@
 package me.codeleep.jsondiff.common.model;
 
+import me.codeleep.jsondiff.common.model.neat.JsonNeat;
+
 import java.util.*;
 
 /**
@@ -30,6 +32,13 @@ public class JsonComparedOption {
      */
     private HashSet<String> ignoreKey;
 
+    /**
+     * 指定的path使用自定义比较器
+     * key: 与ignorePath格式一致
+     * value: 继承 AbstractArrayJsonNeat,AbstractObjectJsonNeat,AbstractPrimitiveJsonNeat. 并且实现对应格式接口的字节码
+     */
+    private Map<String, Class<JsonNeat>> customComparator = new HashMap<>();
+
 
     public JsonComparedOption() {
     }
@@ -52,6 +61,11 @@ public class JsonComparedOption {
 
     public JsonComparedOption setIgnoreKey(HashSet<String> ignoreKey) {
         this.ignoreKey = ignoreKey;
+        return this;
+    }
+
+    public JsonComparedOption setCustomComparator(Map<String, Class<JsonNeat>> customComparator ) {
+        this.customComparator = customComparator;
         return this;
     }
 
@@ -78,5 +92,13 @@ public class JsonComparedOption {
             ignoreKey = new HashSet<>();
         }
         return ignoreKey;
+    }
+
+
+    public Map<String, Class<JsonNeat>> getCustomComparator() {
+        if (customComparator == null) {
+            customComparator = new HashMap<String, Class<JsonNeat>>();
+        }
+        return customComparator;
     }
 }

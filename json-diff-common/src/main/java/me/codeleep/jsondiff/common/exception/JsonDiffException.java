@@ -12,4 +12,14 @@ public class JsonDiffException extends RuntimeException {
         this.message = message;
     }
 
+
+    /**
+     * 构造方法
+     */
+    public JsonDiffException(String message, Throwable e) {
+        super(message, e);
+        this.message = message;
+    }
+
+
 }

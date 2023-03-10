@@ -2,7 +2,7 @@ package me.codeleep.jsondiff.core.handle;
 
 import me.codeleep.jsondiff.common.model.JsonCompareResult;
 import me.codeleep.jsondiff.common.model.TravelPath;
-import me.codeleep.jsondiff.core.neat.TypeCheck;
+import me.codeleep.jsondiff.common.model.neat.TypeCheck;
 import me.codeleep.jsondiff.core.utils.ClassUtil;
 
 /**

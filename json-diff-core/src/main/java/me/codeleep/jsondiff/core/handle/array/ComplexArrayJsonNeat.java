@@ -5,7 +5,7 @@ import me.codeleep.jsondiff.common.model.Defects;
 import me.codeleep.jsondiff.common.model.JsonCompareResult;
 import me.codeleep.jsondiff.common.model.TravelPath;
 import me.codeleep.jsondiff.common.utils.RunTimeDataFactory;
-import me.codeleep.jsondiff.core.neat.JsonNeat;
+import me.codeleep.jsondiff.common.model.neat.JsonNeat;
 import me.codeleep.jsondiff.core.utils.JsonDiffUtil;
 
 import static me.codeleep.jsondiff.common.model.Constant.DATA_TYPE_INCONSISTENT;
@@ -16,11 +16,6 @@ import static me.codeleep.jsondiff.common.model.Constant.DATA_TYPE_INCONSISTENT;
  * @description:
  */
 public class ComplexArrayJsonNeat extends AbstractArrayJsonNeat {
-
-    /**
-     * 路径
-     */
-    private TravelPath travelPath;
 
     /**
      * 当前节点比较结果
@@ -59,11 +54,12 @@ public class ComplexArrayJsonNeat extends AbstractArrayJsonNeat {
                 if (actualFlag[actualIndex]) {
                     continue;
                 }
-                JsonNeat jsonNeat = JsonDiffUtil.getJsonNeat(expect.get(expectIndex), actual.get(actualIndex));
+                TravelPath nextTravelPath = new TravelPath(this.travelPath, expectIndex, actualIndex);
+                JsonNeat jsonNeat = JsonDiffUtil.getJsonNeat(expect.get(expectIndex), actual.get(actualIndex), nextTravelPath);
                 if (jsonNeat == null) {
                     continue;
                 }
-                JsonCompareResult compareResult = jsonNeat.diff(expect.get(expectIndex), actual.get(actualIndex), new TravelPath(this.travelPath, expectIndex, actualIndex));
+                JsonCompareResult compareResult = jsonNeat.diff(expect.get(expectIndex), actual.get(actualIndex), nextTravelPath);
                 if (compareResult != null && compareResult.isMatch()) {
                     expectFlag[expectIndex] = true;
                     actualFlag[actualIndex] = true;
@@ -82,22 +78,22 @@ public class ComplexArrayJsonNeat extends AbstractArrayJsonNeat {
                 }
                 Object expectItem = expect.get(expectIndex);
                 Object actualItem = actual.get(actualIndex);
+                TravelPath nextTravelPath = new TravelPath(this.travelPath, expectIndex, actualIndex);
                 // 判断类型, 根据类型去实例化JsonNeat。
-                JsonNeat jsonNeat = JsonDiffUtil.getJsonNeat(expectItem, actualItem);
+                JsonNeat jsonNeat = JsonDiffUtil.getJsonNeat(expectItem, actualItem, nextTravelPath);
                 // 类型不一致
                 if (jsonNeat != null) {
-                    JsonCompareResult diff = jsonNeat.diff(expectItem, actualItem, new TravelPath(this.travelPath, expectIndex, actualIndex));
+                    JsonCompareResult diff = jsonNeat.diff(expectItem, actualItem, nextTravelPath);
                     // 将结果合并
                     if (!diff.isMatch()) {
                         result.mergeDefects(diff.getDefectsList());
                     }
                     continue;
                 }
-                //
                 Defects defects = new Defects()
                         .setActual(actualItem)
                         .setExpect(expectItem)
-                        .setTravelPath(new TravelPath(this.travelPath, expectIndex, actualIndex))
+                        .setTravelPath(nextTravelPath)
                         .setIllustrateTemplate(DATA_TYPE_INCONSISTENT, expectItem.getClass().getName(), actualItem.getClass().getName());
                 result.addDefects(defects);
 
@@ -112,37 +108,26 @@ public class ComplexArrayJsonNeat extends AbstractArrayJsonNeat {
         for (int i = 0; i < len; i++) {
             Object expectItem = expect.get(i);
             Object actualItem = actual.get(i);
+            TravelPath nextTravelPath = new TravelPath(this.travelPath, i, i);
             // 判断类型, 根据类型去实例化JsonNeat。
-            JsonNeat jsonNeat = JsonDiffUtil.getJsonNeat(expectItem, actualItem);
+            JsonNeat jsonNeat = JsonDiffUtil.getJsonNeat(expectItem, actualItem, nextTravelPath);
             // 类型不一致
             if (jsonNeat == null) {
                 Defects defects = new Defects()
-                        .setActual(actualItem)
                         .setExpect(expectItem)
-                        .setTravelPath(new TravelPath(this.travelPath, i, i))
+                        .setActual(actualItem)
+                        .setTravelPath(nextTravelPath)
                         .setIllustrateTemplate(DATA_TYPE_INCONSISTENT, expectItem.getClass().getName(), actualItem.getClass().getName());
                 result.addDefects(defects);
                 continue;
             }
-            JsonCompareResult diff = jsonNeat.diff(expectItem, actualItem, new TravelPath(this.travelPath, i, i));
+            JsonCompareResult diff = jsonNeat.diff(expectItem, actualItem, nextTravelPath);
             // 将结果合并
             if (!diff.isMatch()) {
                 result.mergeDefects(diff.getDefectsList());
             }
         }
         return result;
-    }
-
-
-    @Override
-    public JsonCompareResult diff(JSONArray expect, JSONArray actual,TravelPath travelPath) {
-        this.travelPath = travelPath;
-        return detectDiff(expect, actual);
-    }
-
-    @Override
-    public JsonCompareResult diff(Object expect, Object actual, TravelPath travelPath) {
-        return diff((JSONArray) expect, (JSONArray) actual, travelPath);
     }
 
 }

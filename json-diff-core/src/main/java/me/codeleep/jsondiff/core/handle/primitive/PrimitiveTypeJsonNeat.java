@@ -3,7 +3,6 @@ package me.codeleep.jsondiff.core.handle.primitive;
 import me.codeleep.jsondiff.common.exception.JsonDiffException;
 import me.codeleep.jsondiff.common.model.Defects;
 import me.codeleep.jsondiff.common.model.JsonCompareResult;
-import me.codeleep.jsondiff.common.model.TravelPath;
 import me.codeleep.jsondiff.core.utils.ClassUtil;
 
 import static me.codeleep.jsondiff.common.model.Constant.DATA_INCONSISTENT;
@@ -17,7 +16,7 @@ import static me.codeleep.jsondiff.common.model.Constant.DATA_TYPE_INCONSISTENT;
 public class PrimitiveTypeJsonNeat extends AbstractPrimitiveJsonNeat {
 
     @Override
-    public JsonCompareResult diff(Object expect, Object actual, TravelPath travelPath) {
+    public JsonCompareResult detectDiff(Object expect, Object actual) {
         JsonCompareResult result = new JsonCompareResult();
         if (!check(expect, actual, result, travelPath)) {
             return result;

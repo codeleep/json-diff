@@ -1,4 +1,4 @@
-package me.codeleep.jsondiff.core.neat;
+package me.codeleep.jsondiff.common.model.neat;
 
 import com.alibaba.fastjson2.JSONArray;
 import me.codeleep.jsondiff.common.model.JsonCompareResult;
