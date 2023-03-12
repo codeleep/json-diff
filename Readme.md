@@ -247,7 +247,7 @@ Defects defects = new Defects()
                   .setActual(actualDiffJson)
                   .setExpect(expectDiffJson)
                   .setTravelPath(nextTravelPath)
-                  .setIllustrateTemplate(DATA_TYPE_INCONSISTENT, expectDiffJson.getClass().getName(), actualDiffJson.getClass().getName());
+                  .setIllustrateTemplate(DATA_TYPE_INCONSISTENT, ClassUtil.getClassName(expectDiffJson), ClassUtil.getClassName(actualDiffJson));
 result.addDefects(defects);
 ```
 

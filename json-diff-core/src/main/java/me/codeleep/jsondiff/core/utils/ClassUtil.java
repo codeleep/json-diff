@@ -3,6 +3,8 @@ package me.codeleep.jsondiff.core.utils;
 import com.alibaba.fastjson2.JSONArray;
 import com.alibaba.fastjson2.JSONObject;
 
+import static me.codeleep.jsondiff.common.model.Constant.NULL;
+
 /**
  * @author: codeleep
  * @createTime: 2023/02/20 19:57
@@ -51,4 +53,15 @@ public class ClassUtil {
     }
 
 
+    /**
+     * 获取className
+     * @param obj
+     * @return
+     */
+    public static String getClassName(Object obj) {
+        if (obj == null) {
+            return NULL;
+        }
+        return obj.getClass().getName();
+    }
 }

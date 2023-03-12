@@ -8,6 +8,7 @@ import me.codeleep.jsondiff.common.model.TravelPath;
 import me.codeleep.jsondiff.common.utils.PathUtil;
 import me.codeleep.jsondiff.common.utils.RunTimeDataFactory;
 import me.codeleep.jsondiff.common.model.neat.JsonNeat;
+import me.codeleep.jsondiff.core.utils.ClassUtil;
 import me.codeleep.jsondiff.core.utils.JsonDiffUtil;
 
 import java.util.*;
@@ -68,7 +69,7 @@ public class ComplexObjectJsonNeat extends AbstractObjectJsonNeat {
                         .setActual(actualDiffJson)
                         .setExpect(expectDiffJson)
                         .setTravelPath(nextTravelPath)
-                        .setIllustrateTemplate(DATA_TYPE_INCONSISTENT, expectDiffJson.getClass().getName(), actualDiffJson.getClass().getName());
+                        .setIllustrateTemplate(DATA_TYPE_INCONSISTENT, ClassUtil.getClassName(expectDiffJson), ClassUtil.getClassName(actualDiffJson));
                 result.addDefects(defects);
                 continue;
             }
@@ -97,7 +98,7 @@ public class ComplexObjectJsonNeat extends AbstractObjectJsonNeat {
         for (Map.Entry<String, String> entry: mapping.entrySet()) {
             neatActualKeys.add(entry.getKey());
             neatExpectKeys.add(entry.getValue());
-            keyMap.add(new MappingKey(entry.getKey(), entry.getValue()));
+            keyMap.add(new MappingKey(entry.getValue(), entry.getKey()));
         }
         // 忽略的key
         HashSet<String> ignoreKey = RunTimeDataFactory.getOptionInstance().getIgnoreKey();

@@ -36,7 +36,7 @@ public class PrimitiveTypeJsonNeat extends AbstractPrimitiveJsonNeat {
                     .setActual(actual)
                     .setExpect(expect)
                     .setTravelPath(travelPath)
-                    .setIllustrateTemplate(DATA_TYPE_INCONSISTENT, expect == null ? null : expect.getClass().getName(), actual == null ? null : actual.getClass().getName());
+                    .setIllustrateTemplate(DATA_TYPE_INCONSISTENT, ClassUtil.getClassName(expect), ClassUtil.getClassName(actual));
             result.addDefects(defects);
             return result;
         }

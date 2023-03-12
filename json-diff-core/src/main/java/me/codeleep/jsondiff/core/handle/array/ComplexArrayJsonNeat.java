@@ -6,6 +6,7 @@ import me.codeleep.jsondiff.common.model.JsonCompareResult;
 import me.codeleep.jsondiff.common.model.TravelPath;
 import me.codeleep.jsondiff.common.utils.RunTimeDataFactory;
 import me.codeleep.jsondiff.common.model.neat.JsonNeat;
+import me.codeleep.jsondiff.core.utils.ClassUtil;
 import me.codeleep.jsondiff.core.utils.JsonDiffUtil;
 
 import static me.codeleep.jsondiff.common.model.Constant.DATA_TYPE_INCONSISTENT;
@@ -94,7 +95,7 @@ public class ComplexArrayJsonNeat extends AbstractArrayJsonNeat {
                         .setActual(actualItem)
                         .setExpect(expectItem)
                         .setTravelPath(nextTravelPath)
-                        .setIllustrateTemplate(DATA_TYPE_INCONSISTENT, expectItem.getClass().getName(), actualItem.getClass().getName());
+                        .setIllustrateTemplate(DATA_TYPE_INCONSISTENT,  ClassUtil.getClassName(expectItem), ClassUtil.getClassName(actualItem));
                 result.addDefects(defects);
 
             }
@@ -117,7 +118,7 @@ public class ComplexArrayJsonNeat extends AbstractArrayJsonNeat {
                         .setExpect(expectItem)
                         .setActual(actualItem)
                         .setTravelPath(nextTravelPath)
-                        .setIllustrateTemplate(DATA_TYPE_INCONSISTENT, expectItem.getClass().getName(), actualItem.getClass().getName());
+                        .setIllustrateTemplate(DATA_TYPE_INCONSISTENT, ClassUtil.getClassName(expectItem), ClassUtil.getClassName(actualItem));
                 result.addDefects(defects);
                 continue;
             }

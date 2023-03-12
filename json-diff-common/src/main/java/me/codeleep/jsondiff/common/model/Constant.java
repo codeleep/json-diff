@@ -16,6 +16,7 @@ public class Constant {
     public static final String PATH_ROOT = "root";
     public static final String SIGN = ".";
     public static final String JOIN_SPILT = "@_^_@";
+    public static final String NULL = "null";
 
 
 
