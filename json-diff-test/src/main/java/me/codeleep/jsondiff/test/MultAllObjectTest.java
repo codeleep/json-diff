@@ -41,8 +41,7 @@ public class MultAllObjectTest {
         logger.debug(metaData.getExpect().toString()+"\n"+metaData.getActual().toString());
         JsonCompareResult jsonCompareResult = defaultJsonDifference
                 .detectDiff((JSONObject) metaData.getExpect(), (JSONObject) metaData.getActual());
-        System.out.println(JSON.toJSONString(metaData.getRet()) + "\n" + JSON.toJSONString(jsonCompareResult));
-        Assert.assertEquals(JSON.toJSONString(metaData.getRet()), JSON.toJSONString(jsonCompareResult));
+        Assert.assertEquals(JSON.toJSONString(jsonCompareResult),JSON.toJSONString(metaData.getRet()));
     }
 
     @Test(dataProvider = "optionRight", dataProviderClass = ObjectDataFactory.class)
@@ -69,6 +68,6 @@ public class MultAllObjectTest {
         JsonCompareResult jsonCompareResult = defaultJsonDifference
                 .option(metaData.getOption())
                 .detectDiff((JSONObject) metaData.getExpect(), (JSONObject) metaData.getActual());
-        Assert.assertEquals(JSON.toJSONString(metaData.getRet()), JSON.toJSONString(jsonCompareResult));
+        Assert.assertEquals( JSON.toJSONString(jsonCompareResult),JSON.toJSONString(metaData.getRet()));
     }
 }
