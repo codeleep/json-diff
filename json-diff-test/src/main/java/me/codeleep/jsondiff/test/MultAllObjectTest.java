@@ -48,7 +48,7 @@ public class MultAllObjectTest {
     public void optionRight(MetaData metaData) {
         DefaultJsonDifference defaultJsonDifference = new DefaultJsonDifference();
         logger.info(metaData.getCaseName());
-        logger.debug(metaData.getExpect().toString()+"\n"+metaData.getActual().toString());
+        logger.debug("\n"+metaData.getExpect().toString()+"\n"+metaData.getActual().toString()+"\n");
         JsonCompareResult jsonCompareResult = defaultJsonDifference
                 .option(metaData.getOption())
                 .detectDiff((JSONObject) metaData.getExpect(), (JSONObject) metaData.getActual());
@@ -64,7 +64,7 @@ public class MultAllObjectTest {
     public void optionErr(MetaData metaData) {
         DefaultJsonDifference defaultJsonDifference = new DefaultJsonDifference();
         logger.info(metaData.getCaseName());
-        logger.debug(metaData.getExpect().toString()+"\n"+metaData.getActual().toString());
+        logger.debug("\n"+metaData.getExpect().toString()+"\n"+metaData.getActual().toString()+"\n");
         JsonCompareResult jsonCompareResult = defaultJsonDifference
                 .option(metaData.getOption())
                 .detectDiff((JSONObject) metaData.getExpect(), (JSONObject) metaData.getActual());
