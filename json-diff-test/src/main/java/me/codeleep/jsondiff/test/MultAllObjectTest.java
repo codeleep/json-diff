@@ -29,6 +29,7 @@ public class MultAllObjectTest {
         if (metaData.getRet() != null) {
             Assert.assertEquals(JSON.toJSONString(jsonCompareResult), JSON.toJSONString(metaData.getRet()));
         }
+
         else {
             Assert.assertEquals(JSON.toJSONString(jsonCompareResult), "{\"match\":true}");
         }
