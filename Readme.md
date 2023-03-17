@@ -2,12 +2,12 @@
 <div style="text-align: center">
 
 
-[![GitHub license](https://img.shields.io/github/license/local-li/jsonDiff)](https://github.com/local-li/jsonDiff/blob/master/LICENSE)
-[![star](https://gitee.com/local-li/json-diff/badge/star.svg?theme=white)](https://gitee.com/local-li/json-diff/stargazers)
-<a href='https://gitee.com/local-li/json-diff/members'><img src='https://gitee.com/local-li/json-diff/badge/fork.svg?theme=white' alt='fork'></img></a>
-[![GitHub stars](https://img.shields.io/github/stars/local-li/jsonDiff)](https://github.com/local-li/jsonDiff/stargazers)
-[![GitHub forks](https://img.shields.io/github/forks/local-li/jsonDiff)](https://github.com/local-li/jsonDiff/network)
-[![GitHub issues](https://img.shields.io/github/issues/local-li/jsonDiff)](https://github.com/local-li/jsonDiff/issues)
+[![GitHub license](https://img.shields.io/github/license/codeleep/jsonDiff)](https://github.com/codeleep/jsonDiff/blob/master/LICENSE)
+[![star](https://gitee.com/codeleep/json-diff/badge/star.svg?theme=white)](https://gitee.com/codeleep/json-diff/stargazers)
+<a href='https://gitee.com/codeleep/json-diff/members'><img src='https://gitee.com/codeleep/json-diff/badge/fork.svg?theme=white' alt='fork'></img></a>
+[![GitHub stars](https://img.shields.io/github/stars/codeleep/jsonDiff)](https://github.com/codeleep/jsonDiff/stargazers)
+[![GitHub forks](https://img.shields.io/github/forks/codeleep/jsonDiff)](https://github.com/codeleep/jsonDiff/network)
+[![GitHub issues](https://img.shields.io/github/issues/codeleep/jsonDiff)](https://github.com/codeleep/jsonDiff/issues)
 
 </div>
 
