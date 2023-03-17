@@ -9870,7 +9870,7 @@
             "illustrate": "The expect('2') data is inconsistent with the actual('1') data",
             "travelPath": {
               "abstractTravelPath": "root[].b",
-              "actualTravelPath": "root[0].b",
+              "actualTravelPath": "root[0].a",
               "expectTravelPath": "root[0].b"
             }
           }
