@@ -64,6 +64,7 @@ public class ComplexArrayJsonNeat extends AbstractArrayJsonNeat {
                 if (compareResult != null && compareResult.isMatch()) {
                     expectFlag[expectIndex] = true;
                     actualFlag[actualIndex] = true;
+                    break;
                 }
             }
         }
@@ -97,7 +98,6 @@ public class ComplexArrayJsonNeat extends AbstractArrayJsonNeat {
                         .setTravelPath(nextTravelPath)
                         .setIllustrateTemplate(DATA_TYPE_INCONSISTENT,  ClassUtil.getClassName(expectItem), ClassUtil.getClassName(actualItem));
                 result.addDefects(defects);
-
             }
         }
         return result;

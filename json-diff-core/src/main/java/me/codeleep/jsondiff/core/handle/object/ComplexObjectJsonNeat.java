@@ -96,9 +96,11 @@ public class ComplexObjectJsonNeat extends AbstractObjectJsonNeat {
         // 字段映射
         Map<String, String> mapping = RunTimeDataFactory.getOptionInstance().getMapping();
         for (Map.Entry<String, String> entry: mapping.entrySet()) {
-            neatActualKeys.add(entry.getKey());
-            neatExpectKeys.add(entry.getValue());
-            keyMap.add(new MappingKey(entry.getValue(), entry.getKey()));
+            if (actualKeys.contains(entry.getKey()) && expectKeys.contains(entry.getValue())) {
+                neatActualKeys.add(entry.getKey());
+                neatExpectKeys.add(entry.getValue());
+                keyMap.add(new MappingKey(entry.getValue(), entry.getKey()));
+            }
         }
         // 忽略的key
         HashSet<String> ignoreKey = RunTimeDataFactory.getOptionInstance().getIgnoreKey();
