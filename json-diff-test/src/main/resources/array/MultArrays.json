@@ -4910,7 +4910,7 @@
       }
     },
     {
-      "caseName": "多层数组内多层object key 对应【目前不支持】",
+      "caseName": "多层数组内多层object key 对应",
       "actual": [
         [
           "08020098",
@@ -5885,8 +5885,7 @@
           "c": 2
         },
         {
-          "c": 1,
-          "a": 1
+          "c": 1
         }
       ],
       "option": {
@@ -6533,21 +6532,7 @@
       "option": {
         "ignoreOrder": true
       },
-      "ret": {
-        "defectsList": [
-          {
-            "actual": "a",
-            "expect": "b",
-            "illustrate": "The expect('b') data is inconsistent with the actual('a') data",
-            "travelPath": {
-              "abstractTravelPath": "root[][]",
-              "actualTravelPath": "root[2][0]",
-              "expectTravelPath": "root[2][0]"
-            }
-          }
-        ],
-        "match": false
-      }
+      "ret": {"defectsList":[{"actual":"a","expect":"b","illustrate":"The expect('b') data is inconsistent with the actual('a') data","travelPath":{"abstractTravelPath":"root[][]","actualTravelPath":"root[2][1]","expectTravelPath":"root[3][1]"}}],"match":false}
     },
     {
       "caseName": "忽略单层数组内制定对象的key 存在规则外的其他key不匹配",
@@ -8795,8 +8780,8 @@
                                                                                                                                                                                                                                             [
                                                                                                                                                                                                                                               [
                                                                                                                                                                                                                                                 {
-                                                                                                                                                                                                                                                  "a": {
-                                                                                                                                                                                                                                                    "b": 1
+                                                                                                                                                                                                                                                  "b": {
+                                                                                                                                                                                                                                                    "a": 2
                                                                                                                                                                                                                                                   }
                                                                                                                                                                                                                                                 }
                                                                                                                                                                                                                                               ]
@@ -9058,8 +9043,8 @@
                                                                                                                                                                                                                                             [
                                                                                                                                                                                                                                               [
                                                                                                                                                                                                                                                 {
-                                                                                                                                                                                                                                                  "a": {
-                                                                                                                                                                                                                                                    "a": 1
+                                                                                                                                                                                                                                                  "b": {
+                                                                                                                                                                                                                                                    "b": 1
                                                                                                                                                                                                                                                   }
                                                                                                                                                                                                                                                 }
                                                                                                                                                                                                                                               ]
@@ -9186,7 +9171,7 @@
       }
     },
     {
-      "caseName": "多层数组内多层object key 对应【目前不支持】",
+      "caseName": "多层数组内多层object key 对应value不一致 TODO",
       "actual": [
         [
           "08020098",
@@ -9797,10 +9782,25 @@
         "mapping": {
           "b": "a"
         }
+      },
+      "ret": {
+        "defectsList":[
+          {
+            "actual":2,
+            "expect":1,
+            "illustrate":"The expect('2') data is inconsistent with the actual('1') data",
+            "travelPath":{
+              "abstractTravelPath":"root[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][].b.b",
+              "actualTravelPath":"root[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][].b.a",
+              "expectTravelPath":"root[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][].b.b"
+            }
+          }
+        ],
+        "match":false
       }
     },
     {
-      "caseName": "数组对象中key不一致对应【目前不支持】",
+      "caseName": "数组对象中key不一致对应  TODO",
       "actual": [
         {
           "a": 1
@@ -9824,7 +9824,7 @@
       }
     },
     {
-      "caseName": "映射对应数组对象中的key【目前不支持】",
+      "caseName": "映射对应数组对象中的key",
       "actual": [
         {
           "a": 1,
@@ -9836,17 +9836,18 @@
         {
           "a": 1,
           "b": 2,
-          "d": 3
+          "d": 4
         }
       ],
       "option": {
         "mapping": {
           "c": "d"
         }
-      }
+      },
+      "ret" :{"defectsList":[{"actual":3,"expect":4,"illustrate":"The expect('4') data is inconsistent with the actual('3') data","travelPath":{"abstractTravelPath":"root[].d","actualTravelPath":"root[0].c","expectTravelPath":"root[0].d"}}],"match":false}
     },
     {
-      "caseName": "配置mapping 将a指定为b 指定后值不一致 TODO",
+      "caseName": "配置mapping 将a指定为b 指定后值不一致",
       "actual": [
         {
           "a": 1
@@ -9879,7 +9880,7 @@
       }
     },
     {
-      "caseName": "配置mapping 将a指定为b 指定后值一致 存在多余字段 TODO",
+      "caseName": "配置mapping 将a指定为b 指定后值一致 存在多余字段",
       "actual": [
         {
           "a": 2
@@ -9901,29 +9902,7 @@
           "a": "b"
         }
       },
-      "ret": {
-        "defectsList": [
-          {
-            "actual": 3,
-            "illustrate": "Only one set of keys exists actual('a'),expect('null')",
-            "travelPath": {
-              "abstractTravelPath": "root[].a",
-              "actualTravelPath": "root[1].a",
-              "expectTravelPath": "root[1].null"
-            }
-          },
-          {
-            "expect": 3,
-            "illustrate": "Only one set of keys exists expect('c'),actual('null')",
-            "travelPath": {
-              "abstractTravelPath": "root[].c",
-              "actualTravelPath": "root[1].null",
-              "expectTravelPath": "root[1].c"
-            }
-          }
-        ],
-        "match": false
-      }
+      "ret": {"defectsList":[{"expect":3,"illustrate":"Only one set of keys exists expect('c'),actual('null')","travelPath":{"abstractTravelPath":"root[].c","actualTravelPath":"root[1].null","expectTravelPath":"root[1].c"}},{"actual":3,"illustrate":"Only one set of keys exists expect('null'),actual('a')","travelPath":{"abstractTravelPath":"root[].a","actualTravelPath":"root[1].a","expectTravelPath":"root[1].null"}}],"match":false}
     },
     {
       "caseName": "忽略单个key key不匹配 ",
@@ -10040,7 +10019,7 @@
       }
     },
     {
-      "caseName": "配置mapping和ignoreOrder 预期增加不存在参数  TODO",
+      "caseName": "配置mapping和ignoreOrder 预期增加不存在参数 ",
       "actual": [
         {
           "a": 2
@@ -10081,20 +10060,7 @@
           "b": "c"
         }
       },
-      "ret": {
-        "defectsList": [
-          {
-            "expect": 1,
-            "illustrate": "Only one set of keys exists expect('d'),actual('null')",
-            "travelPath": {
-              "abstractTravelPath": "root[].d",
-              "actualTravelPath": "root[4].null",
-              "expectTravelPath": "root[4].d"
-            }
-          }
-        ],
-        "match": false
-      }
+      "ret": {"defectsList":[{"expect":1,"illustrate":"Only one set of keys exists expect('d'),actual('null')","travelPath":{"abstractTravelPath":"root[].d","actualTravelPath":"root[4].null","expectTravelPath":"root[4].d"}},{"actual":1,"illustrate":"Only one set of keys exists expect('null'),actual('b')","travelPath":{"abstractTravelPath":"root[].b","actualTravelPath":"root[4].b","expectTravelPath":"root[4].null"}}],"match":false}
     },
     {
       "caseName": "配置ignoreOrder和ignorePath 增加不匹配字段",
@@ -10246,20 +10212,7 @@
           "f"
         ]
       },
-      "ret": {
-        "defectsList": [
-          {
-            "actual": 1,
-            "illustrate": "Only one set of keys exists expect('null'),actual('d')",
-            "travelPath": {
-              "abstractTravelPath": "root[].d",
-              "actualTravelPath": "root[3].d",
-              "expectTravelPath": "root[3].null"
-            }
-          }
-        ],
-        "match": false
-      }
+      "ret": {"defectsList":[{"expect":1,"illustrate":"Only one set of keys exists expect('c'),actual('null')","travelPath":{"abstractTravelPath":"root[].c","actualTravelPath":"root[3].null","expectTravelPath":"root[3].c"}},{"actual":1,"illustrate":"Only one set of keys exists expect('null'),actual('d')","travelPath":{"abstractTravelPath":"root[].d","actualTravelPath":"root[3].d","expectTravelPath":"root[3].null"}}],"match":false}
     },
     {
       "caseName": "配置ignorePath和ignoreKey 增加不同位置忽略字段 增加不匹配字段",
@@ -10320,7 +10273,7 @@
       }
     },
     {
-      "caseName": "配置mapping和ignorePath TODO【目前不支持】",
+      "caseName": "配置mapping和ignorePath TODO",
       "actual": [
         {
           "a": 2,
@@ -10333,7 +10286,8 @@
           "b": 2
         },
         {
-          "b": 1
+          "b": 1,
+          "b": 2
         }
       ],
       "expect": [
@@ -10407,23 +10361,10 @@
           "root[].f"
         ]
       },
-      "ret": {
-        "defectsList": [
-          {
-            "expect": 1,
-            "illustrate": "The expect type ('java.lang.Integer') is inconsistent with the actual type ('null')",
-            "travelPath": {
-              "abstractTravelPath": "root[].e",
-              "actualTravelPath": "root[2].null",
-              "expectTravelPath": "root[2].e"
-            }
-          }
-        ],
-        "match": false
-      }
+      "ret": {"defectsList":[{"expect":1,"illustrate":"Only one set of keys exists expect('e'),actual('null')","travelPath":{"abstractTravelPath":"root[].e","actualTravelPath":"root[0].null","expectTravelPath":"root[2].e"}}],"match":false}
     },
     {
-      "caseName": "配置mapping和ignoreOrder和ignoreKey 在预期中存在替换的字段",
+      "caseName": "配置mapping和ignoreOrder和ignoreKey 在预期中存在替换的字段 TODO",
       "actual": [
         {
           "a": 2,
@@ -10472,7 +10413,7 @@
             "illustrate":"The expect type ('null') is inconsistent with the actual type ('java.lang.Integer')",
             "travelPath":{
               "abstractTravelPath":"root[].b",
-              "actualTravelPath":"root[].null",
+              "actualTravelPath":"root[2].null",
               "expectTravelPath":"root[1].b"
             }
           },
