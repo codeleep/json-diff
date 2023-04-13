@@ -37,7 +37,7 @@ public class JsonComparedOption {
      * key: 与ignorePath格式一致
      * value: 继承 AbstractArrayJsonNeat,AbstractObjectJsonNeat,AbstractPrimitiveJsonNeat. 并且实现对应格式接口的字节码
      */
-    private Map<String, Class<JsonNeat>> customComparator = new HashMap<>();
+    private Map<String, Class<? extends JsonNeat>> customComparator = new HashMap<>();
 
 
     public JsonComparedOption() {
@@ -64,7 +64,7 @@ public class JsonComparedOption {
         return this;
     }
 
-    public JsonComparedOption setCustomComparator(Map<String, Class<JsonNeat>> customComparator ) {
+    public JsonComparedOption setCustomComparator(Map<String, Class<? extends JsonNeat>> customComparator ) {
         this.customComparator = customComparator;
         return this;
     }
@@ -95,9 +95,9 @@ public class JsonComparedOption {
     }
 
 
-    public Map<String, Class<JsonNeat>> getCustomComparator() {
+    public Map<String, Class<? extends JsonNeat>> getCustomComparator() {
         if (customComparator == null) {
-            customComparator = new HashMap<String, Class<JsonNeat>>();
+            customComparator = new HashMap<String, Class<? extends JsonNeat>>();
         }
         return customComparator;
     }

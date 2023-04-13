@@ -29,7 +29,7 @@ public class JsonDiffUtil {
         if (!ClassUtil.isSameClass(expect, actual)) {
             return null;
         }
-        Map<String, Class<JsonNeat>> customComparator = RunTimeDataFactory.getOptionInstance().getCustomComparator();
+        Map<String, Class<? extends JsonNeat>> customComparator = RunTimeDataFactory.getOptionInstance().getCustomComparator();
         String abstractTravelPath = travelPath.getAbstractTravelPath();
         boolean custom = customComparator.containsKey(abstractTravelPath);
         // 返回系统默认处理器
@@ -51,7 +51,7 @@ public class JsonDiffUtil {
      * @param comparator 比较器类型
      * @return 用户比较器实例
      */
-    private static JsonNeat selectionCustomJsonNeat(Class<JsonNeat> customComparatorClass, ComparatorEnum comparator) {
+    private static JsonNeat selectionCustomJsonNeat(Class<? extends JsonNeat> customComparatorClass, ComparatorEnum comparator) {
         JsonNeat jsonNeat = null;
         try {
             jsonNeat = customComparatorClass.newInstance();
