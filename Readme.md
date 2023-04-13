@@ -40,8 +40,8 @@
     <version>${version}</version>
 </dependency>
 ```
-[版本查看](https://central.sonatype.com/artifact/cn.xiaoandcai/json-diff/3.0.2-RC1-RELEASE)
-2022-03-04 最新版本：3.0.2-RC1-RELEASE
+[版本查看](https://central.sonatype.com/artifact/cn.xiaoandcai/json-diff/3.0.3-RC1-RELEASE)
+2022-03-04 最新版本：3.0.3-RC1-RELEASE
 
 ```java
 /**
