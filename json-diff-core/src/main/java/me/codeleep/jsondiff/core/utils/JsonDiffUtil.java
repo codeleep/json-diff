@@ -5,16 +5,11 @@ import com.alibaba.fastjson2.JSONObject;
 import me.codeleep.jsondiff.common.exception.JsonDiffException;
 import me.codeleep.jsondiff.common.model.ComparatorEnum;
 import me.codeleep.jsondiff.common.model.TravelPath;
+import me.codeleep.jsondiff.common.model.neat.JsonNeat;
 import me.codeleep.jsondiff.common.utils.RunTimeDataFactory;
 import me.codeleep.jsondiff.core.handle.array.AbstractArrayJsonNeat;
-import me.codeleep.jsondiff.core.handle.array.ComplexArrayJsonNeat;
 import me.codeleep.jsondiff.core.handle.object.AbstractObjectJsonNeat;
-import me.codeleep.jsondiff.core.handle.object.ComplexObjectJsonNeat;
 import me.codeleep.jsondiff.core.handle.primitive.AbstractPrimitiveJsonNeat;
-import me.codeleep.jsondiff.core.handle.primitive.PrimitiveTypeJsonNeat;
-import me.codeleep.jsondiff.common.model.neat.JsonNeat;
-
-import java.util.Map;
 
 public class JsonDiffUtil {
 
@@ -29,18 +24,18 @@ public class JsonDiffUtil {
         if (!ClassUtil.isSameClass(expect, actual)) {
             return null;
         }
-        Map<String, Class<? extends JsonNeat>> customComparator = RunTimeDataFactory.getOptionInstance().getCustomComparator();
-        String abstractTravelPath = travelPath.getAbstractTravelPath();
-        boolean custom = customComparator.containsKey(abstractTravelPath);
+        boolean defaultNeat = RunTimeDataFactory.getOptionInstance().isMandatoryDefaultNeat();
+        Class<? extends JsonNeat> customComparator = JsonNeatFactory.getCustomComparator(travelPath.getAbstractTravelPath());
+        boolean custom = customComparator != null;
         // 返回系统默认处理器
         if (expect instanceof JSONObject && actual instanceof JSONObject) {
-            return custom ? selectionCustomJsonNeat(customComparator.get(abstractTravelPath), ComparatorEnum.OBJECT) : new ComplexObjectJsonNeat();
+            return custom ? selectionCustomJsonNeat(customComparator, ComparatorEnum.OBJECT) : JsonNeatFactory.getObjectJsonNeatInstance(defaultNeat);
         }
         if (expect instanceof JSONArray && actual instanceof JSONArray) {
-            return custom ? selectionCustomJsonNeat(customComparator.get(abstractTravelPath), ComparatorEnum.ARRAY) : new ComplexArrayJsonNeat();
+            return custom ? selectionCustomJsonNeat(customComparator, ComparatorEnum.ARRAY) : JsonNeatFactory.getArrayJsonNeatInstance(defaultNeat);
         }
         if (ClassUtil.isPrimitiveType(expect) && ClassUtil.isPrimitiveType(actual)) {
-            return custom ? selectionCustomJsonNeat(customComparator.get(abstractTravelPath), ComparatorEnum.PRIMITIVE) : new PrimitiveTypeJsonNeat();
+            return custom ? selectionCustomJsonNeat(customComparator, ComparatorEnum.PRIMITIVE) : JsonNeatFactory.getPrimitiveJsonNeatInstance(defaultNeat);
         }
         return null;
     }

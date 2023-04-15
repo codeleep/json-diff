@@ -2,6 +2,7 @@ package me.codeleep.jsondiff.core.utils;
 
 import com.alibaba.fastjson2.JSONArray;
 import com.alibaba.fastjson2.JSONObject;
+import me.codeleep.jsondiff.common.exception.JsonDiffException;
 
 import static me.codeleep.jsondiff.common.model.Constant.NULL;
 
@@ -63,5 +64,13 @@ public class ClassUtil {
             return NULL;
         }
         return obj.getClass().getName();
+    }
+
+    public static <T> T getClassNameInstance(Class<T> clazz) {
+        try {
+            return clazz.newInstance();
+        } catch (Exception e) {
+            throw new JsonDiffException(String.format("无法实例化: %s", clazz), e);
+        }
     }
 }
