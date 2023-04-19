@@ -17,6 +17,7 @@
         <module>json-diff-test</module>
         <module>json-diff-common</module>
         <module>json-diff</module>
+        <module>json-diff-impl</module>
     </modules>
 
     <properties>
