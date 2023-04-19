@@ -57,20 +57,6 @@ public abstract class AbstractArrayJsonNeat extends AbstractTypeCheck implements
             return false;
         }
 
-        int expectSize = ((JSONArray) expect).size();
-        int actualSize = ((JSONArray) actual).size();
-
-        // 长度不一致
-        if (expectSize != actualSize) {
-            Defects defects = new Defects()
-                    .setActual(actualSize)
-                    .setExpect(expectSize)
-                    .setTravelPath(travelPath)
-                    .setIllustrateTemplate(INCONSISTENT_ARRAY_LENGTH, String.valueOf(expectSize), String.valueOf(actualSize));
-            result.addDefects(defects);
-            return false;
-        }
-
         return true;
     }
 

@@ -10,6 +10,7 @@ import me.codeleep.jsondiff.core.utils.ClassUtil;
 import me.codeleep.jsondiff.core.utils.JsonDiffUtil;
 
 import static me.codeleep.jsondiff.common.model.Constant.DATA_TYPE_INCONSISTENT;
+import static me.codeleep.jsondiff.common.model.Constant.INCONSISTENT_ARRAY_LENGTH;
 
 /**
  * @author: codeleep
@@ -29,6 +30,18 @@ public class ComplexArrayJsonNeat extends AbstractArrayJsonNeat {
         if (!check(expect, actual, result, travelPath)) {
             return result;
         }
+        // 长度不一致
+        int expectSize = ((JSONArray) expect).size();
+        int actualSize = ((JSONArray) actual).size();
+        if (expectSize != actualSize) {
+            Defects defects = new Defects()
+                    .setActual(actualSize)
+                    .setExpect(expectSize)
+                    .setTravelPath(travelPath)
+                    .setIllustrateTemplate(INCONSISTENT_ARRAY_LENGTH, String.valueOf(expectSize), String.valueOf(actualSize));
+            result.addDefects(defects);
+        }
+
         boolean ignoreOrder = RunTimeDataFactory.getOptionInstance().isIgnoreOrder();
         // 测试
         if (ignoreOrder) {
