@@ -5,12 +5,12 @@
     <parent>
         <artifactId>json-diff-parent</artifactId>
         <groupId>cn.xiaoandcai</groupId>
-        <version>3.1.0-RC1-RELEASE</version>
+        <version>3.1.1-RC1-RELEASE</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>json-diff-test</artifactId>
-    <version>3.1.0-RC1-RELEASE</version>
+    <version>3.1.1-RC1-RELEASE</version>
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>

@@ -40,8 +40,8 @@
     <version>${version}</version>
 </dependency>
 ```
-[版本查看](https://central.sonatype.com/artifact/cn.xiaoandcai/json-diff/3.1.0-RC1-RELEASE)
-2022-03-04 最新版本：3.1.0-RC1-RELEASE
+[版本查看](https://central.sonatype.com/artifact/cn.xiaoandcai/json-diff/3.1.1-RC1-RELEASE)
+2022-03-04 最新版本：3.1.1-RC1-RELEASE
 
 ```java
 /**
@@ -183,7 +183,7 @@ ignoreKey.add("high");
 
 它配置的key是一个 travelPath 。具体格式参照 ignorePath 。value 则是一个自定义比较器。对于自定义比较器需要继承对应的抽象类。并且实现具体的抽象接口。具体如下：
 
-> 从 3.1.0-RC1-RELEASE 版本开始，自定义比较器的设置移至 JsonDiffOption.getJsonNeatFactory()
+> 从 3.1.1-RC1-RELEASE 版本开始，自定义比较器的设置移至 JsonDiffOption.getJsonNeatFactory()
 > 不再在原先的Option中设置
 
 对象比较：
