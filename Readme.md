@@ -307,7 +307,7 @@ this.result.mergeDefects(diff.getDefectsList());
 #### 
 
 ## 三、交流群：710435809
-
+- 如果长时间未通过可发邮件至 codeleep@163.com 与我联系
 
 
 
