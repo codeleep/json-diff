@@ -1,6 +1,7 @@
-package me.codeleep.jsondiff.common;
+package me.codeleep.jsondiff.core.config;
 
 import me.codeleep.jsondiff.common.model.JsonComparedOption;
+import me.codeleep.jsondiff.core.utils.JsonNeatFactory;
 
 /**
  * @author: codeleep
@@ -18,6 +19,15 @@ public class JsonDiffOption {
      * 是否使用全局配置
      */
     private static boolean uniqueOption = false;
+
+    /**
+     * 默认的比较器工厂
+     */
+    private final static JsonNeatFactory jsonNeatFactory = new JsonNeatFactory();
+
+    public static JsonNeatFactory getJsonNeatFactory() {
+        return jsonNeatFactory;
+    }
 
 
     public static JsonComparedOption getGloballyUniqueOption() {

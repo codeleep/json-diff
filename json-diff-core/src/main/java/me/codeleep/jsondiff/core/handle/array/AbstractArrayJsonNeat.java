@@ -7,7 +7,7 @@ import me.codeleep.jsondiff.common.exception.JsonDiffException;
 import me.codeleep.jsondiff.common.model.Defects;
 import me.codeleep.jsondiff.common.model.JsonCompareResult;
 import me.codeleep.jsondiff.common.model.TravelPath;
-import me.codeleep.jsondiff.common.utils.RunTimeDataFactory;
+import me.codeleep.jsondiff.core.utils.RunTimeDataFactory;
 import me.codeleep.jsondiff.core.handle.AbstractTypeCheck;
 import me.codeleep.jsondiff.common.model.neat.ArrayJsonNeat;
 
