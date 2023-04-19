@@ -41,7 +41,7 @@
 </dependency>
 ```
 [版本查看](https://central.sonatype.com/artifact/cn.xiaoandcai/json-diff/3.1.1-RC1-RELEASE)
-2022-03-04 最新版本：3.1.1-RC1-RELEASE
+2022-04-19 最新版本：3.1.1-RC1-RELEASE
 
 ```java
 /**
@@ -362,6 +362,7 @@ this.result.mergeDefects(diff.getDefectsList());
         "ignorePath": ["root[].a"],
         "ignoreKey": ["b"]
       }
+}
 ```
 
 "actual": 实际需要对比的值 类型：测试array文件为array 测试object文件为object   
