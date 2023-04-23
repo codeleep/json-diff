@@ -40,6 +40,7 @@ public class ComplexArrayJsonNeat extends AbstractArrayJsonNeat {
                     .setTravelPath(travelPath)
                     .setIllustrateTemplate(INCONSISTENT_ARRAY_LENGTH, String.valueOf(expectSize), String.valueOf(actualSize));
             result.addDefects(defects);
+            return result;
         }
 
         boolean ignoreOrder = RunTimeDataFactory.getOptionInstance().isIgnoreOrder();
