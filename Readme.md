@@ -40,8 +40,9 @@
     <version>${version}</version>
 </dependency>
 ```
-[版本查看](https://central.sonatype.com/artifact/cn.xiaoandcai/json-diff/3.0.0-RC1-RELEASE/versions)
-2022-04-19 最新版本：3.1.1-RC1-RELEASE
+[版本查看](./VersionHistory.md)
+2022-04-19 最新版本：3.1.2-RC1-RELEASE
+
 
 ```java
 /**
@@ -94,7 +95,6 @@ public class UseExample {
 | mapping          | Map<String, String>            | 将真实字段映射到期望字段，key是真实字段name，value是期望的字段name |
 | ignorePath       | Set\<String\>                  | 当对比的路径完全匹配时会被跳过。遇到数组使用 `[]` 即可。无需填入下标 |
 | ignoreKey        | Set\<String\>                  | 对比object时。或忽略该key。对整个json生效                    |
-| customComparator | Map<String, Class\<JsonNeat\>> | 用户自定义比较器。具体说明见下文                             |
 
 > 在 `2.0.1-RC1-RELEASE` 之后版本中移除了 `keyFunction` 配置参数。可以使用 `ignorePath` 来代替达到同样的效果。
 
@@ -184,7 +184,9 @@ ignoreKey.add("high");
 它配置的key是一个 travelPath 。具体格式参照 ignorePath 。value 则是一个自定义比较器。对于自定义比较器需要继承对应的抽象类。并且实现具体的抽象接口。具体如下：
 
 > 从 3.1.1-RC1-RELEASE 版本开始，自定义比较器的设置移至 JsonDiffOption.getJsonNeatFactory()
-> 不再在原先的Option中设置
+> 不再在原先的Option中设置。如果需要使用自定义比较器。请使用 JsonDiffOption.getJsonNeatFactory().addCustomComparator() 进行设置。
+
+```java
 
 对象比较：
 
