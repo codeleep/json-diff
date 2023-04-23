@@ -41,7 +41,7 @@
 </dependency>
 ```
 [版本查看](https://central.sonatype.com/artifact/cn.xiaoandcai/json-diff/3.0.0-RC1-RELEASE/versions)
-2022-04-19 最新版本：3.1.1-RC1-RELEASE
+2022-04-19 最新版本：3.1.2-RC1-RELEASE
 
 ```java
 /**
