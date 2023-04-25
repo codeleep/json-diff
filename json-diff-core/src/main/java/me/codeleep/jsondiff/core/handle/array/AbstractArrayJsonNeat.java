@@ -7,7 +7,7 @@ import me.codeleep.jsondiff.common.exception.JsonDiffException;
 import me.codeleep.jsondiff.common.model.Defects;
 import me.codeleep.jsondiff.common.model.JsonCompareResult;
 import me.codeleep.jsondiff.common.model.TravelPath;
-import me.codeleep.jsondiff.common.utils.RunTimeDataFactory;
+import me.codeleep.jsondiff.core.utils.RunTimeDataFactory;
 import me.codeleep.jsondiff.core.handle.AbstractTypeCheck;
 import me.codeleep.jsondiff.common.model.neat.ArrayJsonNeat;
 
@@ -54,20 +54,6 @@ public abstract class AbstractArrayJsonNeat extends AbstractTypeCheck implements
         }
 
         if (expect == null || actual == null) {
-            return false;
-        }
-
-        int expectSize = ((JSONArray) expect).size();
-        int actualSize = ((JSONArray) actual).size();
-
-        // 长度不一致
-        if (expectSize != actualSize) {
-            Defects defects = new Defects()
-                    .setActual(actualSize)
-                    .setExpect(expectSize)
-                    .setTravelPath(travelPath)
-                    .setIllustrateTemplate(INCONSISTENT_ARRAY_LENGTH, String.valueOf(expectSize), String.valueOf(actualSize));
-            result.addDefects(defects);
             return false;
         }
 

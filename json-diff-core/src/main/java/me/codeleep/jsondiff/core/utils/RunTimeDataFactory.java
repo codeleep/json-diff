@@ -1,8 +1,8 @@
-package me.codeleep.jsondiff.common.utils;
+package me.codeleep.jsondiff.core.utils;
 
 
-import me.codeleep.jsondiff.common.JsonDiffOption;
 import me.codeleep.jsondiff.common.model.JsonComparedOption;
+import me.codeleep.jsondiff.core.config.JsonDiffOption;
 
 /**
  * @author: codeleep

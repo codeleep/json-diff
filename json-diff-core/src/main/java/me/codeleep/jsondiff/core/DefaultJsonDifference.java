@@ -5,7 +5,7 @@ import com.alibaba.fastjson2.JSONObject;
 import me.codeleep.jsondiff.common.model.JsonCompareResult;
 import me.codeleep.jsondiff.common.model.JsonComparedOption;
 import me.codeleep.jsondiff.common.model.TravelPath;
-import me.codeleep.jsondiff.common.utils.RunTimeDataFactory;
+import me.codeleep.jsondiff.core.utils.RunTimeDataFactory;
 import me.codeleep.jsondiff.core.handle.array.ComplexArrayJsonNeat;
 import me.codeleep.jsondiff.core.handle.object.ComplexObjectJsonNeat;
 

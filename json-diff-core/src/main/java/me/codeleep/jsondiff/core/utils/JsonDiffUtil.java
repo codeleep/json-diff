@@ -6,7 +6,7 @@ import me.codeleep.jsondiff.common.exception.JsonDiffException;
 import me.codeleep.jsondiff.common.model.ComparatorEnum;
 import me.codeleep.jsondiff.common.model.TravelPath;
 import me.codeleep.jsondiff.common.model.neat.JsonNeat;
-import me.codeleep.jsondiff.common.utils.RunTimeDataFactory;
+import me.codeleep.jsondiff.core.config.JsonDiffOption;
 import me.codeleep.jsondiff.core.handle.array.AbstractArrayJsonNeat;
 import me.codeleep.jsondiff.core.handle.object.AbstractObjectJsonNeat;
 import me.codeleep.jsondiff.core.handle.primitive.AbstractPrimitiveJsonNeat;
@@ -25,17 +25,17 @@ public class JsonDiffUtil {
             return null;
         }
         boolean defaultNeat = RunTimeDataFactory.getOptionInstance().isMandatoryDefaultNeat();
-        Class<? extends JsonNeat> customComparator = JsonNeatFactory.getCustomComparator(travelPath.getAbstractTravelPath());
+        Class<? extends JsonNeat> customComparator = JsonDiffOption.getJsonNeatFactory().getCustomComparator(travelPath.getAbstractTravelPath());
         boolean custom = customComparator != null;
         // 返回系统默认处理器
         if (expect instanceof JSONObject && actual instanceof JSONObject) {
-            return custom ? selectionCustomJsonNeat(customComparator, ComparatorEnum.OBJECT) : JsonNeatFactory.getObjectJsonNeatInstance(defaultNeat);
+            return custom ? selectionCustomJsonNeat(customComparator, ComparatorEnum.OBJECT) : JsonDiffOption.getJsonNeatFactory().getObjectJsonNeatInstance(defaultNeat);
         }
         if (expect instanceof JSONArray && actual instanceof JSONArray) {
-            return custom ? selectionCustomJsonNeat(customComparator, ComparatorEnum.ARRAY) : JsonNeatFactory.getArrayJsonNeatInstance(defaultNeat);
+            return custom ? selectionCustomJsonNeat(customComparator, ComparatorEnum.ARRAY) : JsonDiffOption.getJsonNeatFactory().getArrayJsonNeatInstance(defaultNeat);
         }
         if (ClassUtil.isPrimitiveType(expect) && ClassUtil.isPrimitiveType(actual)) {
-            return custom ? selectionCustomJsonNeat(customComparator, ComparatorEnum.PRIMITIVE) : JsonNeatFactory.getPrimitiveJsonNeatInstance(defaultNeat);
+            return custom ? selectionCustomJsonNeat(customComparator, ComparatorEnum.PRIMITIVE) : JsonDiffOption.getJsonNeatFactory().getPrimitiveJsonNeatInstance(defaultNeat);
         }
         return null;
     }

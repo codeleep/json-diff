@@ -6,7 +6,7 @@ import me.codeleep.jsondiff.common.model.JsonCompareResult;
 import me.codeleep.jsondiff.common.model.MappingKey;
 import me.codeleep.jsondiff.common.model.TravelPath;
 import me.codeleep.jsondiff.common.utils.PathUtil;
-import me.codeleep.jsondiff.common.utils.RunTimeDataFactory;
+import me.codeleep.jsondiff.core.utils.RunTimeDataFactory;
 import me.codeleep.jsondiff.common.model.neat.JsonNeat;
 import me.codeleep.jsondiff.core.utils.ClassUtil;
 import me.codeleep.jsondiff.core.utils.JsonDiffUtil;
