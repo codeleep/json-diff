@@ -1,7 +1,7 @@
-package me.codeleep.jsondiff.impl.fastjson2;
+package me.codeleep.jsondiff.impl.fastjson;
 
-import com.alibaba.fastjson2.JSONArray;
-import com.alibaba.fastjson2.JSONObject;
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import me.codeleep.jsondiff.common.model.neat.JsonDiffObject;
 
 import java.util.HashSet;
@@ -12,11 +12,11 @@ import java.util.Set;
  * @createTime: 2023/04/16 21:20
  * @description: 实现
  */
-public class FastJson2Object implements JsonDiffObject {
+public class FastJsonObject implements JsonDiffObject {
 
     private final JSONObject jsonObject;
 
-    public FastJson2Object(JSONObject jsonObject) {
+    public FastJsonObject(JSONObject jsonObject) {
         this.jsonObject = jsonObject;
     }
 
@@ -27,10 +27,10 @@ public class FastJson2Object implements JsonDiffObject {
         }
         Object value = jsonObject.get(key);
         if (value instanceof JSONObject) {
-            return new FastJson2Object((JSONObject) value);
+            return new FastJsonObject((JSONObject) value);
         }
         if (value instanceof JSONArray) {
-            return new FastJson2Array((JSONArray) value);
+            return new FastJsonArray((JSONArray) value);
         }
         return value;
     }

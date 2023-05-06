@@ -1,8 +1,8 @@
 package me.codeleep.jsondiff.core.utils;
 
-import com.alibaba.fastjson2.JSONArray;
-import com.alibaba.fastjson2.JSONObject;
 import me.codeleep.jsondiff.common.exception.JsonDiffException;
+import me.codeleep.jsondiff.common.model.neat.JsonDiffArray;
+import me.codeleep.jsondiff.common.model.neat.JsonDiffObject;
 
 import static me.codeleep.jsondiff.common.model.Constant.NULL;
 
@@ -36,7 +36,7 @@ public class ClassUtil {
             return true;
         }
 
-        if(obj instanceof JSONArray || obj instanceof JSONObject){
+        if(obj instanceof JsonDiffArray || obj instanceof JsonDiffObject){
             return false;
         }
 

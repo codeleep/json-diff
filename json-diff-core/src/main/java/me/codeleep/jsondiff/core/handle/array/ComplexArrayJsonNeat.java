@@ -1,13 +1,13 @@
 package me.codeleep.jsondiff.core.handle.array;
 
-import com.alibaba.fastjson2.JSONArray;
 import me.codeleep.jsondiff.common.model.Defects;
 import me.codeleep.jsondiff.common.model.JsonCompareResult;
 import me.codeleep.jsondiff.common.model.TravelPath;
-import me.codeleep.jsondiff.core.utils.RunTimeDataFactory;
+import me.codeleep.jsondiff.common.model.neat.JsonDiffArray;
 import me.codeleep.jsondiff.common.model.neat.JsonNeat;
 import me.codeleep.jsondiff.core.utils.ClassUtil;
 import me.codeleep.jsondiff.core.utils.JsonDiffUtil;
+import me.codeleep.jsondiff.core.utils.RunTimeDataFactory;
 
 import static me.codeleep.jsondiff.common.model.Constant.DATA_TYPE_INCONSISTENT;
 import static me.codeleep.jsondiff.common.model.Constant.INCONSISTENT_ARRAY_LENGTH;
@@ -25,14 +25,14 @@ public class ComplexArrayJsonNeat extends AbstractArrayJsonNeat {
     private final JsonCompareResult result = new JsonCompareResult();
 
     @Override
-    public JsonCompareResult detectDiff(JSONArray expect, JSONArray actual) {
+    public JsonCompareResult detectDiff(JsonDiffArray expect, JsonDiffArray actual) {
         // 前置校验失败
         if (!check(expect, actual, result, travelPath)) {
             return result;
         }
         // 长度不一致
-        int expectSize = ((JSONArray) expect).size();
-        int actualSize = ((JSONArray) actual).size();
+        int expectSize = ((JsonDiffArray) expect).size();
+        int actualSize = ((JsonDiffArray) actual).size();
         if (expectSize != actualSize) {
             Defects defects = new Defects()
                     .setActual(actualSize)
@@ -52,7 +52,7 @@ public class ComplexArrayJsonNeat extends AbstractArrayJsonNeat {
     }
 
     @Override
-    public JsonCompareResult ignoreOrder(JSONArray expect, JSONArray actual) {
+    public JsonCompareResult ignoreOrder(JsonDiffArray expect, JsonDiffArray actual) {
         int expectIndex = 0;
         int actualIndex = 0;
         int len = expect.size();
@@ -118,7 +118,7 @@ public class ComplexArrayJsonNeat extends AbstractArrayJsonNeat {
     }
 
     @Override
-    public JsonCompareResult keepOrder(JSONArray expect, JSONArray actual) {
+    public JsonCompareResult keepOrder(JsonDiffArray expect, JsonDiffArray actual) {
         int len = expect.size();
         for (int i = 0; i < len; i++) {
             Object expectItem = expect.get(i);

@@ -23,7 +23,7 @@ public class MultAllArrayTest {
         logger.info(metaData.getCaseName());
         logger.debug("\n"+metaData.getExpect().toString()+"\n"+metaData.getActual().toString());
         JsonCompareResult jsonCompareResult = defaultJsonDifference
-                .detectDiff((JSONArray) metaData.getExpect(), (JSONArray) metaData.getActual());
+                .detectDiff(JSON.toJSONString(metaData.getExpect()) , JSON.toJSONString(metaData.getActual()));
        if (metaData.getRet() != null)
        { Assert.assertEquals( JSON.toJSONString(jsonCompareResult),JSON.toJSONString(metaData.getRet()));}
         else
@@ -36,7 +36,7 @@ public class MultAllArrayTest {
         logger.info(metaData.getCaseName());
         logger.debug("\n"+metaData.getExpect().toString()+"\n"+metaData.getActual().toString()+"\n"+metaData.getOption());
         JsonCompareResult jsonCompareResult = defaultJsonDifference
-                .detectDiff((JSONArray) metaData.getExpect(), (JSONArray) metaData.getActual());
+                .detectDiff(JSON.toJSONString(metaData.getExpect()) , JSON.toJSONString(metaData.getActual()));
         Assert.assertEquals(JSON.toJSONString(jsonCompareResult),JSON.toJSONString(metaData.getRet()));
 
     }
@@ -48,7 +48,7 @@ public class MultAllArrayTest {
         logger.debug("\n"+metaData.getExpect().toString()+"\n"+metaData.getActual().toString()+"\n");
         JsonCompareResult jsonCompareResult = defaultJsonDifference
                 .option(metaData.getOption())
-                .detectDiff((JSONArray) metaData.getExpect(), (JSONArray) metaData.getActual());
+                .detectDiff(JSON.toJSONString(metaData.getExpect()) , JSON.toJSONString(metaData.getActual()));
         if (metaData.getRet() != null) {
             Assert.assertEquals(JSON.toJSONString(jsonCompareResult), JSON.toJSONString(metaData.getRet()));
         }
@@ -64,7 +64,7 @@ public class MultAllArrayTest {
         logger.debug("\n"+metaData.getExpect().toString()+"\n"+metaData.getActual().toString()+"\n");
         JsonCompareResult jsonCompareResult = defaultJsonDifference
                 .option(metaData.getOption())
-                .detectDiff((JSONArray) metaData.getExpect(), (JSONArray) metaData.getActual());
+                .detectDiff(JSON.toJSONString(metaData.getExpect()) , JSON.toJSONString(metaData.getActual()));
         Assert.assertEquals(JSON.toJSONString(jsonCompareResult),JSON.toJSONString(metaData.getRet()));
     }
 }

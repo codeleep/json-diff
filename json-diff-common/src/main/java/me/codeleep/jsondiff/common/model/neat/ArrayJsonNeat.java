@@ -1,6 +1,5 @@
 package me.codeleep.jsondiff.common.model.neat;
 
-import com.alibaba.fastjson2.JSONArray;
 import me.codeleep.jsondiff.common.model.JsonCompareResult;
 
 /**
@@ -16,12 +15,12 @@ public interface ArrayJsonNeat extends JsonNeat{
      * @param actual 实际的json对象
      * @return 返回比较结果
      */
-    JsonCompareResult detectDiff(JSONArray expect, JSONArray actual);
+    JsonCompareResult detectDiff(JsonDiffArray expect, JsonDiffArray actual);
 
     // 忽略顺序的比较
-    JsonCompareResult ignoreOrder(JSONArray expect, JSONArray actual);
+    JsonCompareResult ignoreOrder(JsonDiffArray expect, JsonDiffArray actual);
 
     // 保持顺序比较
-    JsonCompareResult keepOrder(JSONArray expect, JSONArray actual);
+    JsonCompareResult keepOrder(JsonDiffArray expect, JsonDiffArray actual);
 
 }

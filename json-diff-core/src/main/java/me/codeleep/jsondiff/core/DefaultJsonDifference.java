@@ -1,13 +1,14 @@
 package me.codeleep.jsondiff.core;
 
-import com.alibaba.fastjson2.JSONArray;
-import com.alibaba.fastjson2.JSONObject;
+import me.codeleep.jsondiff.common.exception.JsonDiffException;
 import me.codeleep.jsondiff.common.model.JsonCompareResult;
 import me.codeleep.jsondiff.common.model.JsonComparedOption;
 import me.codeleep.jsondiff.common.model.TravelPath;
+import me.codeleep.jsondiff.common.model.neat.JsonDiff;
+import me.codeleep.jsondiff.common.model.neat.JsonNeat;
+import me.codeleep.jsondiff.core.utils.JsonDiffUtil;
 import me.codeleep.jsondiff.core.utils.RunTimeDataFactory;
-import me.codeleep.jsondiff.core.handle.array.ComplexArrayJsonNeat;
-import me.codeleep.jsondiff.core.handle.object.ComplexObjectJsonNeat;
+import me.codeleep.jsondiff.core.utils.JsonDiffBuilder;
 
 import static me.codeleep.jsondiff.common.model.Constant.PATH_ROOT;
 
@@ -18,14 +19,17 @@ import static me.codeleep.jsondiff.common.model.Constant.PATH_ROOT;
  */
 public class DefaultJsonDifference {
 
-    public JsonCompareResult detectDiff(JSONObject expect, JSONObject actual) {
-        JsonCompareResult result = new ComplexObjectJsonNeat().diff(expect, actual, new TravelPath(PATH_ROOT));
-        RunTimeDataFactory.clearOptionInstance();
-        return  result;
-    }
+    public JsonCompareResult detectDiff(String expect, String actual) {
+        JsonDiff expectJson = JsonDiffBuilder.buildObject(expect);
+        JsonDiff actualJson = JsonDiffBuilder.buildObject(actual);
 
-    public JsonCompareResult detectDiff(JSONArray expect, JSONArray actual) {
-        JsonCompareResult result = new ComplexArrayJsonNeat().diff(expect, actual, new TravelPath(PATH_ROOT));
+        TravelPath travelPath = new TravelPath(PATH_ROOT);
+        JsonNeat jsonNeat = JsonDiffUtil.getJsonNeat(expectJson, actualJson, travelPath);
+        if (jsonNeat == null) {
+            throw new JsonDiffException("无法找到适配比较器");
+        }
+        JsonCompareResult result = jsonNeat.diff(expectJson, actualJson, travelPath);
+        // 清除设置
         RunTimeDataFactory.clearOptionInstance();
         return  result;
     }

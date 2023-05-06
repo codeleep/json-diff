@@ -1,19 +1,16 @@
 package me.codeleep.jsondiff.core.handle.array;
 
 
-import com.alibaba.fastjson2.JSONArray;
-import com.alibaba.fastjson2.JSONObject;
 import me.codeleep.jsondiff.common.exception.JsonDiffException;
-import me.codeleep.jsondiff.common.model.Defects;
 import me.codeleep.jsondiff.common.model.JsonCompareResult;
 import me.codeleep.jsondiff.common.model.TravelPath;
-import me.codeleep.jsondiff.core.utils.RunTimeDataFactory;
-import me.codeleep.jsondiff.core.handle.AbstractTypeCheck;
 import me.codeleep.jsondiff.common.model.neat.ArrayJsonNeat;
+import me.codeleep.jsondiff.common.model.neat.JsonDiffArray;
+import me.codeleep.jsondiff.common.model.neat.JsonDiffObject;
+import me.codeleep.jsondiff.core.handle.AbstractTypeCheck;
+import me.codeleep.jsondiff.core.utils.RunTimeDataFactory;
 
 import java.util.HashSet;
-
-import static me.codeleep.jsondiff.common.model.Constant.INCONSISTENT_ARRAY_LENGTH;
 
 /**
  * @author: codeleep
@@ -28,17 +25,17 @@ public abstract class AbstractArrayJsonNeat extends AbstractTypeCheck implements
     protected TravelPath travelPath;
 
     @Override
-    public JsonCompareResult diff(JSONObject expect, JSONObject actual, TravelPath travelPath) {
+    public JsonCompareResult diff(JsonDiffObject expect, JsonDiffObject actual, TravelPath travelPath) {
         throw new JsonDiffException("类型调用错误");
     }
 
     @Override
     public JsonCompareResult diff(Object expect, Object actual, TravelPath travelPath) {
-        return diff((JSONArray) expect, (JSONArray) actual, travelPath);
+        return diff((JsonDiffArray) expect, (JsonDiffArray) actual, travelPath);
     }
 
     @Override
-    public JsonCompareResult diff(JSONArray expect, JSONArray actual,TravelPath travelPath) {
+    public JsonCompareResult diff(JsonDiffArray expect, JsonDiffArray actual,TravelPath travelPath) {
         this.travelPath = travelPath;
         return detectDiff(expect, actual);
     }

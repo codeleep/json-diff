@@ -1,14 +1,14 @@
 package me.codeleep.jsondiff.core.handle.primitive;
 
 
-import com.alibaba.fastjson2.JSONArray;
-import com.alibaba.fastjson2.JSONObject;
 import me.codeleep.jsondiff.common.exception.JsonDiffException;
 import me.codeleep.jsondiff.common.model.JsonCompareResult;
 import me.codeleep.jsondiff.common.model.TravelPath;
-import me.codeleep.jsondiff.core.utils.RunTimeDataFactory;
-import me.codeleep.jsondiff.core.handle.AbstractTypeCheck;
+import me.codeleep.jsondiff.common.model.neat.JsonDiffArray;
+import me.codeleep.jsondiff.common.model.neat.JsonDiffObject;
 import me.codeleep.jsondiff.common.model.neat.PrimitiveJsonNeat;
+import me.codeleep.jsondiff.core.handle.AbstractTypeCheck;
+import me.codeleep.jsondiff.core.utils.RunTimeDataFactory;
 
 import java.util.HashSet;
 
@@ -25,12 +25,12 @@ public abstract class AbstractPrimitiveJsonNeat extends AbstractTypeCheck implem
     protected TravelPath travelPath;
 
     @Override
-    public JsonCompareResult diff(JSONArray expect, JSONArray actual, TravelPath travelPath) {
+    public JsonCompareResult diff(JsonDiffArray expect, JsonDiffArray actual, TravelPath travelPath) {
         throw new JsonDiffException("类型调用错误");
     }
 
     @Override
-    public JsonCompareResult diff(JSONObject expect, JSONObject actual, TravelPath travelPath) {
+    public JsonCompareResult diff(JsonDiffObject expect, JsonDiffObject actual, TravelPath travelPath) {
         throw new JsonDiffException("类型调用错误");
     }
 

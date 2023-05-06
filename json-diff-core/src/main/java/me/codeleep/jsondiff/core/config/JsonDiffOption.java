@@ -2,6 +2,7 @@ package me.codeleep.jsondiff.core.config;
 
 import me.codeleep.jsondiff.common.model.JsonComparedOption;
 import me.codeleep.jsondiff.core.utils.JsonNeatFactory;
+import me.codeleep.jsondiff.impl.ImplType;
 
 /**
  * @author: codeleep
@@ -19,6 +20,11 @@ public class JsonDiffOption {
      * 是否使用全局配置
      */
     private static boolean uniqueOption = false;
+
+    /**
+     * 默认的json框架
+     */
+    private static ImplType defaultJsonFramework = ImplType.detectJsonParser();
 
     /**
      * 默认的比较器工厂
@@ -51,5 +57,16 @@ public class JsonDiffOption {
 
     public static void closeUniqueOption() {
         JsonDiffOption.uniqueOption = false;
+    }
+
+    public static void setDefaultJsonFramework(ImplType implType) {
+        if (implType == null) {
+            return;
+        }
+        defaultJsonFramework = implType;
+    }
+
+    public static ImplType getDefaultJsonFramework() {
+        return defaultJsonFramework;
     }
 }

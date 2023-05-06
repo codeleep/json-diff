@@ -1,7 +1,7 @@
 package me.codeleep.jsondiff.core.handle.custom;
 
-import com.alibaba.fastjson2.JSONArray;
 import me.codeleep.jsondiff.common.model.JsonCompareResult;
+import me.codeleep.jsondiff.common.model.neat.JsonDiffArray;
 import me.codeleep.jsondiff.core.handle.array.ComplexArrayJsonNeat;
 
 import java.util.Collections;
@@ -20,27 +20,25 @@ public class AlignArrayJsonDiff extends ComplexArrayJsonNeat {
      * @return 返回比较结果
      */
     @Override
-    public JsonCompareResult detectDiff(JSONArray expect, JSONArray actual) {
+    public JsonCompareResult detectDiff(JsonDiffArray expect, JsonDiffArray actual) {
         JsonCompareResult result = new JsonCompareResult();
         // 前置校验失败
         if (!check(expect, actual, result, travelPath)) {
             return result;
         }
         // 长度不一致
-        int expectSize = ((JSONArray) expect).size();
-        int actualSize = ((JSONArray) actual).size();
+        int expectSize = expect.size();
+        int actualSize = actual.size();
         if (expectSize == actualSize) {
             return super.detectDiff(expect, actual);
         }
-        JSONArray expectIts = new JSONArray(expect);
-        JSONArray actualIts = new JSONArray(actual);
         // 让期望的数组长度和实际的数组长度一致。谁短补齐谁
         if (expectSize > actualSize) {
-            actualIts.addAll(Collections.nCopies(expectSize - actualSize, null));
+            actual.addAll(Collections.nCopies(expectSize - actualSize, null));
         } else {
-            expectIts.addAll(Collections.nCopies(actualSize - expectSize, null));
+            expect.addAll(Collections.nCopies(actualSize - expectSize, null));
         }
-        return super.detectDiff(expectIts, actualIts);
+        return super.detectDiff(expect, actual);
     }
 
 

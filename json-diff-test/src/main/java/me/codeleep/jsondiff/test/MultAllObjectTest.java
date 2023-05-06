@@ -1,11 +1,10 @@
 package me.codeleep.jsondiff.test;
 
 import com.alibaba.fastjson2.JSON;
-import com.alibaba.fastjson2.JSONObject;
-import me.codeleep.jsondiff.core.DefaultJsonDifference;
 import me.codeleep.jsondiff.common.model.JsonCompareResult;
-import me.codeleep.jsondiff.test.model.MetaData;
+import me.codeleep.jsondiff.core.DefaultJsonDifference;
 import me.codeleep.jsondiff.test.dataFactory.ObjectDataFactory;
+import me.codeleep.jsondiff.test.model.MetaData;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.Assert;
@@ -25,7 +24,7 @@ public class MultAllObjectTest {
         logger.info(metaData.getCaseName());
         logger.debug(metaData.getExpect().toString()+"\n"+metaData.getActual().toString());
         JsonCompareResult jsonCompareResult = defaultJsonDifference
-                .detectDiff((JSONObject) metaData.getExpect(), (JSONObject) metaData.getActual());
+                .detectDiff(JSON.toJSONString(metaData.getExpect()), JSON.toJSONString(metaData.getActual()));
         if (metaData.getRet() != null) {
             Assert.assertEquals(JSON.toJSONString(jsonCompareResult), JSON.toJSONString(metaData.getRet()));
         }
@@ -41,7 +40,7 @@ public class MultAllObjectTest {
         logger.info(metaData.getCaseName());
         logger.debug(metaData.getExpect().toString()+"\n"+metaData.getActual().toString());
         JsonCompareResult jsonCompareResult = defaultJsonDifference
-                .detectDiff((JSONObject) metaData.getExpect(), (JSONObject) metaData.getActual());
+                .detectDiff(JSON.toJSONString(metaData.getExpect()), JSON.toJSONString(metaData.getActual()));
         Assert.assertEquals(JSON.toJSONString(jsonCompareResult),JSON.toJSONString(metaData.getRet()));
     }
 
@@ -52,7 +51,7 @@ public class MultAllObjectTest {
         logger.debug("\n"+metaData.getExpect().toString()+"\n"+metaData.getActual().toString()+"\n");
         JsonCompareResult jsonCompareResult = defaultJsonDifference
                 .option(metaData.getOption())
-                .detectDiff((JSONObject) metaData.getExpect(), (JSONObject) metaData.getActual());
+                .detectDiff(JSON.toJSONString(metaData.getExpect()), JSON.toJSONString(metaData.getActual()));
         if (metaData.getRet() != null) {
             Assert.assertEquals(JSON.toJSONString(jsonCompareResult), JSON.toJSONString(metaData.getRet()));
         }
@@ -68,7 +67,7 @@ public class MultAllObjectTest {
         logger.debug("\n"+metaData.getExpect().toString()+"\n"+metaData.getActual().toString()+"\n");
         JsonCompareResult jsonCompareResult = defaultJsonDifference
                 .option(metaData.getOption())
-                .detectDiff((JSONObject) metaData.getExpect(), (JSONObject) metaData.getActual());
+                .detectDiff(JSON.toJSONString(metaData.getExpect()), JSON.toJSONString(metaData.getActual()));
         Assert.assertEquals( JSON.toJSONString(jsonCompareResult),JSON.toJSONString(metaData.getRet()));
     }
 }

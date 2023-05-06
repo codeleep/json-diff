@@ -1,4 +1,6 @@
-package me.codeleep.jsondiff.impl;
+package me.codeleep.jsondiff.common.model.neat;
+
+import java.util.Collection;
 
 /**
  * @author: codeleep
@@ -21,5 +23,14 @@ public interface JsonDiffArray extends JsonDiff{
      * @return 值
      */
     Object get(int index);
+
+    /**
+     * 添加元素
+     * @param item 元素
+     */
+    void add(Object item);
+
+
+    void addAll(Collection<?> c);
 
 }

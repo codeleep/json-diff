@@ -1,10 +1,10 @@
 package me.codeleep.jsondiff.core.utils;
 
-import com.alibaba.fastjson2.JSONArray;
-import com.alibaba.fastjson2.JSONObject;
 import me.codeleep.jsondiff.common.exception.JsonDiffException;
 import me.codeleep.jsondiff.common.model.ComparatorEnum;
 import me.codeleep.jsondiff.common.model.TravelPath;
+import me.codeleep.jsondiff.common.model.neat.JsonDiffArray;
+import me.codeleep.jsondiff.common.model.neat.JsonDiffObject;
 import me.codeleep.jsondiff.common.model.neat.JsonNeat;
 import me.codeleep.jsondiff.core.config.JsonDiffOption;
 import me.codeleep.jsondiff.core.handle.array.AbstractArrayJsonNeat;
@@ -28,10 +28,10 @@ public class JsonDiffUtil {
         Class<? extends JsonNeat> customComparator = JsonDiffOption.getJsonNeatFactory().getCustomComparator(travelPath.getAbstractTravelPath());
         boolean custom = customComparator != null;
         // 返回系统默认处理器
-        if (expect instanceof JSONObject && actual instanceof JSONObject) {
+        if (expect instanceof JsonDiffObject && actual instanceof JsonDiffObject) {
             return custom ? selectionCustomJsonNeat(customComparator, ComparatorEnum.OBJECT) : JsonDiffOption.getJsonNeatFactory().getObjectJsonNeatInstance(defaultNeat);
         }
-        if (expect instanceof JSONArray && actual instanceof JSONArray) {
+        if (expect instanceof JsonDiffArray && actual instanceof JsonDiffArray) {
             return custom ? selectionCustomJsonNeat(customComparator, ComparatorEnum.ARRAY) : JsonDiffOption.getJsonNeatFactory().getArrayJsonNeatInstance(defaultNeat);
         }
         if (ClassUtil.isPrimitiveType(expect) && ClassUtil.isPrimitiveType(actual)) {

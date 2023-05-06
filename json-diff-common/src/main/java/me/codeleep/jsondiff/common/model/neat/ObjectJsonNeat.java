@@ -1,6 +1,5 @@
 package me.codeleep.jsondiff.common.model.neat;
 
-import com.alibaba.fastjson2.JSONObject;
 import me.codeleep.jsondiff.common.model.JsonCompareResult;
 
 /**
@@ -17,6 +16,6 @@ public interface ObjectJsonNeat extends JsonNeat{
      * @return 返回比较结果
      * @throws IllegalAccessException 发生异常直接抛出
      */
-    JsonCompareResult detectDiff(JSONObject expect, JSONObject actual);
+    JsonCompareResult detectDiff(JsonDiffObject expect, JsonDiffObject actual);
 
 }

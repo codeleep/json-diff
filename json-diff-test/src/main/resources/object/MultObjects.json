@@ -2989,21 +2989,7 @@
       "expect": {
         "a": []
       },
-      "ret": {
-        "defectsList": [
-          {
-            "actual": {},
-            "expect": [],
-            "illustrate": "The expect type ('com.alibaba.fastjson2.JSONArray') is inconsistent with the actual type ('com.alibaba.fastjson2.JSONObject')",
-            "travelPath": {
-              "abstractTravelPath": "root.a",
-              "actualTravelPath": "root.a",
-              "expectTravelPath": "root.a"
-            }
-          }
-        ],
-        "match": false
-      }
+      "ret": {"defectsList":[{"actual":{},"expect":{},"illustrate":"The expect type ('me.codeleep.jsondiff.impl.fastjson2.FastJson2Array') is inconsistent with the actual type ('me.codeleep.jsondiff.impl.fastjson2.FastJson2Object')","travelPath":{"abstractTravelPath":"root.a","actualTravelPath":"root.a","expectTravelPath":"root.a"}}],"match":false}
     },
     {
       "caseName": "内容相同 类型不同",

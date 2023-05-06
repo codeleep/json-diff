@@ -1,15 +1,15 @@
 package me.codeleep.jsondiff.core.handle.object;
 
-import com.alibaba.fastjson2.JSONObject;
 import me.codeleep.jsondiff.common.model.Defects;
 import me.codeleep.jsondiff.common.model.JsonCompareResult;
 import me.codeleep.jsondiff.common.model.MappingKey;
 import me.codeleep.jsondiff.common.model.TravelPath;
-import me.codeleep.jsondiff.common.utils.PathUtil;
-import me.codeleep.jsondiff.core.utils.RunTimeDataFactory;
+import me.codeleep.jsondiff.common.model.neat.JsonDiffObject;
 import me.codeleep.jsondiff.common.model.neat.JsonNeat;
+import me.codeleep.jsondiff.common.utils.PathUtil;
 import me.codeleep.jsondiff.core.utils.ClassUtil;
 import me.codeleep.jsondiff.core.utils.JsonDiffUtil;
+import me.codeleep.jsondiff.core.utils.RunTimeDataFactory;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -39,7 +39,7 @@ public class ComplexObjectJsonNeat extends AbstractObjectJsonNeat {
 
 
     @Override
-    public JsonCompareResult detectDiff(JSONObject expect, JSONObject actual) {
+    public JsonCompareResult detectDiff(JsonDiffObject expect, JsonDiffObject actual) {
         // 前置校验失败
         if (!check(expect, actual, result, travelPath)) {
             return result;
