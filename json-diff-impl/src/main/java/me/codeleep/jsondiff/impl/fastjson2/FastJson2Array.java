@@ -1,10 +1,13 @@
 package me.codeleep.jsondiff.impl.fastjson2;
 
+import com.alibaba.fastjson2.JSON;
 import com.alibaba.fastjson2.JSONArray;
 import com.alibaba.fastjson2.JSONObject;
 import me.codeleep.jsondiff.common.model.neat.JsonDiffArray;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
 
 /**
  * @author: codeleep
@@ -50,5 +53,10 @@ public class FastJson2Array implements JsonDiffArray {
     @Override
     public void addAll(Collection<?> c) {
         jsonArray.addAll(c);
+    }
+
+    @Override
+    public Object format() {
+        return JSON.to(ArrayList.class, jsonArray);
     }
 }

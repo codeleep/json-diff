@@ -3,7 +3,9 @@ package me.codeleep.jsondiff.impl.gson;
 import com.google.gson.*;
 import me.codeleep.jsondiff.common.model.neat.JsonDiffArray;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 /**
  * @author: codeleep
@@ -55,7 +57,11 @@ public class GsonArray implements JsonDiffArray {
 
     @Override
     public void addAll(Collection<?> cs) {
-        JsonArray jsonElements = new JsonArray();
         cs.forEach(this::add);
+    }
+
+    @Override
+    public Object format() {
+        return gson.fromJson(jsonArray, ArrayList.class);
     }
 }

@@ -6,4 +6,7 @@ package me.codeleep.jsondiff.common.model.neat;
  * @description:
  */
 public interface JsonDiff {
+
+    Object format();
+
 }

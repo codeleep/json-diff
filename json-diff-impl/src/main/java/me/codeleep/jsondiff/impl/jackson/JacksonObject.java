@@ -1,13 +1,11 @@
 package me.codeleep.jsondiff.impl.jackson;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import me.codeleep.jsondiff.common.model.neat.JsonDiffObject;
 
-import java.util.HashSet;
-import java.util.Set;
-import java.util.Spliterator;
-import java.util.Spliterators;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
@@ -17,6 +15,8 @@ import java.util.stream.StreamSupport;
  * @description: 实现
  */
 public class JacksonObject implements JsonDiffObject {
+
+    private static final ObjectMapper mapper = new ObjectMapper();
 
     private final ObjectNode jsonObject;
 
@@ -45,6 +45,11 @@ public class JacksonObject implements JsonDiffObject {
             return new HashSet<>();
         }
         return StreamSupport.stream(Spliterators.spliteratorUnknownSize(jsonObject.fieldNames(), Spliterator.ORDERED), false).collect(Collectors.toSet());
+    }
+
+    @Override
+    public Object format() {
+        return mapper.convertValue(jsonObject, HashMap.class);
     }
 
 }

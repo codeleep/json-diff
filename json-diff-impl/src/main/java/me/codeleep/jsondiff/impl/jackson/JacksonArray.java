@@ -7,6 +7,7 @@ import com.fasterxml.jackson.databind.node.NullNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import me.codeleep.jsondiff.common.model.neat.JsonDiffArray;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 /**
@@ -59,5 +60,10 @@ public class JacksonArray implements JsonDiffArray {
     @Override
     public void addAll(Collection<?> cs) {
         cs.forEach(this::add);
+    }
+
+    @Override
+    public Object format() {
+        return mapper.convertValue(jsonArray, ArrayList.class);
     }
 }

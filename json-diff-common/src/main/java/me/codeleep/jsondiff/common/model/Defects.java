@@ -1,5 +1,7 @@
 package me.codeleep.jsondiff.common.model;
 
+import me.codeleep.jsondiff.common.model.neat.JsonDiff;
+
 import java.util.HashMap;
 
 /**
@@ -36,12 +38,20 @@ public class Defects {
 
 
     public Defects setExpect(Object expect) {
-        this.expect = expect;
+        if (expect instanceof JsonDiff) {
+            this.expect = ((JsonDiff)expect).format();
+        } else {
+            this.expect = expect;
+        }
         return this;
     }
 
     public Defects setActual(Object actual) {
-        this.actual = actual;
+        if (actual instanceof JsonDiff) {
+            this.actual = ((JsonDiff)actual).format();
+        } else {
+            this.actual = actual;
+        }
         return this;
     }
 

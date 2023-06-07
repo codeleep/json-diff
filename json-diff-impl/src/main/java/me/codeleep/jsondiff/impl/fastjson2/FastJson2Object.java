@@ -1,9 +1,12 @@
 package me.codeleep.jsondiff.impl.fastjson2;
 
+import com.alibaba.fastjson2.JSON;
 import com.alibaba.fastjson2.JSONArray;
 import com.alibaba.fastjson2.JSONObject;
 import me.codeleep.jsondiff.common.model.neat.JsonDiffObject;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -41,6 +44,11 @@ public class FastJson2Object implements JsonDiffObject {
             return new HashSet<>();
         }
         return this.jsonObject.keySet();
+    }
+
+    @Override
+    public Object format() {
+        return JSON.to(HashMap.class, jsonObject);
     }
 
 }

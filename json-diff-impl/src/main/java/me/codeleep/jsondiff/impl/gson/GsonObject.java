@@ -1,10 +1,13 @@
 package me.codeleep.jsondiff.impl.gson;
 
+import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import me.codeleep.jsondiff.common.model.neat.JsonDiffObject;
 
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -13,6 +16,8 @@ import java.util.Set;
  * @description: 实现
  */
 public class GsonObject implements JsonDiffObject {
+
+    private static final Gson gson = new Gson();
 
     private final JsonObject jsonObject;
 
@@ -41,6 +46,11 @@ public class GsonObject implements JsonDiffObject {
             return new HashSet<>();
         }
         return this.jsonObject.keySet();
+    }
+
+    @Override
+    public Object format() {
+        return gson.fromJson(jsonObject, HashMap.class);
     }
 
 }
