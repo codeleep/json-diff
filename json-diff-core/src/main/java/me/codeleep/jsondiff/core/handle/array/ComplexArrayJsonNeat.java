@@ -89,7 +89,7 @@ public class ComplexArrayJsonNeat extends AbstractArrayJsonNeat {
                 continue;
             }
             for (actualIndex = 0; actualIndex < len; actualIndex++) {
-                if (actualFlag[actualIndex]) {
+                if (actualFlag[actualIndex] || expectFlag[expectIndex]) {
                     continue;
                 }
                 Object expectItem = expect.get(expectIndex);
@@ -104,14 +104,16 @@ public class ComplexArrayJsonNeat extends AbstractArrayJsonNeat {
                     if (!diff.isMatch()) {
                         result.mergeDefects(diff.getDefectsList());
                     }
-                    continue;
+                } else {
+                    Defects defects = new Defects()
+                            .setActual(actualItem)
+                            .setExpect(expectItem)
+                            .setTravelPath(nextTravelPath)
+                            .setIllustrateTemplate(DATA_TYPE_INCONSISTENT,  ClassUtil.getClassName(expectItem), ClassUtil.getClassName(actualItem));
+                    result.addDefects(defects);
                 }
-                Defects defects = new Defects()
-                        .setActual(actualItem)
-                        .setExpect(expectItem)
-                        .setTravelPath(nextTravelPath)
-                        .setIllustrateTemplate(DATA_TYPE_INCONSISTENT,  ClassUtil.getClassName(expectItem), ClassUtil.getClassName(actualItem));
-                result.addDefects(defects);
+                expectFlag[expectIndex] = true;
+                actualFlag[actualIndex] = true;
             }
         }
         return result;
