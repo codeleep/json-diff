@@ -41,7 +41,7 @@
 </dependency>
 ```
 [版本查看](./VersionHistory.md)
-2022-04-19 最新版本：3.1.2-RC1-RELEASE
+2022-04-19 最新版本：3.1.3-RC1-RELEASE
 
 ```java
 /**
