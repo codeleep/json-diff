@@ -84,6 +84,7 @@
                 <activeByDefault>true</activeByDefault>
             </activation>
             <build>
+
                 <plugins>
                     <!-- 要生成Javadoc和Source jar文件，您必须配置javadoc和源Maven插件 -->
                     <plugin>
