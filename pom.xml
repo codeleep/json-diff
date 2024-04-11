@@ -7,7 +7,7 @@
     <groupId>cn.xiaoandcai</groupId>
     <artifactId>json-diff-parent</artifactId>
     <!-- mvn clean deploy - -settings /Users/weidian/.m2/settings-out.xml   -->
-    <version>3.1.2-RC1-RELEASE</version>
+    <version>3.1.6-RC1-RELEASE</version>
     <name>JsonDiff</name>
     <url>https://gitee.com/local-li/json-diff</url>
     <description>一款高性能的Json差异发现工具</description>
@@ -17,7 +17,6 @@
         <module>json-diff-test</module>
         <module>json-diff-common</module>
         <module>json-diff</module>
-        <module>json-diff-impl</module>
     </modules>
 
     <properties>
@@ -25,7 +24,15 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
+        <maven-release-plugin.version>2.5.3</maven-release-plugin.version>
     </properties>
+
+    <scm>
+        <connection>scm:git:${project.scm.url}</connection>
+        <developerConnection>scm:git:${project.scm.url}</developerConnection>
+        <url>git@github.com:codeleep/json-diff.git</url>
+        <tag>HEAD</tag>
+    </scm>
 
     <dependencyManagement>
         <dependencies>
@@ -51,11 +58,6 @@
         </license>
     </licenses>
 
-    <scm>
-        <url>https://gitee.com/local-li/json-diff</url>
-        <connection>https://gitee.com/local-li/json-diff.git</connection>
-    </scm>
-
     <developers>
         <developer>
             <name>codeleep</name>
@@ -78,49 +80,61 @@
     </developers>
 
 
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>3.5.0</version>
+                <configuration>
+                    <doclint>none</doclint>  <!-- Turnoff all checks -->
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>attach-javadocs</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>3.1.0</version>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>jar-no-fork</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
     <profiles>
         <profile>
-            <id>ossrh</id>
-            <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>
+            <id>release</id>
             <build>
                 <plugins>
-                    <!-- 要生成Javadoc和Source jar文件，您必须配置javadoc和源Maven插件 -->
                     <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-source-plugin</artifactId>
-                        <version>2.2.1</version>
-                        <executions>
-                            <execution>
-                                <id>attach-sources</id>
-                                <goals>
-                                    <goal>jar-no-fork</goal>
-                                </goals>
-                            </execution>
-                        </executions>
+                        <groupId>org.sonatype.central</groupId>
+                        <artifactId>central-publishing-maven-plugin</artifactId>
+                        <version>0.4.0</version>
+                        <extensions>true</extensions>
+                        <configuration>
+                            <tokenAuth>true</tokenAuth>
+                            <autoPublish>true</autoPublish>
+                            <publishingServerId>${gpg.keyname}</publishingServerId>
+                        </configuration>
                     </plugin>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-javadoc-plugin</artifactId>
-                        <version>2.10.4</version>
-                        <executions>
-                            <execution>
-                                <phase>package</phase>
-                                <goals>
-                                    <goal>jar</goal>
-                                </goals>
-                                <configuration>
-                                    <additionalparam>-Xdoclint:none</additionalparam>
-                                </configuration>
-                            </execution>
-                        </executions>
-                    </plugin>
-                    <!--  必须配置GPG插件用于使用以下配置对组件进行签名 -->
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-gpg-plugin</artifactId>
-                        <version>1.6</version>
+                        <version>3.1.0</version>
                         <executions>
                             <execution>
                                 <id>sign-artifacts</id>
@@ -128,59 +142,20 @@
                                 <goals>
                                     <goal>sign</goal>
                                 </goals>
+                                <configuration>
+                                    <gpgArguments>
+                                        <arg>--pinentry-mode</arg>
+                                        <arg>loopback</arg>
+                                    </gpgArguments>
+                                    <keyname>${gpg.keyname}</keyname>
+                                    <passphraseServerId>${gpg.keyname}</passphraseServerId>
+                                </configuration>
                             </execution>
                         </executions>
                     </plugin>
                 </plugins>
             </build>
-            <!-- 【注】snapshotRepository 与 repository 中的 id 一定要与 setting.xml 中 server 的 id 保持一致！ -->
-            <distributionManagement>
-                <snapshotRepository>
-                    <id>json-diff</id>
-                    <url>https://s01.oss.sonatype.org/content/repositories/snapshots</url>
-                </snapshotRepository>
-                <repository>
-                    <id>json-diff</id>
-                    <url>https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/</url>
-                </repository>
-            </distributionManagement>
         </profile>
     </profiles>
-    <build>
-        <plugins>
-<!--            <plugin>-->
-<!--                <groupId>org.springframework.boot</groupId>-->
-<!--                <artifactId>spring-boot-maven-plugin</artifactId>-->
-<!--            </plugin>-->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.10.1</version>
-                <configuration>
-                    <source>1.8</source>
-                    <target>1.8</target>
-                </configuration>
-            </plugin>
-
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-gpg-plugin</artifactId>
-                <version>1.6</version>
-                <executions>
-                    <execution>
-                        <id>sign-artifacts</id>
-                        <phase>verify</phase>
-                        <goals>
-                            <goal>sign</goal>
-                        </goals>
-                    </execution>
-                </executions>
-                <configuration>
-                    <keyname>${gpg.keyname}</keyname>
-                    <passphrase>${gpg.passphrase}</passphrase>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
 
 </project>
