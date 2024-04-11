@@ -42,7 +42,7 @@ public class ComplexOtherJsonNeat extends AbstractOtherJsonNeat<JsonDiffOther> {
                 .setActual(actual)
                 .setExpect(expect)
                 .setTravelPath(travelPath)
-                .setIllustrateTemplate(DATA_INCONSISTENT, String.valueOf(expect), String.valueOf(actual));
+                .setIllustrateTemplate(DATA_INCONSISTENT, String.valueOf(expect.format()), String.valueOf(actual.format()));
         result.addDefects(defects);
         return result;
     }

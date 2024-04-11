@@ -36,6 +36,6 @@ public enum ImplType {
                 // Ignore the exception and try the next class name
             }
         }
-        throw new JsonDiffException("未找到任何json解析框架, 至少存在一个 fastjson,fastjson2,jackson,gson ");
+        throw new JsonDiffException("No JSON resolution framework was found, at least one of which exists fastjson,fastjson2,jackson,gson ");
     }
 }

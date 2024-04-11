@@ -24,8 +24,6 @@ public class JsonDiffOption {
      */
     private static ImplType defaultJsonFramework = ImplType.detectJsonParser();
 
-
-
     public static JsonComparedOption getGloballyUniqueOption() {
         if (globallyUniqueOption == null) {
             return new JsonComparedOption();

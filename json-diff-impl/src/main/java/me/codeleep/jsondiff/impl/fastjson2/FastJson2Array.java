@@ -37,14 +37,7 @@ public class FastJson2Array implements JsonDiffArray {
         if (jsonArray == null) {
             return null;
         }
-        Object value = jsonArray.get(index);
-        if (value instanceof JSONArray) {
-            return new FastJson2Array((JSONArray) value);
-        }
-        if (value instanceof JSONObject) {
-            return new FastJson2Object((JSONObject) value);
-        }
-        return new FastJson2Other(value);
+        return FastJson2Util.formatJsonDiff(jsonArray.get(index));
     }
 
     @Override

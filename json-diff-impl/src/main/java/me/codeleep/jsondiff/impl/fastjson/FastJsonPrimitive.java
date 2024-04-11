@@ -18,9 +18,15 @@ public class FastJsonPrimitive implements JsonDiffPrimitive {
     }
 
     @Override
-    public boolean isEquals(JsonDiff jsonDiff) {
-        // TODO 判断无法识别对象是否一致
-        return false;
+    public boolean isEquals(JsonDiffPrimitive jsonDiffPrimitive)  {
+        if (jsonDiffPrimitive == null && object == null)  {
+            return true;
+        }
+        if (jsonDiffPrimitive == null) {
+            return false;
+        }
+        Object target = jsonDiffPrimitive.getTarget();
+        return (object != null && object.equals(target)) || (target != null && target.equals(object));
     }
 
     @Override
@@ -31,5 +37,10 @@ public class FastJsonPrimitive implements JsonDiffPrimitive {
     @Override
     public boolean isLeaf() {
         return true;
+    }
+
+    @Override
+    public Object getTarget() {
+        return this.object;
     }
 }

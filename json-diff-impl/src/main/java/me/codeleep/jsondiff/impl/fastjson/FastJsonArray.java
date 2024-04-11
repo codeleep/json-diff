@@ -1,14 +1,10 @@
 package me.codeleep.jsondiff.impl.fastjson;
 
 import com.alibaba.fastjson.JSONArray;
-import com.alibaba.fastjson.JSONObject;
-import com.alibaba.fastjson2.JSON;
 import me.codeleep.jsondiff.common.model.neat.JsonDiff;
 import me.codeleep.jsondiff.common.model.neat.JsonDiffArray;
 
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashMap;
 
 /**
  * @author: codeleep
@@ -36,14 +32,7 @@ public class FastJsonArray implements JsonDiffArray {
         if (jsonArray == null) {
             return null;
         }
-        Object value = jsonArray.get(index);
-        if (value instanceof JSONArray) {
-            return new FastJsonArray((JSONArray) value);
-        }
-        if (value instanceof JSONObject) {
-            return new FastJsonObject((JSONObject) value);
-        }
-        return new FastJsonOther(value);
+        return FastJsonUtil.formatJsonDiff(jsonArray.get(index));
     }
 
     @Override
@@ -58,7 +47,7 @@ public class FastJsonArray implements JsonDiffArray {
 
     @Override
     public Object format() {
-        return JSON.to(ArrayList.class, jsonArray);
+        return String.valueOf(jsonArray);
     }
 
     @Override

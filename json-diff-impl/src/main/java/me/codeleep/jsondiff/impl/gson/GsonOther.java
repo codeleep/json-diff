@@ -1,6 +1,5 @@
 package me.codeleep.jsondiff.impl.gson;
 
-import me.codeleep.jsondiff.common.model.neat.JsonDiff;
 import me.codeleep.jsondiff.common.model.neat.JsonDiffOther;
 
 /**
@@ -32,7 +31,14 @@ public class GsonOther implements JsonDiffOther {
     }
 
     @Override
-    public boolean isEquals(JsonDiff jsonDiff) {
-        return false;
+    public boolean isEquals(JsonDiffOther jsonDiffOther) {
+        if (jsonDiffOther == null && object == null)  {
+            return true;
+        }
+        if (jsonDiffOther == null) {
+            return false;
+        }
+        Object target = jsonDiffOther.getOther();
+        return (object != null && object.equals(target)) || (target != null && target.equals(object));
     }
 }

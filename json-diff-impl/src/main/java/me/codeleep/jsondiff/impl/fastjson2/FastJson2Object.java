@@ -1,12 +1,10 @@
 package me.codeleep.jsondiff.impl.fastjson2;
 
 import com.alibaba.fastjson2.JSON;
-import com.alibaba.fastjson2.JSONArray;
 import com.alibaba.fastjson2.JSONObject;
 import me.codeleep.jsondiff.common.model.neat.JsonDiff;
 import me.codeleep.jsondiff.common.model.neat.JsonDiffObject;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
@@ -29,14 +27,7 @@ public class FastJson2Object implements JsonDiffObject {
         if (jsonObject == null) {
             return null;
         }
-        Object value = jsonObject.get(key);
-        if (value instanceof JSONObject) {
-            return new FastJson2Object((JSONObject) value);
-        }
-        if (value instanceof JSONArray) {
-            return new FastJson2Array((JSONArray) value);
-        }
-        return new FastJson2Other(value);
+        return FastJson2Util.formatJsonDiff(jsonObject.get(key));
     }
 
     @Override

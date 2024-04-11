@@ -9,6 +9,6 @@ public interface JsonDiffOther extends JsonDiff{
 
     Object getOther();
 
-    boolean isEquals(JsonDiff jsonDiff);
+    boolean isEquals(JsonDiffOther jsonDiffOther);
 
 }

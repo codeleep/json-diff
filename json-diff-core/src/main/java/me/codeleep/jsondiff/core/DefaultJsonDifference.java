@@ -23,7 +23,7 @@ public class DefaultJsonDifference {
         JsonDiff actualJson = JsonDiffBuilder.buildObject(actual);
 
         TravelPath travelPath = new TravelPath(PATH_ROOT);
-        JsonNeat<? extends JsonDiff> jsonNeat = RunTimeDataFactory.getOptionInstance().getJsonNeatFactory().generate(expectJson, actualJson, travelPath);
+        JsonNeat<? extends JsonDiff> jsonNeat = RunTimeDataFactory.getOptionInstance().getJsonNeatFactory().generate(actualJson, expectJson, travelPath);
         if (jsonNeat == null) {
             throw new JsonDiffException("无法找到适配比较器");
         }

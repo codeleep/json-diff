@@ -3,12 +3,12 @@ package me.codeleep.jsondiff.impl.gson;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
+import com.google.gson.JsonPrimitive;
 import me.codeleep.jsondiff.common.model.neat.JsonDiff;
 import me.codeleep.jsondiff.common.model.neat.JsonDiffObject;
 
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 /**
@@ -37,6 +37,9 @@ public class GsonObject implements JsonDiffObject {
         }
         if (value instanceof JsonArray) {
             return new GsonArray((JsonArray) value);
+        }
+        if (value instanceof JsonPrimitive) {
+            return new GsonPrimitive(value);
         }
         return new GsonOther(value);
     }

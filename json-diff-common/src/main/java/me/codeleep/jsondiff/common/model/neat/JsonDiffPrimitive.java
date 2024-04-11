@@ -7,6 +7,8 @@ package me.codeleep.jsondiff.common.model.neat;
  */
 public interface JsonDiffPrimitive extends JsonDiff {
 
-    boolean isEquals(JsonDiff jsonDiff);
+    boolean isEquals(JsonDiffPrimitive jsonDiffPrimitive);
+
+    Object getTarget();
 
 }

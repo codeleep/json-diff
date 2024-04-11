@@ -16,8 +16,6 @@ public class JsonCompareResult {
      */
     private Boolean match = true;
 
-    private Boolean diffed = false;
-
     /**
      * 差异列表
      */
@@ -37,7 +35,6 @@ public class JsonCompareResult {
      * @return 返回是否添加成功
      */
     public boolean addDefects(Defects defects) {
-        diffed = true;
         if(defectsList == null) {
             defectsList = new ArrayList<>();
         }
@@ -49,7 +46,6 @@ public class JsonCompareResult {
     }
 
     public void mergeDefects(List<Defects> defectsList) {
-        diffed = true;
         if (defectsList == null || defectsList.size() == 0) {
             return;
         }
@@ -69,11 +65,6 @@ public class JsonCompareResult {
     }
 
     public void setDefectsList(List<Defects> defectsList) {
-        diffed = true;
         this.defectsList = defectsList;
-    }
-
-    public Boolean getDiffed() {
-        return diffed;
     }
 }

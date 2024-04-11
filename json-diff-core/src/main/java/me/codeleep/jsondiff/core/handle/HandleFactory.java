@@ -11,6 +11,6 @@ import me.codeleep.jsondiff.common.model.neat.JsonNeat;
  */
 public interface HandleFactory {
 
-    JsonNeat<? extends JsonDiff> generate(JsonDiff expect, JsonDiff actual, TravelPath travelPath);
+    JsonNeat<? extends JsonDiff> generate(JsonDiff actual, JsonDiff expect, TravelPath travelPath);
 
 }

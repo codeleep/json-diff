@@ -1,6 +1,5 @@
 package me.codeleep.jsondiff.impl.fastjson2;
 
-import me.codeleep.jsondiff.common.model.neat.JsonDiff;
 import me.codeleep.jsondiff.common.model.neat.JsonDiffPrimitive;
 
 /**
@@ -17,8 +16,15 @@ public class FastJson2Primitive implements JsonDiffPrimitive {
     }
 
     @Override
-    public boolean isEquals(JsonDiff jsonDiff) {
-        return false;
+    public boolean isEquals(JsonDiffPrimitive jsonDiffPrimitive) {
+        if (jsonDiffPrimitive == null && object == null)  {
+            return true;
+        }
+        if (jsonDiffPrimitive == null) {
+            return false;
+        }
+        Object target = jsonDiffPrimitive.getTarget();
+        return (object != null && object.equals(target)) || (target != null && target.equals(object));
     }
 
     @Override
@@ -28,6 +34,11 @@ public class FastJson2Primitive implements JsonDiffPrimitive {
 
     @Override
     public boolean isLeaf() {
-        return false;
+        return true;
+    }
+
+    @Override
+    public Object getTarget() {
+        return this.object;
     }
 }

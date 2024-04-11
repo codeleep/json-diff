@@ -44,6 +44,9 @@ public class GsonArray implements JsonDiffArray {
         if (value instanceof JsonObject) {
             return new GsonObject((JsonObject) value);
         }
+        if (value instanceof JsonPrimitive) {
+            return new GsonPrimitive(value);
+        }
         return new GsonOther(value);
     }
 

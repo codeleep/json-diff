@@ -28,14 +28,7 @@ public class FastJsonObject implements JsonDiffObject {
         if (jsonObject == null) {
             return null;
         }
-        Object value = jsonObject.get(key);
-        if (value instanceof JSONObject) {
-            return new FastJsonObject((JSONObject) value);
-        }
-        if (value instanceof JSONArray) {
-            return new FastJsonArray((JSONArray) value);
-        }
-        return new FastJsonOther(value);
+        return FastJsonUtil.formatJsonDiff(jsonObject.get(key));
     }
 
     @Override

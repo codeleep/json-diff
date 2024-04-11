@@ -107,11 +107,11 @@ public class ComplexObjectJsonNeat extends AbstractObjectJsonNeat<JsonDiffObject
                 continue;
             }
 
-            Object expectDiffJson = expect.get(mappingKey.getExpectKey());
-            Object actualDiffJson = actual.get(mappingKey.getActualKey());
+            JsonDiff expectDiffJson = expect.get(mappingKey.getExpectKey());
+            JsonDiff actualDiffJson = actual.get(mappingKey.getActualKey());
             TravelPath nextTravelPath = new TravelPath(travelPath, mappingKey);
             // 判断类型, 根据类型去实例化JsonNeat。
-            JsonNeat<? extends JsonDiff> jsonNeat = RunTimeDataFactory.getOptionInstance().getJsonNeatFactory().generate(actual, expect, nextTravelPath);
+            JsonNeat<? extends JsonDiff> jsonNeat = RunTimeDataFactory.getOptionInstance().getJsonNeatFactory().generate(actualDiffJson, expectDiffJson, nextTravelPath);
             if (jsonNeat == null) {
                 Defects defects = new Defects()
                         .setActual(actualDiffJson)

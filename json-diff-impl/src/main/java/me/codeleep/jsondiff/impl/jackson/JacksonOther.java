@@ -32,7 +32,14 @@ public class JacksonOther implements JsonDiffOther {
     }
 
     @Override
-    public boolean isEquals(JsonDiff jsonDiff) {
-        return false;
+    public boolean isEquals(JsonDiffOther jsonDiffOther) {
+        if (jsonDiffOther == null && object == null)  {
+            return true;
+        }
+        if (jsonDiffOther == null) {
+            return false;
+        }
+        Object target = jsonDiffOther.getOther();
+        return (object != null && object.equals(target)) || (target != null && target.equals(object));
     }
 }

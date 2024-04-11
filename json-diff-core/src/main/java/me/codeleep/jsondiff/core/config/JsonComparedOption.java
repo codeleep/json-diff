@@ -36,11 +36,6 @@ public class JsonComparedOption {
     private HashSet<String> ignoreKey;
 
     /**
-     * 强制使用系统默认比较器
-     */
-    private Boolean mandatoryDefaultNeat = false;
-
-    /**
      * 默认的比较器工厂
      */
     private HandleFactory jsonNeatFactory = new AbstractHandleFactory();
@@ -93,14 +88,6 @@ public class JsonComparedOption {
             ignoreKey = new HashSet<>();
         }
         return ignoreKey;
-    }
-
-    public boolean isMandatoryDefaultNeat() {
-        return mandatoryDefaultNeat;
-    }
-
-    public void setMandatoryDefaultNeat(boolean mandatoryDefaultNeat) {
-        this.mandatoryDefaultNeat = mandatoryDefaultNeat;
     }
 
     public HandleFactory getJsonNeatFactory() {
