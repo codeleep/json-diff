@@ -15,7 +15,6 @@
         <module>json-diff-core</module>
         <module>json-diff-test</module>
         <module>json-diff-common</module>
-        <module>json-diff-impl</module>
         <module>json-diff</module>
         <module>json-diff-impl/json-diff-impl-fastjson</module>
         <module>json-diff-impl/json-diff-impl-fastjson2</module>

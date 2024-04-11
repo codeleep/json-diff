@@ -7,6 +7,7 @@
         <groupId>cn.xiaoandcai</groupId>
         <version>4.0.5-RC1-RELEASE</version>
     </parent>
+    <packaging>pom</packaging>
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>json-diff-impl</artifactId>
