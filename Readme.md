@@ -2,12 +2,12 @@
 <div style="text-align: center">
 
 
-[![GitHub license](https://img.shields.io/github/license/codeleep/jsonDiff)](https://github.com/codeleep/jsonDiff/blob/master/LICENSE)
+[![GitHub license](https://img.shields.io/github/license/codeleep/json-diff)](https://github.com/codeleep/json-diff/blob/master/LICENSE)
 [![star](https://gitee.com/codeleep/json-diff/badge/star.svg?theme=white)](https://gitee.com/codeleep/json-diff/stargazers)
 <a href='https://gitee.com/codeleep/json-diff/members'><img src='https://gitee.com/codeleep/json-diff/badge/fork.svg?theme=white' alt='fork'></img></a>
-[![GitHub stars](https://img.shields.io/github/stars/codeleep/jsonDiff)](https://github.com/codeleep/jsonDiff/stargazers)
-[![GitHub forks](https://img.shields.io/github/forks/codeleep/jsonDiff)](https://github.com/codeleep/jsonDiff/network)
-[![GitHub issues](https://img.shields.io/github/issues/codeleep/jsonDiff)](https://github.com/codeleep/jsonDiff/issues)
+[![GitHub stars](https://img.shields.io/github/stars/codeleep/json-diff)](https://github.com/codeleep/json-diff/stargazers)
+[![GitHub forks](https://img.shields.io/github/forks/codeleep/json-diff)](https://github.com/codeleep/json-diff/network)
+[![GitHub issues](https://img.shields.io/github/issues/codeleep/json-diff)](https://github.com/codeleep/json-diff/issues)
 
 </div>
 
