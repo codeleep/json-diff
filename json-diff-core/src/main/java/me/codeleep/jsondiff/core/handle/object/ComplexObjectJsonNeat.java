@@ -77,8 +77,8 @@ public class ComplexObjectJsonNeat extends AbstractObjectJsonNeat<JsonDiffObject
         // 移除忽略的Path
         HashSet<String> ignorePath = RunTimeDataFactory.getOptionInstance().getIgnorePath();
         List<MappingKey>  mappingKeys = keyMap.stream().filter(mappingKey -> {
-            String actualTravelPath = PathUtil.getObjectPath(travelPath.getAbstractTravelPath()) + mappingKey.getActualKey();
-            String expectTravelPath = PathUtil.getObjectPath(travelPath.getAbstractTravelPath()) + mappingKey.getActualKey();
+            String actualTravelPath = PathUtil.getObjectPath(travelPath.getActualTravelPath()) + mappingKey.getActualKey();
+            String expectTravelPath = PathUtil.getObjectPath(travelPath.getExpectTravelPath()) + mappingKey.getExpectKey();
             if (ignorePath.contains(actualTravelPath) || ignorePath.contains(expectTravelPath) ) {
                 return false;
             }

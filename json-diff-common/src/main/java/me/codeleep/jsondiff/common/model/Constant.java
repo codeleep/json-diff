@@ -13,7 +13,7 @@ public class Constant {
      *  遍历所需常量
      ***************************************************************************
      */
-    public static final String PATH_ROOT = "root";
+    public static final String PATH_ROOT = "$";
     public static final String SIGN = ".";
     public static final String JOIN_SPILT = "@_^_@";
     public static final String NULL = "null";

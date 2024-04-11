@@ -1,11 +1,8 @@
 package me.codeleep.jsondiff.test;
 
 import com.alibaba.fastjson2.JSON;
-import com.alibaba.fastjson2.JSONArray;
-import me.codeleep.jsondiff.core.DefaultJsonDifference;
+import me.codeleep.jsondiff.DefaultJsonDifference;
 import me.codeleep.jsondiff.common.model.JsonCompareResult;
-import me.codeleep.jsondiff.core.config.JsonDiffOption;
-import me.codeleep.jsondiff.impl.ImplType;
 import me.codeleep.jsondiff.test.model.MetaData;
 import me.codeleep.jsondiff.test.dataFactory.ArrayDataFactory;
 import org.slf4j.Logger;

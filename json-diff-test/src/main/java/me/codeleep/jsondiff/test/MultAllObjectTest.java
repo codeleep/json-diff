@@ -2,7 +2,7 @@ package me.codeleep.jsondiff.test;
 
 import com.alibaba.fastjson2.JSON;
 import me.codeleep.jsondiff.common.model.JsonCompareResult;
-import me.codeleep.jsondiff.core.DefaultJsonDifference;
+import me.codeleep.jsondiff.DefaultJsonDifference;
 import me.codeleep.jsondiff.test.dataFactory.ObjectDataFactory;
 import me.codeleep.jsondiff.test.model.MetaData;
 import org.slf4j.Logger;

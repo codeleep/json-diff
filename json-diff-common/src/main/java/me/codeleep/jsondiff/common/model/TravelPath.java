@@ -2,6 +2,8 @@ package me.codeleep.jsondiff.common.model;
 
 import me.codeleep.jsondiff.common.utils.PathUtil;
 
+import static me.codeleep.jsondiff.common.model.Constant.PATH_ROOT;
+
 /**
  * @author: codeleep
  * @createTime: 2023/03/05 01:33
@@ -35,7 +37,7 @@ public class TravelPath {
 
     public TravelPath(TravelPath parentPath,  int expectIndex, int actualIndex) {
         // 抽象的路径
-        this.abstractTravelPath = parentPath.getAbstractTravelPath() + PathUtil.getIndexPath("");
+        this.abstractTravelPath = parentPath.getAbstractTravelPath() + PathUtil.getIndexPath("*");
         // 实际遍历的路径
         this.actualTravelPath =  parentPath.getActualTravelPath() + PathUtil.getIndexPath(String.valueOf(actualIndex));
         this.expectTravelPath =  parentPath.getExpectTravelPath() + PathUtil.getIndexPath(String.valueOf(expectIndex));
@@ -45,6 +47,12 @@ public class TravelPath {
         this.abstractTravelPath = abstractTravelPath;
         this.actualTravelPath = abstractTravelPath;
         this.expectTravelPath = abstractTravelPath;
+    }
+
+    public TravelPath() {
+        this.abstractTravelPath = PATH_ROOT;
+        this.actualTravelPath = PATH_ROOT;
+        this.expectTravelPath = PATH_ROOT;
     }
 
 
