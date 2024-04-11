@@ -41,7 +41,7 @@
 </dependency>
 ```
 [版本查看](./VersionHistory.md)
-2022-04-19 最新版本：3.1.2-RC1-RELEASE
+2024-04-11 最新版本：4.0.6-RC1-RELEASE
 
 ```java
 /**
@@ -58,7 +58,7 @@ public class UseExample {
         JsonComparedOption jsonComparedOption = new JsonComparedOption().setIgnoreOrder(true);
         JsonCompareResult jsonCompareResult = new DefaultJsonDifference()
                 .option(jsonComparedOption)
-                .detectDiff(JSON.parseArray(array1), JSON.parseArray(array2));
+                .detectDiff(array1, array2);
         System.out.println(JSON.toJSONString(jsonCompareResult));
     }
 }
@@ -178,105 +178,19 @@ ignoreKey.add("high");
 
 #### 3.5 自定义比较器
 
-在我们一个大json文件下。可能遇到某些节点希望实现自定义比较。可以通过 `customComparator` 来进行实现。
+在某些特俗场景下，我们需要自己实现比较器。这时可以通过 `me.codeleep.jsondiff.core.handle.HandleFactory` 来进行实现。可以参考 `me.codeleep.jsondiff.core.handle.AbstractHandleFactory` 实现
 
-它配置的key是一个 travelPath 。具体格式参照 ignorePath 。value 则是一个自定义比较器。对于自定义比较器需要继承对应的抽象类。并且实现具体的抽象接口。具体如下：
+将我们的实现设置到JsonComparedOption中即可生效。
 
-> 从 3.1.1-RC1-RELEASE 版本开始，自定义比较器的设置移至 JsonDiffOption.getJsonNeatFactory()
-> 不再在原先的Option中设置。如果需要使用自定义比较器。请使用 JsonDiffOption.getJsonNeatFactory().addCustomComparator() 进行设置。
+对于各个类型的比较器可以尝试继承系统比较器来进行使用：
 
-```java
+- me.codeleep.jsondiff.core.handle.array.ComplexArrayJsonNeat
+- me.codeleep.jsondiff.core.handle.object.ComplexObjectJsonNeat
+- me.codeleep.jsondiff.core.handle.other.ComplexOtherJsonNeat
+- me.codeleep.jsondiff.core.handle.primitive.ComplexPrimitiveJsonNeat
 
-对象比较：
+在工具中，目前提供了一个 me.codeleep.jsondiff.core.handle.custom.AlignArrayJsonDiff 来实现当数组长度不一致时，进行补齐，从而避免直接返回错误信息。
 
-需要继承 `me.codeleep.jsondiff.core.handle.array.AbstractObjectJsonNeat` 并且重写以下方法。
-
-```java
-/**
-* 比较对象
-* @param expect 期望的json对象
-* @param actual 实际的json对象
-* @return 返回比较结果
-* @throws IllegalAccessException 发生异常直接抛出
-*/
-JsonCompareResult detectDiff(JSONObject expect, JSONObject actual);
-
-```
-
-数组比较：
-
-需要继承 `me.codeleep.jsondiff.core.handle.object.AbstractArrayJsonNeat` 并且重写以下方法。
-
-```java
-  /**
- * 比较数组.调用入口。需要自己去分别调用 ignoreOrder 和  keepOrder。
- * @param expect 期望的json对象
- * @param actual 实际的json对象
- * @return 返回比较结果
- */
-JsonCompareResult detectDiff(JSONArray expect, JSONArray actual);
-
-// 忽略顺序的比较
-JsonCompareResult ignoreOrder(JSONArray expect, JSONArray actual);
-
-// 保持顺序比较
-JsonCompareResult keepOrder(JSONArray expect, JSONArray actual);
-
-```
-
-基本类型比较：
-
-基本类型指的是java基础类型的包装类型以及Number的实现类型。
-
-需要继承 `me.codeleep.jsondiff.core.handle.primitive.AbstractPrimitiveJsonNeat` 并且重写以下方法。
-
-```java
-   /**
-     * 比较数组
-     * @param expect 基础类型对象
-     * @param actual 基础类型对象
-     * @return 返回比较结果
-     */
-    JsonCompareResult detectDiff(Object expect, Object actual);
-```
-
-
-
-用户可以自己根据 travelPath 来决定使用何种自定义比较。三种比较器都返回 JsonCompareResult 对象作为当前节点的比较结果。对于JsonCompareResult对象。需要填入以下信息：
-
-```java
-// 示例
-JsonCompareResult result = new JsonCompareResult();
-Defects defects = new Defects()
-                  .setActual(actualDiffJson)
-                  .setExpect(expectDiffJson)
-                  .setTravelPath(nextTravelPath)
-                  .setIllustrateTemplate(DATA_TYPE_INCONSISTENT, ClassUtil.getClassName(expectDiffJson), ClassUtil.getClassName(actualDiffJson));
-result.addDefects(defects);
-```
-
-
-
-如果遇到在自定义节点中，还需要使用系统自带的比较器时。
-
-```java
-// 该值可以在上述三个抽象类中获得。但需要经自行处理
-String abstractTravelPath = "root";
-// 下一级是对象
-TravelPath nextTravelPath = new TravelPath(abstractTravelPath, mappingKey);
-// 下一级是数组
-TravelPath nextTravelPath = new TravelPath(abstractTravelPath, expectIndex, actualIndex);
-// 获得比较器
-JsonDiffUtil.getJsonNeat(expectDiffJson, actualDiffJson, nextTravelPath);
-// 执行比较获得结果
-JsonCompareResult diff = jsonNeat.diff(expectDiffJson, actualDiffJson, nextTravelPath);
-// 本级创建的 JsonCompareResult result 将下一级结果合并
-this.result.mergeDefects(diff.getDefectsList());
-```
-
-可以使用上述代码获取系统自带的比较器。
-
-> 自定义比较器值得注意的是: 从匹配到 travelPath 之后，根据不再接管比较操作。一切行为由用户自行定义。但工具依然预留默认的比较器给用户处理后续字段。这需要用户自行进行组合调用。
 
 
 
