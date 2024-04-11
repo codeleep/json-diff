@@ -17,6 +17,10 @@
         <module>json-diff-common</module>
         <module>json-diff-impl</module>
         <module>json-diff</module>
+        <module>json-diff-impl/json-diff-impl-fastjson</module>
+        <module>json-diff-impl/json-diff-impl-fastjson2</module>
+        <module>json-diff-impl/json-diff-impl-gson</module>
+        <module>json-diff-impl/json-diff-impl-jackson</module>
     </modules>
 
     <properties>

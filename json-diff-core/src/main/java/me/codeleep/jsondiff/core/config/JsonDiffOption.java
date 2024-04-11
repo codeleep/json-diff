@@ -1,6 +1,6 @@
 package me.codeleep.jsondiff.core.config;
 
-import me.codeleep.jsondiff.impl.ImplType;
+import me.codeleep.jsondiff.common.utils.ImplType;
 
 /**
  * @author: codeleep
