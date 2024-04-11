@@ -8,9 +8,18 @@ import me.codeleep.jsondiff.common.model.TravelPath;
  * @createTime: 2023/02/19 19:14
  * @description:
  */
-public interface JsonNeat {
-    JsonCompareResult diff(JsonDiffArray expect, JsonDiffArray actual, TravelPath travelPath);
-    JsonCompareResult diff(JsonDiffObject expect, JsonDiffObject actual, TravelPath travelPath);
-    JsonCompareResult diff(Object expect, Object actual, TravelPath travelPath);
+public interface JsonNeat<T extends JsonDiff> {
+
+    JsonCompareResult diff();
+
+    int leaf();
+
+    JsonCompareResult getResult();
+
+    TravelPath getTravelPath();
+
+    T getExpectJsonDiff();
+
+    T getActualJsonDiff();
 
 }

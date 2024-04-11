@@ -3,6 +3,7 @@ package me.codeleep.jsondiff.impl.gson;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
+import me.codeleep.jsondiff.common.model.neat.JsonDiff;
 import me.codeleep.jsondiff.common.model.neat.JsonDiffObject;
 
 import java.util.HashMap;
@@ -26,7 +27,7 @@ public class GsonObject implements JsonDiffObject {
     }
 
     @Override
-    public Object get(String key) {
+    public JsonDiff get(String key) {
         if (jsonObject == null) {
             return null;
         }
@@ -37,7 +38,7 @@ public class GsonObject implements JsonDiffObject {
         if (value instanceof JsonArray) {
             return new GsonArray((JsonArray) value);
         }
-        return value;
+        return new GsonOther(value);
     }
 
     @Override
@@ -51,6 +52,11 @@ public class GsonObject implements JsonDiffObject {
     @Override
     public Object format() {
         return gson.fromJson(jsonObject, HashMap.class);
+    }
+
+    @Override
+    public boolean isLeaf() {
+        return false;
     }
 
 }

@@ -15,21 +15,18 @@ public interface JsonDiffArray extends JsonDiff{
      */
     int size();
 
-
-
     /**
      * 获取key对应的值
      * @param index 索引
      * @return 值
      */
-    Object get(int index);
+    JsonDiff get(int index);
 
     /**
      * 添加元素
      * @param item 元素
      */
     void add(Object item);
-
 
     void addAll(Collection<?> c);
 

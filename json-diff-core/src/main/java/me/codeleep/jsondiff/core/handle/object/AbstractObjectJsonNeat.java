@@ -1,58 +1,46 @@
 package me.codeleep.jsondiff.core.handle.object;
 
 
-import me.codeleep.jsondiff.common.exception.JsonDiffException;
 import me.codeleep.jsondiff.common.model.JsonCompareResult;
 import me.codeleep.jsondiff.common.model.TravelPath;
-import me.codeleep.jsondiff.common.model.neat.JsonDiffArray;
+import me.codeleep.jsondiff.common.model.neat.JsonDiff;
 import me.codeleep.jsondiff.common.model.neat.JsonDiffObject;
-import me.codeleep.jsondiff.common.model.neat.ObjectJsonNeat;
-import me.codeleep.jsondiff.core.handle.AbstractTypeCheck;
-import me.codeleep.jsondiff.core.utils.RunTimeDataFactory;
-
-import java.util.HashSet;
+import me.codeleep.jsondiff.core.handle.AbstractJsonNeat;
 
 /**
  * @author: codeleep
  * @createTime: 2023/02/19 19:29
  * @description: 抽象比较器
  */
-public abstract class AbstractObjectJsonNeat extends AbstractTypeCheck implements ObjectJsonNeat {
+public abstract class AbstractObjectJsonNeat<T extends JsonDiffObject> extends AbstractJsonNeat<T> {
 
-    /**
-     * 路径
-     */
-    protected TravelPath travelPath;
+    protected final JsonDiffObject actual;
 
+    protected final JsonDiffObject expect;
 
-    @Override
-    public JsonCompareResult diff(JsonDiffArray expect, JsonDiffArray actual, TravelPath travelPath) {
-        throw new JsonDiffException("类型调用错误");
-    }
-
-    @Override
-    public JsonCompareResult diff(JsonDiffObject expect, JsonDiffObject actual, TravelPath travelPath) {
-        this.travelPath = travelPath;
-        return detectDiff(expect, actual);
-    }
-
-    @Override
-    public JsonCompareResult diff(Object expect, Object actual, TravelPath travelPath) {
-        return diff((JsonDiffObject) expect, (JsonDiffObject) actual, travelPath);
-    }
-
-
-    @Override
-    public boolean check(Object expect, Object actual, JsonCompareResult result, TravelPath travelPath) {
-        // 判断该Path有没有被忽略
-        HashSet<String> ignorePath = RunTimeDataFactory.getOptionInstance().getIgnorePath();
-        if (ignorePath.contains(travelPath.getAbstractTravelPath())) {
-            return false;
+    protected AbstractObjectJsonNeat(TravelPath travelPath, JsonDiff actual, JsonDiff expect) {
+        super(travelPath);
+        if (!(actual instanceof JsonDiffObject) || !(expect instanceof JsonDiffObject)) {
+            throw new IllegalArgumentException("Parameter type error, actual and expect must be JsonDiffObject");
         }
-        if (expect == null && actual == null) {
-            return false;
-        }
-        return true;
+        this.actual = (JsonDiffObject) actual;
+        this.expect = (JsonDiffObject) expect;
     }
 
+    @Override
+    public T getExpectJsonDiff() {
+        return (T)actual;
+    }
+
+    @Override
+    public T getActualJsonDiff() {
+        return (T)expect;
+    }
+
+    @Override
+    protected JsonCompareResult diff0() {
+        return diff1();
+    }
+
+    protected abstract JsonCompareResult diff1();
 }

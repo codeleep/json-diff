@@ -1,7 +1,5 @@
 package me.codeleep.jsondiff.core.config;
 
-import me.codeleep.jsondiff.common.model.JsonComparedOption;
-import me.codeleep.jsondiff.core.utils.JsonNeatFactory;
 import me.codeleep.jsondiff.impl.ImplType;
 
 /**
@@ -26,14 +24,6 @@ public class JsonDiffOption {
      */
     private static ImplType defaultJsonFramework = ImplType.detectJsonParser();
 
-    /**
-     * 默认的比较器工厂
-     */
-    private final static JsonNeatFactory jsonNeatFactory = new JsonNeatFactory();
-
-    public static JsonNeatFactory getJsonNeatFactory() {
-        return jsonNeatFactory;
-    }
 
 
     public static JsonComparedOption getGloballyUniqueOption() {

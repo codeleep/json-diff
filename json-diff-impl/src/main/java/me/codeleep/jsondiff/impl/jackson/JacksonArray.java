@@ -5,7 +5,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.NullNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
+import me.codeleep.jsondiff.common.model.neat.JsonDiff;
 import me.codeleep.jsondiff.common.model.neat.JsonDiffArray;
+import me.codeleep.jsondiff.impl.fastjson.FastJsonOther;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -34,7 +36,7 @@ public class JacksonArray implements JsonDiffArray {
     }
 
     @Override
-    public Object get(int index) {
+    public JsonDiff get(int index) {
         if (jsonArray == null) {
             return null;
         }
@@ -45,7 +47,7 @@ public class JacksonArray implements JsonDiffArray {
         if (value instanceof ObjectNode) {
             return new JacksonObject((ObjectNode) value);
         }
-        return value;
+        return new JacksonOther(value);
     }
 
     @Override
@@ -65,5 +67,10 @@ public class JacksonArray implements JsonDiffArray {
     @Override
     public Object format() {
         return mapper.convertValue(jsonArray, ArrayList.class);
+    }
+
+    @Override
+    public boolean isLeaf() {
+        return false;
     }
 }

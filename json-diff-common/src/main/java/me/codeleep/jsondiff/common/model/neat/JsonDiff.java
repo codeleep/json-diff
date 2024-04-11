@@ -9,4 +9,6 @@ public interface JsonDiff {
 
     Object format();
 
+    boolean isLeaf();
+
 }

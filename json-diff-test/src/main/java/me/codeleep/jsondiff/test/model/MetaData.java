@@ -1,6 +1,6 @@
 package me.codeleep.jsondiff.test.model;
 
-import me.codeleep.jsondiff.common.model.JsonComparedOption;
+import me.codeleep.jsondiff.core.config.JsonComparedOption;
 
 /**
  * @author: chenfeng

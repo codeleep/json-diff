@@ -1,7 +1,7 @@
 package me.codeleep.jsondiff.core.utils;
 
 
-import me.codeleep.jsondiff.common.model.JsonComparedOption;
+import me.codeleep.jsondiff.core.config.JsonComparedOption;
 import me.codeleep.jsondiff.core.config.JsonDiffOption;
 
 /**
@@ -10,7 +10,6 @@ import me.codeleep.jsondiff.core.config.JsonDiffOption;
  * @description: 运行时数据工厂
  */
 public class RunTimeDataFactory {
-
 
     /**
      * 配置
@@ -33,7 +32,7 @@ public class RunTimeDataFactory {
     }
 
     /**
-     * s设置对比配置
+     * 设置对比配置
      * @param jsonComparedOption 对比配置
      */
     public static void setOptionInstance(JsonComparedOption jsonComparedOption) {

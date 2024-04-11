@@ -1,4 +1,7 @@
-package me.codeleep.jsondiff.common.model;
+package me.codeleep.jsondiff.core.config;
+
+import me.codeleep.jsondiff.core.handle.AbstractHandleFactory;
+import me.codeleep.jsondiff.core.handle.HandleFactory;
 
 import java.util.HashMap;
 import java.util.HashSet;
@@ -14,7 +17,7 @@ public class JsonComparedOption {
     /**
      * 忽略数组顺序
      */
-    private boolean ignoreOrder;
+    private Boolean ignoreOrder = false;
 
     /**
      * key 是 actual
@@ -35,7 +38,12 @@ public class JsonComparedOption {
     /**
      * 强制使用系统默认比较器
      */
-    private boolean mandatoryDefaultNeat = false;
+    private Boolean mandatoryDefaultNeat = false;
+
+    /**
+     * 默认的比较器工厂
+     */
+    private HandleFactory jsonNeatFactory = new AbstractHandleFactory();
 
 
     public JsonComparedOption() {
@@ -93,5 +101,13 @@ public class JsonComparedOption {
 
     public void setMandatoryDefaultNeat(boolean mandatoryDefaultNeat) {
         this.mandatoryDefaultNeat = mandatoryDefaultNeat;
+    }
+
+    public HandleFactory getJsonNeatFactory() {
+        return jsonNeatFactory;
+    }
+
+    public void setJsonNeatFactory(HandleFactory jsonNeatFactory) {
+        this.jsonNeatFactory = jsonNeatFactory;
     }
 }

@@ -3,7 +3,9 @@ package me.codeleep.jsondiff.impl.fastjson2;
 import com.alibaba.fastjson2.JSON;
 import com.alibaba.fastjson2.JSONArray;
 import com.alibaba.fastjson2.JSONObject;
+import me.codeleep.jsondiff.common.model.neat.JsonDiff;
 import me.codeleep.jsondiff.common.model.neat.JsonDiffArray;
+import me.codeleep.jsondiff.impl.fastjson.FastJsonOther;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -31,7 +33,7 @@ public class FastJson2Array implements JsonDiffArray {
     }
 
     @Override
-    public Object get(int index) {
+    public JsonDiff get(int index) {
         if (jsonArray == null) {
             return null;
         }
@@ -42,7 +44,7 @@ public class FastJson2Array implements JsonDiffArray {
         if (value instanceof JSONObject) {
             return new FastJson2Object((JSONObject) value);
         }
-        return value;
+        return new FastJson2Other(value);
     }
 
     @Override
@@ -58,5 +60,10 @@ public class FastJson2Array implements JsonDiffArray {
     @Override
     public Object format() {
         return JSON.to(ArrayList.class, jsonArray);
+    }
+
+    @Override
+    public boolean isLeaf() {
+        return false;
     }
 }

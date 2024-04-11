@@ -3,7 +3,10 @@ package me.codeleep.jsondiff.impl.jackson;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
+import me.codeleep.jsondiff.common.model.neat.JsonDiff;
 import me.codeleep.jsondiff.common.model.neat.JsonDiffObject;
+import me.codeleep.jsondiff.common.model.neat.JsonDiffOther;
+import me.codeleep.jsondiff.impl.fastjson.FastJsonOther;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -25,7 +28,7 @@ public class JacksonObject implements JsonDiffObject {
     }
 
     @Override
-    public Object get(String key) {
+    public JsonDiff get(String key) {
         if (jsonObject == null) {
             return null;
         }
@@ -36,7 +39,7 @@ public class JacksonObject implements JsonDiffObject {
         if (value instanceof ArrayNode) {
             return new JacksonArray((ArrayNode) value);
         }
-        return value;
+        return new JacksonOther(value);
     }
 
     @Override
@@ -50,6 +53,11 @@ public class JacksonObject implements JsonDiffObject {
     @Override
     public Object format() {
         return mapper.convertValue(jsonObject, HashMap.class);
+    }
+
+    @Override
+    public boolean isLeaf() {
+        return false;
     }
 
 }

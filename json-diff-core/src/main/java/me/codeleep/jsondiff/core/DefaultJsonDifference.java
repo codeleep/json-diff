@@ -2,11 +2,10 @@ package me.codeleep.jsondiff.core;
 
 import me.codeleep.jsondiff.common.exception.JsonDiffException;
 import me.codeleep.jsondiff.common.model.JsonCompareResult;
-import me.codeleep.jsondiff.common.model.JsonComparedOption;
+import me.codeleep.jsondiff.core.config.JsonComparedOption;
 import me.codeleep.jsondiff.common.model.TravelPath;
 import me.codeleep.jsondiff.common.model.neat.JsonDiff;
 import me.codeleep.jsondiff.common.model.neat.JsonNeat;
-import me.codeleep.jsondiff.core.utils.JsonDiffUtil;
 import me.codeleep.jsondiff.core.utils.RunTimeDataFactory;
 import me.codeleep.jsondiff.core.utils.JsonDiffBuilder;
 
@@ -24,11 +23,11 @@ public class DefaultJsonDifference {
         JsonDiff actualJson = JsonDiffBuilder.buildObject(actual);
 
         TravelPath travelPath = new TravelPath(PATH_ROOT);
-        JsonNeat jsonNeat = JsonDiffUtil.getJsonNeat(expectJson, actualJson, travelPath);
+        JsonNeat<? extends JsonDiff> jsonNeat = RunTimeDataFactory.getOptionInstance().getJsonNeatFactory().generate(expectJson, actualJson, travelPath);
         if (jsonNeat == null) {
             throw new JsonDiffException("无法找到适配比较器");
         }
-        JsonCompareResult result = jsonNeat.diff(expectJson, actualJson, travelPath);
+        JsonCompareResult result = jsonNeat.diff();
         // 清除设置
         RunTimeDataFactory.clearOptionInstance();
         return  result;

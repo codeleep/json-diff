@@ -4,11 +4,11 @@ import me.codeleep.jsondiff.common.model.Defects;
 import me.codeleep.jsondiff.common.model.JsonCompareResult;
 import me.codeleep.jsondiff.common.model.MappingKey;
 import me.codeleep.jsondiff.common.model.TravelPath;
+import me.codeleep.jsondiff.common.model.neat.JsonDiff;
 import me.codeleep.jsondiff.common.model.neat.JsonDiffObject;
 import me.codeleep.jsondiff.common.model.neat.JsonNeat;
 import me.codeleep.jsondiff.common.utils.PathUtil;
 import me.codeleep.jsondiff.core.utils.ClassUtil;
-import me.codeleep.jsondiff.core.utils.JsonDiffUtil;
 import me.codeleep.jsondiff.core.utils.RunTimeDataFactory;
 
 import java.util.*;
@@ -22,7 +22,7 @@ import static me.codeleep.jsondiff.common.model.Constant.SEPARATE_KEY;
  * @createTime: 2023/02/19 19:21
  * @description: 比较复杂的json对象
  */
-public class ComplexObjectJsonNeat extends AbstractObjectJsonNeat {
+public class ComplexObjectJsonNeat extends AbstractObjectJsonNeat<JsonDiffObject> {
 
     /**
      * 应比较集合
@@ -31,56 +31,8 @@ public class ComplexObjectJsonNeat extends AbstractObjectJsonNeat {
      */
     private final List<MappingKey> keyMap = new ArrayList<>();
 
-
-    /**
-     * 当前节点比较结果
-     */
-    private final JsonCompareResult result = new JsonCompareResult();
-
-
-    @Override
-    public JsonCompareResult detectDiff(JsonDiffObject expect, JsonDiffObject actual) {
-        // 前置校验失败
-        if (!check(expect, actual, result, travelPath)) {
-            return result;
-        }
-        // 计算出; 应该比较的key集合
-        keySetConversion(expect.keySet(), actual.keySet());
-        // 遍历比较
-        for (MappingKey mappingKey : keyMap) {
-            // 未找到另外一个key。只存存在其中一个为null情况
-            if (mappingKey.getExpectKey() == null || mappingKey.getActualKey() == null) {
-                Defects defects = new Defects()
-                        .setActual(actual.get(mappingKey.getActualKey()))
-                        .setExpect(expect.get(mappingKey.getExpectKey()))
-                        .setTravelPath(new TravelPath(travelPath, mappingKey))
-                        .setIllustrateTemplate(SEPARATE_KEY, mappingKey.getExpectKey(), mappingKey.getActualKey());
-                result.addDefects(defects);
-                continue;
-            }
-
-            Object expectDiffJson = expect.get(mappingKey.getExpectKey());
-            Object actualDiffJson = actual.get(mappingKey.getActualKey());
-            TravelPath nextTravelPath = new TravelPath(travelPath, mappingKey);
-            // 判断类型, 根据类型去实例化JsonNeat。
-            JsonNeat jsonNeat = JsonDiffUtil.getJsonNeat(expectDiffJson, actualDiffJson, nextTravelPath);
-            if (jsonNeat == null) {
-                Defects defects = new Defects()
-                        .setActual(actualDiffJson)
-                        .setExpect(expectDiffJson)
-                        .setTravelPath(nextTravelPath)
-                        .setIllustrateTemplate(DATA_TYPE_INCONSISTENT, ClassUtil.getClassName(expectDiffJson), ClassUtil.getClassName(actualDiffJson));
-                result.addDefects(defects);
-                continue;
-            }
-            // 比较非基础类型
-            JsonCompareResult diff = jsonNeat.diff(expectDiffJson, actualDiffJson, nextTravelPath);
-            // 将结果合并
-            if (!diff.isMatch()) {
-                result.mergeDefects(diff.getDefectsList());
-            }
-        }
-        return result;
+    public ComplexObjectJsonNeat(TravelPath travelPath, JsonDiff actual, JsonDiff expect) {
+        super(travelPath, actual, expect);
     }
 
     /**
@@ -137,5 +89,46 @@ public class ComplexObjectJsonNeat extends AbstractObjectJsonNeat {
         keyMap.addAll(mappingKeys);
     }
 
+
+    @Override
+    protected JsonCompareResult diff1() {
+        // 计算出; 应该比较的key集合
+        keySetConversion(expect.keySet(), actual.keySet());
+        // 遍历比较
+        for (MappingKey mappingKey : keyMap) {
+            // 未找到另外一个key。只存存在其中一个为null情况
+            if (mappingKey.getExpectKey() == null || mappingKey.getActualKey() == null) {
+                Defects defects = new Defects()
+                        .setActual(actual.get(mappingKey.getActualKey()))
+                        .setExpect(expect.get(mappingKey.getExpectKey()))
+                        .setTravelPath(new TravelPath(travelPath, mappingKey))
+                        .setIllustrateTemplate(SEPARATE_KEY, mappingKey.getExpectKey(), mappingKey.getActualKey());
+                result.addDefects(defects);
+                continue;
+            }
+
+            Object expectDiffJson = expect.get(mappingKey.getExpectKey());
+            Object actualDiffJson = actual.get(mappingKey.getActualKey());
+            TravelPath nextTravelPath = new TravelPath(travelPath, mappingKey);
+            // 判断类型, 根据类型去实例化JsonNeat。
+            JsonNeat<? extends JsonDiff> jsonNeat = RunTimeDataFactory.getOptionInstance().getJsonNeatFactory().generate(actual, expect, nextTravelPath);
+            if (jsonNeat == null) {
+                Defects defects = new Defects()
+                        .setActual(actualDiffJson)
+                        .setExpect(expectDiffJson)
+                        .setTravelPath(nextTravelPath)
+                        .setIllustrateTemplate(DATA_TYPE_INCONSISTENT, ClassUtil.getClassName(expectDiffJson), ClassUtil.getClassName(actualDiffJson));
+                result.addDefects(defects);
+                continue;
+            }
+            // 比较非基础类型
+            JsonCompareResult diff = jsonNeat.diff();
+            // 将结果合并
+            if (!diff.isMatch()) {
+                result.mergeDefects(diff.getDefectsList());
+            }
+        }
+        return result;
+    }
 
 }

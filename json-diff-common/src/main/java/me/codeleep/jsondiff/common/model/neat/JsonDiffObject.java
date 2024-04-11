@@ -14,7 +14,7 @@ public interface JsonDiffObject extends JsonDiff{
      * @param key key
      * @return 值
      */
-    Object get(String key);
+    JsonDiff get(String key);
 
 
     /**

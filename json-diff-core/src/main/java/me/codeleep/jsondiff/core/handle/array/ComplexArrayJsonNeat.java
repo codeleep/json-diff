@@ -3,10 +3,10 @@ package me.codeleep.jsondiff.core.handle.array;
 import me.codeleep.jsondiff.common.model.Defects;
 import me.codeleep.jsondiff.common.model.JsonCompareResult;
 import me.codeleep.jsondiff.common.model.TravelPath;
+import me.codeleep.jsondiff.common.model.neat.JsonDiff;
 import me.codeleep.jsondiff.common.model.neat.JsonDiffArray;
 import me.codeleep.jsondiff.common.model.neat.JsonNeat;
 import me.codeleep.jsondiff.core.utils.ClassUtil;
-import me.codeleep.jsondiff.core.utils.JsonDiffUtil;
 import me.codeleep.jsondiff.core.utils.RunTimeDataFactory;
 
 import static me.codeleep.jsondiff.common.model.Constant.DATA_TYPE_INCONSISTENT;
@@ -17,49 +17,18 @@ import static me.codeleep.jsondiff.common.model.Constant.INCONSISTENT_ARRAY_LENG
  * @createTime: 2023/02/19 19:24
  * @description:
  */
-public class ComplexArrayJsonNeat extends AbstractArrayJsonNeat {
+public class ComplexArrayJsonNeat extends AbstractArrayJsonNeat<JsonDiffArray> {
 
-    /**
-     * 当前节点比较结果
-     */
-    private final JsonCompareResult result = new JsonCompareResult();
-
-    @Override
-    public JsonCompareResult detectDiff(JsonDiffArray expect, JsonDiffArray actual) {
-        // 前置校验失败
-        if (!check(expect, actual, result, travelPath)) {
-            return result;
-        }
-        // 长度不一致
-        int expectSize = ((JsonDiffArray) expect).size();
-        int actualSize = ((JsonDiffArray) actual).size();
-        if (expectSize != actualSize) {
-            Defects defects = new Defects()
-                    .setActual(actualSize)
-                    .setExpect(expectSize)
-                    .setTravelPath(travelPath)
-                    .setIllustrateTemplate(INCONSISTENT_ARRAY_LENGTH, String.valueOf(expectSize), String.valueOf(actualSize));
-            result.addDefects(defects);
-            return result;
-        }
-
-        boolean ignoreOrder = RunTimeDataFactory.getOptionInstance().isIgnoreOrder();
-        // 测试
-        if (ignoreOrder) {
-            return ignoreOrder(expect, actual);
-        }
-        return keepOrder(expect, actual);
+    public ComplexArrayJsonNeat(TravelPath travelPath, JsonDiff actual, JsonDiff expect) {
+        super(travelPath, actual, expect);
     }
 
-    @Override
-    public JsonCompareResult ignoreOrder(JsonDiffArray expect, JsonDiffArray actual) {
+    protected JsonCompareResult ignoreOrder(JsonDiffArray expect, JsonDiffArray actual) {
         int expectIndex = 0;
         int actualIndex = 0;
         int len = expect.size();
         boolean[] expectFlag = new boolean[len];
         boolean[] actualFlag = new boolean[len];
-
-
         // 判断出所有能匹配的数据
         for (expectIndex = 0; expectIndex < len; expectIndex++) {
             if (expectFlag[expectIndex]) {
@@ -70,11 +39,11 @@ public class ComplexArrayJsonNeat extends AbstractArrayJsonNeat {
                     continue;
                 }
                 TravelPath nextTravelPath = new TravelPath(this.travelPath, expectIndex, actualIndex);
-                JsonNeat jsonNeat = JsonDiffUtil.getJsonNeat(expect.get(expectIndex), actual.get(actualIndex), nextTravelPath);
+                JsonNeat<? extends JsonDiff> jsonNeat = RunTimeDataFactory.getOptionInstance().getJsonNeatFactory().generate(actual.get(actualIndex), expect.get(expectIndex), nextTravelPath);
                 if (jsonNeat == null) {
                     continue;
                 }
-                JsonCompareResult compareResult = jsonNeat.diff(expect.get(expectIndex), actual.get(actualIndex), nextTravelPath);
+                JsonCompareResult compareResult = jsonNeat.diff();
                 if (compareResult != null && compareResult.isMatch()) {
                     expectFlag[expectIndex] = true;
                     actualFlag[actualIndex] = true;
@@ -92,14 +61,14 @@ public class ComplexArrayJsonNeat extends AbstractArrayJsonNeat {
                 if (actualFlag[actualIndex]) {
                     continue;
                 }
-                Object expectItem = expect.get(expectIndex);
-                Object actualItem = actual.get(actualIndex);
+                JsonDiff expectItem = expect.get(expectIndex);
+                JsonDiff actualItem = actual.get(actualIndex);
                 TravelPath nextTravelPath = new TravelPath(this.travelPath, expectIndex, actualIndex);
                 // 判断类型, 根据类型去实例化JsonNeat。
-                JsonNeat jsonNeat = JsonDiffUtil.getJsonNeat(expectItem, actualItem, nextTravelPath);
+                JsonNeat<? extends JsonDiff> jsonNeat = RunTimeDataFactory.getOptionInstance().getJsonNeatFactory().generate(actualItem, expectItem, nextTravelPath);
                 // 类型不一致
                 if (jsonNeat != null) {
-                    JsonCompareResult diff = jsonNeat.diff(expectItem, actualItem, nextTravelPath);
+                    JsonCompareResult diff = jsonNeat.diff();
                     // 将结果合并
                     if (!diff.isMatch()) {
                         result.mergeDefects(diff.getDefectsList());
@@ -117,15 +86,14 @@ public class ComplexArrayJsonNeat extends AbstractArrayJsonNeat {
         return result;
     }
 
-    @Override
-    public JsonCompareResult keepOrder(JsonDiffArray expect, JsonDiffArray actual) {
+    protected JsonCompareResult keepOrder(JsonDiffArray expect, JsonDiffArray actual) {
         int len = expect.size();
         for (int i = 0; i < len; i++) {
-            Object expectItem = expect.get(i);
-            Object actualItem = actual.get(i);
+            JsonDiff expectItem = expect.get(i);
+            JsonDiff actualItem = actual.get(i);
             TravelPath nextTravelPath = new TravelPath(this.travelPath, i, i);
             // 判断类型, 根据类型去实例化JsonNeat。
-            JsonNeat jsonNeat = JsonDiffUtil.getJsonNeat(expectItem, actualItem, nextTravelPath);
+            JsonNeat<? extends JsonDiff> jsonNeat = RunTimeDataFactory.getOptionInstance().getJsonNeatFactory().generate(actualItem, expectItem, nextTravelPath);
             // 类型不一致
             if (jsonNeat == null) {
                 Defects defects = new Defects()
@@ -136,7 +104,7 @@ public class ComplexArrayJsonNeat extends AbstractArrayJsonNeat {
                 result.addDefects(defects);
                 continue;
             }
-            JsonCompareResult diff = jsonNeat.diff(expectItem, actualItem, nextTravelPath);
+            JsonCompareResult diff = jsonNeat.diff();
             // 将结果合并
             if (!diff.isMatch()) {
                 result.mergeDefects(diff.getDefectsList());
@@ -145,4 +113,24 @@ public class ComplexArrayJsonNeat extends AbstractArrayJsonNeat {
         return result;
     }
 
+    @Override
+    protected JsonCompareResult diff1() {
+        // 长度不一致
+        int expectSize = ((JsonDiffArray) expect).size();
+        int actualSize = ((JsonDiffArray) actual).size();
+        if (expectSize != actualSize) {
+            Defects defects = new Defects()
+                    .setActual(actualSize)
+                    .setExpect(expectSize)
+                    .setTravelPath(travelPath)
+                    .setIllustrateTemplate(INCONSISTENT_ARRAY_LENGTH, String.valueOf(expectSize), String.valueOf(actualSize));
+            result.addDefects(defects);
+            return result;
+        }
+        boolean ignoreOrder = RunTimeDataFactory.getOptionInstance().isIgnoreOrder();
+        if (ignoreOrder) {
+            return ignoreOrder(expect, actual);
+        }
+        return keepOrder(expect, actual);
+    }
 }

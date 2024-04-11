@@ -3,7 +3,7 @@ package me.codeleep.jsondiff.test.dataFactory;
 import com.alibaba.fastjson2.JSON;
 import com.alibaba.fastjson2.JSONArray;
 import com.alibaba.fastjson2.JSONObject;
-import me.codeleep.jsondiff.common.model.JsonComparedOption;
+import me.codeleep.jsondiff.core.config.JsonComparedOption;
 import me.codeleep.jsondiff.test.model.MetaData;
 import me.codeleep.jsondiff.test.utils.ResourceUtils;
 

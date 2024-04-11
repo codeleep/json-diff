@@ -1,31 +1,32 @@
-package me.codeleep.jsondiff.core.handle.primitive;
+package me.codeleep.jsondiff.core.handle.other;
 
 
 import me.codeleep.jsondiff.common.model.JsonCompareResult;
 import me.codeleep.jsondiff.common.model.TravelPath;
 import me.codeleep.jsondiff.common.model.neat.JsonDiff;
 import me.codeleep.jsondiff.common.model.neat.JsonDiffObject;
+import me.codeleep.jsondiff.common.model.neat.JsonDiffOther;
 import me.codeleep.jsondiff.common.model.neat.JsonDiffPrimitive;
 import me.codeleep.jsondiff.core.handle.AbstractJsonNeat;
 
 /**
  * @author: codeleep
  * @createTime: 2023/02/19 19:29
- * @description: 抽象比较器
+ * @description:
  */
-public abstract class AbstractPrimitiveJsonNeat<T extends JsonDiffPrimitive> extends AbstractJsonNeat<T> {
+public abstract class AbstractOtherJsonNeat<T extends JsonDiffOther> extends AbstractJsonNeat<T> {
 
-    protected final JsonDiffPrimitive actual;
+    protected final JsonDiffOther actual;
 
-    protected final JsonDiffPrimitive expect;
+    protected final JsonDiffOther expect;
 
-    protected AbstractPrimitiveJsonNeat(TravelPath travelPath, JsonDiff actual, JsonDiff expect) {
+    protected AbstractOtherJsonNeat(TravelPath travelPath, JsonDiff actual, JsonDiff expect) {
         super(travelPath);
-        if (!(actual instanceof JsonDiffPrimitive) || !(expect instanceof JsonDiffPrimitive)) {
-            throw new IllegalArgumentException("Parameter type error, actual and expect must be JsonDiffPrimitive");
+        if (!(actual instanceof JsonDiffOther) || !(expect instanceof JsonDiffOther)) {
+            throw new IllegalArgumentException("Parameter type error, actual and expect must be JsonDiffOther");
         }
-        this.actual = (JsonDiffPrimitive) actual;
-        this.expect = (JsonDiffPrimitive) expect;
+        this.actual = (JsonDiffOther) actual;
+        this.expect = (JsonDiffOther) expect;
     }
 
     @Override
