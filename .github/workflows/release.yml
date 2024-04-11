@@ -64,7 +64,8 @@ jobs:
       - name: Prepare GPG
         run: |
           mkdir -p ~/.gnupg/
-          echo "allow-loopback-pinentry" >> ~/.gnupg/gpg-agent.conf
+          echo "allow-loopback-pinentry" > ~/.gnupg/gpg-agent.conf
+          echo "use-agent \npinentry-mode loopback" > ~/.gnupg/gpg.conf
           gpgconf --reload gpg-agent
         shell: bash
 
