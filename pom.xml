@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 
     <modelVersion>4.0.0</modelVersion>
     <packaging>pom</packaging>
     <groupId>cn.xiaoandcai</groupId>
     <artifactId>json-diff-parent</artifactId>
     <!-- mvn clean deploy - -settings /Users/weidian/.m2/settings-out.xml   -->
-    <version>3.1.6-RC1-RELEASE</version>
+    <version>4.0.5-RC1-RELEASE</version>
     <name>JsonDiff</name>
     <url>https://gitee.com/local-li/json-diff</url>
     <description>一款高性能的Json差异发现工具</description>
@@ -16,6 +15,7 @@
         <module>json-diff-core</module>
         <module>json-diff-test</module>
         <module>json-diff-common</module>
+        <module>json-diff-impl</module>
         <module>json-diff</module>
     </modules>
 
@@ -31,7 +31,7 @@
         <connection>scm:git:${project.scm.url}</connection>
         <developerConnection>scm:git:${project.scm.url}</developerConnection>
         <url>git@github.com:codeleep/json-diff.git</url>
-        <tag>HEAD</tag>
+        <tag>json-diff-parent-4.0.5-RC1-RELEASE</tag>
     </scm>
 
     <dependencyManagement>
@@ -120,6 +120,54 @@
             <id>release</id>
             <build>
                 <plugins>
+                    <!-- 要生成Javadoc和Source jar文件，您必须配置javadoc和源Maven插件 -->
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-source-plugin</artifactId>
+                        <version>3.2.0</version>
+                        <executions>
+                            <execution>
+                                <!-- 绑定source插件到Maven的生命周期 -->
+                                <id>attach-sources</id>
+                                <phase>package</phase>
+                                <!--在生命周期后执行绑定的source插件的goals -->
+                                <goals>
+                                    <goal>jar-no-fork</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-javadoc-plugin</artifactId>
+                        <version>3.4.0</version>
+                        <configuration>
+                            <additionalOptions>-Xdoclint:none</additionalOptions>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <phase>package</phase>
+                                <goals>
+                                    <goal>jar</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-release-plugin</artifactId>
+                        <version>3.0.0</version>
+                        <configuration>
+                            <!--  prepare发布之前执行的mvn命令   -->
+                            <preparationGoals>clean verify</preparationGoals>
+                            <!--  生成的tag格式  这里 @{} 而不是 ${} 可以防止project.version被其他方式覆盖 -->
+                            <tagNameFormat>@{project.version}</tagNameFormat>
+                            <autoVersionSubmodules>true</autoVersionSubmodules>
+                            <!--       取消构建api文档,否则注释不规范会造成构建失败         -->
+                            <useReleaseProfile>false</useReleaseProfile>
+                        </configuration>
+                    </plugin>
+
                     <plugin>
                         <groupId>org.sonatype.central</groupId>
                         <artifactId>central-publishing-maven-plugin</artifactId>
@@ -128,7 +176,7 @@
                         <configuration>
                             <tokenAuth>true</tokenAuth>
                             <autoPublish>true</autoPublish>
-                            <publishingServerId>${gpg.keyname}</publishingServerId>
+                            <publishingServerId>codeleep</publishingServerId>
                         </configuration>
                     </plugin>
                     <plugin>
@@ -147,8 +195,8 @@
                                         <arg>--pinentry-mode</arg>
                                         <arg>loopback</arg>
                                     </gpgArguments>
-                                    <keyname>${gpg.keyname}</keyname>
-                                    <passphraseServerId>${gpg.keyname}</passphraseServerId>
+                                    <keyname>codeleep</keyname>
+                                    <passphraseServerId>codeleep</passphraseServerId>
                                 </configuration>
                             </execution>
                         </executions>
