@@ -20,7 +20,14 @@
 - 高效的
 - 精准定位差异
 - 轻量级
-- 依赖非常干净，只依赖fastJson
+- 依赖非常干净，只依赖fastJson,fastjson2,gson,jackson其中之一
+
+目前支持功能
+
+ - [x] 支持json-path表示路径
+ - [x] 支持配置化比较行为。详情见下文
+ - [x] 支持拓展自定义比较器，用于满足特殊需求
+ - [x] 支持不同json框架选择。
 
 
 
@@ -39,9 +46,16 @@
     <!-- 旧版本可能存在某些缺陷。版本请以maven仓库最版为准。 -->
     <version>${version}</version>
 </dependency>
+        
+<!-- 选择json解析框架。fastjson, fastjson2,gson,jackson 之一 -->
+<dependency>
+    <groupId>cn.xiaoandcai</groupId>
+    <artifactId>json-diff-impl-fastjson</artifactId>
+    <version>${version}</version>
+</dependency>
 ```
 [版本查看](./VersionHistory.md)
-2024-04-11 最新版本：4.0.6-RC1-RELEASE
+2024-04-11 最新版本：4.1.1-RC1-RELEASE
 
 ```java
 /**
