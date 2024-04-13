@@ -31,8 +31,8 @@ public class ComplexObjectJsonNeat extends AbstractObjectJsonNeat<JsonDiffObject
      */
     private final List<MappingKey> keyMap = new ArrayList<>();
 
-    public ComplexObjectJsonNeat(TravelPath travelPath, JsonDiff actual, JsonDiff expect) {
-        super(travelPath, actual, expect);
+    public ComplexObjectJsonNeat(TravelPath travelPath, JsonDiff expect, JsonDiff actual) {
+        super(travelPath, expect, actual);
     }
 
     /**

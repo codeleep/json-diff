@@ -17,8 +17,8 @@ import static me.codeleep.jsondiff.common.model.Constant.DATA_TYPE_INCONSISTENT;
  */
 public class ComplexOtherJsonNeat extends AbstractOtherJsonNeat<JsonDiffOther> {
 
-    public ComplexOtherJsonNeat(TravelPath travelPath, JsonDiff actual, JsonDiff expect) {
-        super(travelPath, actual, expect);
+    public ComplexOtherJsonNeat(TravelPath travelPath, JsonDiff expect, JsonDiff actual) {
+        super(travelPath, expect, actual);
     }
 
     @Override

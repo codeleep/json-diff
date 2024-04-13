@@ -20,9 +20,9 @@ public abstract class AbstractOtherJsonNeat<T extends JsonDiffOther> extends Abs
 
     protected final JsonDiffOther expect;
 
-    protected AbstractOtherJsonNeat(TravelPath travelPath, JsonDiff actual, JsonDiff expect) {
+    protected AbstractOtherJsonNeat(TravelPath travelPath, JsonDiff expect, JsonDiff actual) {
         super(travelPath);
-        if (!(actual instanceof JsonDiffOther) || !(expect instanceof JsonDiffOther)) {
+        if (!(expect instanceof JsonDiffOther) || !(actual instanceof JsonDiffOther)) {
             throw new IllegalArgumentException("Parameter type error, actual and expect must be JsonDiffOther");
         }
         this.actual = (JsonDiffOther) actual;

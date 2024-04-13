@@ -18,20 +18,20 @@ import me.codeleep.jsondiff.core.utils.ClassUtil;
  */
 public class AbstractHandleFactory implements HandleFactory{
     @Override
-    public JsonNeat<? extends JsonDiff> generate(JsonDiff actual, JsonDiff expect, TravelPath travelPath) {
+    public JsonNeat<? extends JsonDiff> generate(JsonDiff expect, JsonDiff actual, TravelPath travelPath) {
         if (!ClassUtil.isSameClass(expect, actual)) {
             return null;
         }
         // TODO 返回系统默认处理器
         if (expect instanceof JsonDiffObject && actual instanceof JsonDiffObject) {
-            return new ComplexObjectJsonNeat(travelPath, actual, expect);
+            return new ComplexObjectJsonNeat(travelPath, expect, actual);
         }
         if (expect instanceof JsonDiffArray && actual instanceof JsonDiffArray) {
-            return new ComplexArrayJsonNeat(travelPath, actual, expect);
+            return new ComplexArrayJsonNeat(travelPath, expect, actual);
         }
         if (expect.isLeaf() && actual.isLeaf()) {
-            return new ComplexPrimitiveJsonNeat(travelPath, actual, expect);
+            return new ComplexPrimitiveJsonNeat(travelPath, expect, actual);
         }
-        return new ComplexOtherJsonNeat(travelPath, actual, expect);
+        return new ComplexOtherJsonNeat(travelPath, expect, actual);
     }
 }
