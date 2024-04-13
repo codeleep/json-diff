@@ -26,7 +26,7 @@
         </dependency>
         <dependency>
             <groupId>cn.xiaoandcai</groupId>
-            <artifactId>json-diff-impl-gson</artifactId>
+            <artifactId>json-diff-impl-jackson</artifactId>
             <version>${project.version}</version>
             <scope>compile</scope>
         </dependency>

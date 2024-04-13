@@ -14,12 +14,16 @@ public class PathUtil {
     private static final String ARRAY_SING_RIGHT = "]";
 
 
+    public static String getAbstractIndexPath(String index) {
+        return ARRAY_SING_LEFT + "*" + ARRAY_SING_RIGHT;
+    }
+
     public static String getIndexPath(String index) {
         return ARRAY_SING_LEFT + index + ARRAY_SING_RIGHT;
     }
 
     public static String getObjectPath(String parentPath) {
-        return parentPath.replaceAll("\\[\\d+]", "[*]") + OBJECT_SING;
+        return parentPath + OBJECT_SING;
     }
 
 }

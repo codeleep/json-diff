@@ -14,8 +14,8 @@ import java.util.Collections;
  */
 public class AlignArrayJsonDiff extends ComplexArrayJsonNeat {
 
-    protected AlignArrayJsonDiff(TravelPath travelPath, JsonDiff actual, JsonDiff expect) {
-        super(travelPath, actual, expect);
+    protected AlignArrayJsonDiff(TravelPath travelPath, JsonDiff expect, JsonDiff actual) {
+        super(travelPath, expect, actual);
     }
 
     @Override

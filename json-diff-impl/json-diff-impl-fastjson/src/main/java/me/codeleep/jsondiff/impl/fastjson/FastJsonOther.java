@@ -34,6 +34,9 @@ public class FastJsonOther implements JsonDiffOther {
 
     @Override
     public Object format() {
+        if (object == null || object instanceof String) {
+            return object;
+        }
         return String.valueOf(object);
     }
 

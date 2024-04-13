@@ -31,13 +31,13 @@ public class TravelPath {
         // 抽象的路径
         this.abstractTravelPath = PathUtil.getObjectPath(parentPath.getAbstractTravelPath()) + (mappingKey.getExpectKey() != null ? mappingKey.getExpectKey() : mappingKey.getActualKey());
         // 实际遍历的路径
-        this.actualTravelPath =  PathUtil.getObjectPath(parentPath.actualTravelPath) + mappingKey.getActualKey();
+        this.actualTravelPath =  PathUtil.getObjectPath(parentPath.getActualTravelPath()) + mappingKey.getActualKey();
         this.expectTravelPath =  PathUtil.getObjectPath(parentPath.getExpectTravelPath()) + mappingKey.getExpectKey();
     }
 
     public TravelPath(TravelPath parentPath,  int expectIndex, int actualIndex) {
         // 抽象的路径
-        this.abstractTravelPath = parentPath.getAbstractTravelPath() + PathUtil.getIndexPath("*");
+        this.abstractTravelPath = parentPath.getAbstractTravelPath() + PathUtil.getAbstractIndexPath(null);
         // 实际遍历的路径
         this.actualTravelPath =  parentPath.getActualTravelPath() + PathUtil.getIndexPath(String.valueOf(actualIndex));
         this.expectTravelPath =  parentPath.getExpectTravelPath() + PathUtil.getIndexPath(String.valueOf(expectIndex));

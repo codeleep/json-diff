@@ -19,8 +19,8 @@ import static me.codeleep.jsondiff.common.model.Constant.INCONSISTENT_ARRAY_LENG
  */
 public class ComplexArrayJsonNeat extends AbstractArrayJsonNeat<JsonDiffArray> {
 
-    public ComplexArrayJsonNeat(TravelPath travelPath, JsonDiff actual, JsonDiff expect) {
-        super(travelPath, actual, expect);
+    public ComplexArrayJsonNeat(TravelPath travelPath, JsonDiff expect, JsonDiff actual) {
+        super(travelPath, expect, actual);
     }
 
     protected JsonCompareResult ignoreOrder(JsonDiffArray expect, JsonDiffArray actual) {
@@ -39,7 +39,7 @@ public class ComplexArrayJsonNeat extends AbstractArrayJsonNeat<JsonDiffArray> {
                     continue;
                 }
                 TravelPath nextTravelPath = new TravelPath(this.travelPath, expectIndex, actualIndex);
-                JsonNeat<? extends JsonDiff> jsonNeat = RunTimeDataFactory.getOptionInstance().getJsonNeatFactory().generate(actual.get(actualIndex), expect.get(expectIndex), nextTravelPath);
+                JsonNeat<? extends JsonDiff> jsonNeat = RunTimeDataFactory.getOptionInstance().getJsonNeatFactory().generate( expect.get(expectIndex), actual.get(actualIndex), nextTravelPath);
                 if (jsonNeat == null) {
                     continue;
                 }
@@ -65,7 +65,7 @@ public class ComplexArrayJsonNeat extends AbstractArrayJsonNeat<JsonDiffArray> {
                 JsonDiff actualItem = actual.get(actualIndex);
                 TravelPath nextTravelPath = new TravelPath(this.travelPath, expectIndex, actualIndex);
                 // 判断类型, 根据类型去实例化JsonNeat。
-                JsonNeat<? extends JsonDiff> jsonNeat = RunTimeDataFactory.getOptionInstance().getJsonNeatFactory().generate(actualItem, expectItem, nextTravelPath);
+                JsonNeat<? extends JsonDiff> jsonNeat = RunTimeDataFactory.getOptionInstance().getJsonNeatFactory().generate(expectItem, actualItem, nextTravelPath);
                 // 类型不一致
                 if (jsonNeat != null) {
                     JsonCompareResult diff = jsonNeat.diff();
@@ -93,7 +93,7 @@ public class ComplexArrayJsonNeat extends AbstractArrayJsonNeat<JsonDiffArray> {
             JsonDiff actualItem = actual.get(i);
             TravelPath nextTravelPath = new TravelPath(this.travelPath, i, i);
             // 判断类型, 根据类型去实例化JsonNeat。
-            JsonNeat<? extends JsonDiff> jsonNeat = RunTimeDataFactory.getOptionInstance().getJsonNeatFactory().generate(actualItem, expectItem, nextTravelPath);
+            JsonNeat<? extends JsonDiff> jsonNeat = RunTimeDataFactory.getOptionInstance().getJsonNeatFactory().generate(expectItem, actualItem, nextTravelPath);
             // 类型不一致
             if (jsonNeat == null) {
                 Defects defects = new Defects()

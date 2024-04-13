@@ -1,5 +1,6 @@
 package me.codeleep.jsondiff.impl.jackson;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
@@ -57,7 +58,14 @@ public class JacksonArray implements JsonDiffArray {
 
     @Override
     public Object format() {
-        return mapper.convertValue(jsonArray, ArrayList.class);
+        if (jsonArray == null) {
+            return null;
+        }
+        try {
+            return mapper.writeValueAsString(jsonArray);
+        } catch (JsonProcessingException e) {
+            return null;
+        }
     }
 
     @Override

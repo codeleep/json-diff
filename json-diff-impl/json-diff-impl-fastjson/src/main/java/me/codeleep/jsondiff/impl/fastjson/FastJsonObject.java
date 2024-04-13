@@ -5,6 +5,8 @@ import com.alibaba.fastjson.JSONObject;
 import me.codeleep.jsondiff.common.model.neat.JsonDiff;
 import me.codeleep.jsondiff.common.model.neat.JsonDiffObject;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -39,7 +41,10 @@ public class FastJsonObject implements JsonDiffObject {
 
     @Override
     public Object format() {
-        return JSON.toJSONString(jsonObject);
+        if (jsonObject == null) {
+            return null;
+        }
+        return jsonObject.toJSONString();
     }
 
     @Override

@@ -4,7 +4,6 @@ package me.codeleep.jsondiff.core.handle.primitive;
 import me.codeleep.jsondiff.common.model.JsonCompareResult;
 import me.codeleep.jsondiff.common.model.TravelPath;
 import me.codeleep.jsondiff.common.model.neat.JsonDiff;
-import me.codeleep.jsondiff.common.model.neat.JsonDiffObject;
 import me.codeleep.jsondiff.common.model.neat.JsonDiffPrimitive;
 import me.codeleep.jsondiff.core.handle.AbstractJsonNeat;
 
@@ -19,9 +18,9 @@ public abstract class AbstractPrimitiveJsonNeat<T extends JsonDiffPrimitive> ext
 
     protected final JsonDiffPrimitive expect;
 
-    protected AbstractPrimitiveJsonNeat(TravelPath travelPath, JsonDiff actual, JsonDiff expect) {
+    protected AbstractPrimitiveJsonNeat(TravelPath travelPath, JsonDiff expect, JsonDiff actual) {
         super(travelPath);
-        if (!(actual instanceof JsonDiffPrimitive) || !(expect instanceof JsonDiffPrimitive)) {
+        if (!(expect instanceof JsonDiffPrimitive) || !(actual instanceof JsonDiffPrimitive)) {
             throw new IllegalArgumentException("Parameter type error, actual and expect must be JsonDiffPrimitive");
         }
         this.actual = (JsonDiffPrimitive) actual;

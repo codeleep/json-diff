@@ -18,7 +18,7 @@ public class JacksonUtil {
             return new JacksonArray((ArrayNode) value);
         }
         if (isJackPrimitive(value)) {
-            return new JacksonOther(value);
+            return new JacksonPrimitive(value);
         }
         return new JacksonOther(value);
     }

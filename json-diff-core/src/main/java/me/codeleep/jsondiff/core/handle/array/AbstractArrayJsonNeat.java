@@ -19,9 +19,9 @@ public abstract class AbstractArrayJsonNeat<T extends JsonDiffArray> extends Abs
 
     protected final JsonDiffArray expect;
 
-    protected AbstractArrayJsonNeat(TravelPath travelPath, JsonDiff actual, JsonDiff expect) {
+    protected AbstractArrayJsonNeat(TravelPath travelPath, JsonDiff expect, JsonDiff actual) {
         super(travelPath);
-        if (!(actual instanceof JsonDiffArray) || !(expect instanceof JsonDiffArray)) {
+        if (!(expect instanceof JsonDiffArray) || !(actual instanceof JsonDiffArray)) {
             throw new IllegalArgumentException("Parameter type error, actual and expect must be JsonDiffArray");
         }
         this.actual = (JsonDiffArray) actual;
