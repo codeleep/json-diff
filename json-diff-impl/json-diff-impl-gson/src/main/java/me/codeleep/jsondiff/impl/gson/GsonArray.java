@@ -65,7 +65,10 @@ public class GsonArray implements JsonDiffArray {
 
     @Override
     public Object format() {
-        return gson.fromJson(jsonArray, ArrayList.class);
+        if (jsonArray == null) {
+            return null;
+        }
+        return gson.toJson(jsonArray);
     }
 
     @Override

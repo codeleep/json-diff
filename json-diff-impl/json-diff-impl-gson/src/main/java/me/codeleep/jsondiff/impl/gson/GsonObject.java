@@ -54,7 +54,10 @@ public class GsonObject implements JsonDiffObject {
 
     @Override
     public Object format() {
-        return gson.fromJson(jsonObject, HashMap.class);
+        if (jsonObject == null) {
+            return null;
+        }
+        return gson.toJson(jsonObject);
     }
 
     @Override

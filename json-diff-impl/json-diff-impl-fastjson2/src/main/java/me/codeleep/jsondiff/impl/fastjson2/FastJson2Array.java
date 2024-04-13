@@ -49,7 +49,10 @@ public class FastJson2Array implements JsonDiffArray {
 
     @Override
     public Object format() {
-        return JSON.to(ArrayList.class, jsonArray);
+        if (jsonArray == null) {
+            return null;
+        }
+        return jsonArray.toJSONString();
     }
 
     @Override

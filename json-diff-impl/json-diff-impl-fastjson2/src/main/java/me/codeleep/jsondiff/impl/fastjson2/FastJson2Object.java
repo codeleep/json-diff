@@ -40,7 +40,10 @@ public class FastJson2Object implements JsonDiffObject {
 
     @Override
     public Object format() {
-        return JSON.to(HashMap.class, jsonObject);
+        if (this.jsonObject == null) {
+            return null;
+        }
+        return jsonObject.toJSONString();
     }
 
     @Override

@@ -1,5 +1,6 @@
 package me.codeleep.jsondiff.impl.gson;
 
+import com.google.gson.JsonPrimitive;
 import me.codeleep.jsondiff.common.model.neat.JsonDiffPrimitive;
 
 /**
@@ -17,6 +18,12 @@ public class GsonPrimitive implements JsonDiffPrimitive {
 
     @Override
     public Object format() {
+        if (object == null || object instanceof String) {
+            return object;
+        }
+        if (object instanceof JsonPrimitive) {
+            return ((JsonPrimitive) object).getAsString();
+        }
         return String.valueOf(object);
     }
 

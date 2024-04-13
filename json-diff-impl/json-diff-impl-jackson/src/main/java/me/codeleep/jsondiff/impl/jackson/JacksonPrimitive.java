@@ -1,5 +1,6 @@
 package me.codeleep.jsondiff.impl.jackson;
 
+import com.fasterxml.jackson.databind.JsonNode;
 import me.codeleep.jsondiff.common.model.neat.JsonDiffPrimitive;
 
 /**
@@ -17,6 +18,12 @@ public class JacksonPrimitive implements JsonDiffPrimitive {
 
     @Override
     public Object format() {
+        if (object == null || object instanceof String) {
+            return object;
+        }
+        if (object instanceof JsonNode) {
+            return ((JsonNode)this.object).asText();
+        }
         return String.valueOf(object);
     }
 

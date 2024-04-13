@@ -1,5 +1,6 @@
 package me.codeleep.jsondiff.impl.jackson;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import me.codeleep.jsondiff.common.model.neat.JsonDiff;
@@ -42,7 +43,14 @@ public class JacksonObject implements JsonDiffObject {
 
     @Override
     public Object format() {
-        return mapper.convertValue(jsonObject, HashMap.class);
+        if (jsonObject == null) {
+            return null;
+        }
+        try {
+            return mapper.writeValueAsString(jsonObject);
+        } catch (JsonProcessingException e) {
+            return null;
+        }
     }
 
     @Override

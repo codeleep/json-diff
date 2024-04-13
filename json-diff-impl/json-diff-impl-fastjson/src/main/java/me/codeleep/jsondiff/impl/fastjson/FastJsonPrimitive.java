@@ -29,6 +29,9 @@ public class FastJsonPrimitive implements JsonDiffPrimitive {
 
     @Override
     public Object format() {
+        if (object == null || object instanceof String) {
+            return object;
+        }
         return String.valueOf(object);
     }
 
