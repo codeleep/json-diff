@@ -2169,13 +2169,13 @@
       "ret": {
         "defectsList": [
           {
-            "actual": 4123,
-            "expect": 12345545,
+            "actual": "4123",
+            "expect": "12345545",
             "illustrate": "The expect('12345545') data is inconsistent with the actual('4123') data",
             "travelPath": {
-              "abstractTravelPath": "root[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][].a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a",
-              "actualTravelPath": "root[3][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0].a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a",
-              "expectTravelPath": "root[3][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0].a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a"
+              "abstractTravelPath": "$[*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*].a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a",
+              "actualTravelPath": "$[3][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0].a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a",
+              "expectTravelPath": "$[3][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0].a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a"
             }
           }
         ],
@@ -2289,9 +2289,9 @@
             "expect": "高温 17.0℃",
             "illustrate": "The expect('高温 17.0℃') data is inconsistent with the actual('123') data",
             "travelPath": {
-              "abstractTravelPath": "root[].high",
-              "actualTravelPath": "root[0].high",
-              "expectTravelPath": "root[0].high"
+              "abstractTravelPath": "$[*].high",
+              "actualTravelPath": "$[0].high",
+              "expectTravelPath": "$[0].high"
             }
           },
           {
@@ -2299,9 +2299,9 @@
             "expect": "21日星期四",
             "illustrate": "The expect('21日星期四') data is inconsistent with the actual('21星期四') data",
             "travelPath": {
-              "abstractTravelPath": "root[].date",
-              "actualTravelPath": "root[1].date",
-              "expectTravelPath": "root[1].date"
+              "abstractTravelPath": "$[*].date",
+              "actualTravelPath": "$[1].date",
+              "expectTravelPath": "$[1].date"
             }
           },
           {
@@ -2309,9 +2309,9 @@
             "expect": "高温 17.0℃",
             "illustrate": "The expect('高温 17.0℃') data is inconsistent with the actual('124') data",
             "travelPath": {
-              "abstractTravelPath": "root[].high",
-              "actualTravelPath": "root[1].high",
-              "expectTravelPath": "root[1].high"
+              "abstractTravelPath": "$[*].high",
+              "actualTravelPath": "$[1].high",
+              "expectTravelPath": "$[1].high"
             }
           },
           {
@@ -2319,9 +2319,9 @@
             "expect": "高温 17.0℃",
             "illustrate": "The expect('高温 17.0℃') data is inconsistent with the actual('125') data",
             "travelPath": {
-              "abstractTravelPath": "root[].high",
-              "actualTravelPath": "root[2].high",
-              "expectTravelPath": "root[2].high"
+              "abstractTravelPath": "$[*].high",
+              "actualTravelPath": "$[2].high",
+              "expectTravelPath": "$[2].high"
             }
           }
         ],
@@ -2345,21 +2345,21 @@
       "ret": {
         "defectsList": [
           {
-            "expect": 1,
+            "expect": "1",
             "illustrate": "Only one set of keys exists expect('b'),actual('null')",
             "travelPath": {
-              "abstractTravelPath": "root[].b",
-              "actualTravelPath": "root[0].null",
-              "expectTravelPath": "root[0].b"
+              "abstractTravelPath": "$[*].b",
+              "actualTravelPath": "$[0].null",
+              "expectTravelPath": "$[0].b"
             }
           },
           {
-            "actual": 1,
+            "actual": "1",
             "illustrate": "Only one set of keys exists expect('null'),actual('a')",
             "travelPath": {
-              "abstractTravelPath": "root[].a",
-              "actualTravelPath": "root[0].a",
-              "expectTravelPath": "root[0].null"
+              "abstractTravelPath": "$[*].a",
+              "actualTravelPath": "$[0].a",
+              "expectTravelPath": "$[0].null"
             }
           }
         ],
@@ -2377,13 +2377,13 @@
       "ret": {
         "defectsList": [
           {
-            "actual": {},
-            "expect": [],
-            "illustrate": "The expect type ('com.alibaba.fastjson2.JSONArray') is inconsistent with the actual type ('com.alibaba.fastjson2.JSONObject')",
+            "actual": "{}",
+            "expect": "[]",
+            "illustrate": "The expect type ('me.codeleep.jsondiff.impl.jackson.JacksonArray') is inconsistent with the actual type ('me.codeleep.jsondiff.impl.jackson.JacksonObject')",
             "travelPath": {
-              "abstractTravelPath": "root[]",
-              "actualTravelPath": "root[0]",
-              "expectTravelPath": "root[0]"
+              "abstractTravelPath": "$[*]",
+              "actualTravelPath": "$[0]",
+              "expectTravelPath": "$[0]"
             }
           }
         ],
@@ -2402,12 +2402,12 @@
         "defectsList": [
           {
             "actual": "1.1234",
-            "expect": 1.1234,
+            "expect": "1.1234",
             "illustrate": "The expect type ('java.math.BigDecimal') is inconsistent with the actual type ('java.lang.String')",
             "travelPath": {
-              "abstractTravelPath": "root[]",
-              "actualTravelPath": "root[0]",
-              "expectTravelPath": "root[0]"
+              "abstractTravelPath": "$[*]",
+              "actualTravelPath": "$[0]",
+              "expectTravelPath": "$[0]"
             }
           }
         ],
@@ -2652,7 +2652,7 @@
       "option": {
         "ignoreOrder": false,
         "ignorePath": [
-          "root[].a"
+          "$[*].a"
         ]
       }
     },
@@ -2706,7 +2706,7 @@
       ],
       "option": {
         "ignorePath": [
-          "root[][].a"
+          "$[*][*].a"
         ]
       }
     },
@@ -3064,7 +3064,7 @@
       ],
       "option": {
         "ignorePath": [
-          "root[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][].a"
+          "$[*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*].a"
         ]
       }
     },
@@ -3138,7 +3138,7 @@
       ],
       "option": {
         "ignorePath": [
-          "root[][].a.a"
+          "$[*][*].a.a"
         ]
       }
     },
@@ -3672,7 +3672,7 @@
       ],
       "option": {
         "ignorePath": [
-          "root[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][].a.a"
+          "$[*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*].a.a"
         ]
       }
     },
@@ -4286,7 +4286,7 @@
       ],
       "option": {
         "ignorePath": [
-          "root[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][].a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a"
+          "$[*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*].a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a"
         ]
       }
     },
@@ -4316,7 +4316,7 @@
       "expect": [],
       "option": {
         "ignorePath": [
-          "root"
+          "$"
         ]
       }
     },
@@ -4339,7 +4339,7 @@
       ],
       "option": {
         "ignorePath": [
-          "root[][]"
+          "$[*][*]"
         ]
       }
     },
@@ -4371,7 +4371,7 @@
       ],
       "option": {
         "ignorePath": [
-          "root[][].a[].b"
+          "$[*][*].a[*].b"
         ]
       }
     },
@@ -5732,7 +5732,7 @@
       "option": {
         "ignoreOrder": true,
         "ignorePath": [
-          "root[].c"
+          "$[*].c"
         ]
       }
     },
@@ -5850,7 +5850,7 @@
       ],
       "option": {
         "ignorePath": [
-          "root[].n"
+          "$[*].n"
         ],
         "ignoreKey": [
           "f"
@@ -5893,7 +5893,7 @@
           "b": "c"
         },
         "ignorePath": [
-          "root[].f"
+          "$[*].f"
         ]
       }
     },
@@ -5941,7 +5941,7 @@
           "b": "c"
         },
         "ignorePath": [
-          "root[].f"
+          "$[*].f"
         ]
       },
       "ret": {
@@ -6026,7 +6026,7 @@
           "b": "c"
         },
         "ignorePath": [
-          "root[].f"
+          "$[*].f"
         ],
         "ignoreKey": [
           "n"
@@ -6068,7 +6068,7 @@
       "option": {
         "ignoreOrder": true,
         "ignorePath": [
-          "root[].c"
+          "$[*].c"
         ],
         "ignoreKey": [
           "k"
@@ -6109,7 +6109,7 @@
       "option": {
         "ignoreOrder": true,
         "ignorePath": [
-          "root[].c"
+          "$[*].c"
         ]
       }
     },
@@ -6268,7 +6268,7 @@
       ],
       "option": {
         "ignorePath": [
-          "root[].n"
+          "$[*].n"
         ],
         "ignoreKey": [
           "f"
@@ -6311,7 +6311,7 @@
           "b": "c"
         },
         "ignorePath": [
-          "root[].f"
+          "$[*].f"
         ]
       }
     },
@@ -6352,7 +6352,7 @@
           "b": "c"
         },
         "ignorePath": [
-          "root[].f"
+          "$[*].f"
         ]
       }
     },
@@ -6434,7 +6434,7 @@
           "b": "c"
         },
         "ignorePath": [
-          "root[].f"
+          "$[*].f"
         ],
         "ignoreKey": [
           "n"
@@ -6476,7 +6476,7 @@
       "option": {
         "ignoreOrder": true,
         "ignorePath": [
-          "root[].c"
+          "$[*].c"
         ],
         "ignoreKey": [
           "k"
@@ -6486,7 +6486,7 @@
   ],
   "optionErr": [
     {
-      "caseName": "配置忽略数组顺序 不等长数组，数组顺序不符合,object对不匹配 TODO",
+      "caseName": "配置忽略数组顺序 不等长数组，数组顺序不符合,object对不匹配",
       "actual": [
         {
           "a": false,
@@ -6532,10 +6532,24 @@
       "option": {
         "ignoreOrder": true
       },
-      "ret": {"defectsList":[{"actual":"a","expect":"b","illustrate":"The expect('b') data is inconsistent with the actual('a') data","travelPath":{"abstractTravelPath":"root[][]","actualTravelPath":"root[2][1]","expectTravelPath":"root[3][1]"}}],"match":false}
+      "ret": {
+        "defectsList": [
+          {
+            "actual": "a",
+            "expect": "b",
+            "illustrate": "The expect('b') data is inconsistent with the actual('a') data",
+            "travelPath": {
+              "abstractTravelPath": "$[*][*]",
+              "actualTravelPath": "$[2][1]",
+              "expectTravelPath": "$[3][1]"
+            }
+          }
+        ],
+        "match": false
+      }
     },
     {
-      "caseName": "忽略单层数组内制定对象的key 存在规则外的其他key不匹配",
+      "caseName": "忽略单层数组内指定的对象的key 存在规则外的其他key不匹配",
       "actual": [
         {
           "a": [
@@ -6718,33 +6732,33 @@
         ]
       ],
       "ret": {
-        "defectsList": [
+        "defectsList":[
           {
-            "actual": 1,
-            "illustrate": "Only one set of keys exists expect('null'),actual('b')",
-            "travelPath": {
-              "abstractTravelPath": "root[].b",
-              "actualTravelPath": "root[0].b",
-              "expectTravelPath": "root[0].null"
+            "actual":"1",
+            "illustrate":"Only one set of keys exists expect('null'),actual('b')",
+            "travelPath":{
+              "abstractTravelPath":"$[*].b",
+              "actualTravelPath":"$[0].b",
+              "expectTravelPath":"$[0].null"
             }
           },
           {
-            "actual": "08020094",
-            "expect": "08020093",
-            "illustrate": "The expect('08020093') data is inconsistent with the actual('08020094') data",
-            "travelPath": {
-              "abstractTravelPath": "root[][][]",
-              "actualTravelPath": "root[1][0][0]",
-              "expectTravelPath": "root[1][0][0]"
+            "actual":"08020094",
+            "expect":"08020093",
+            "illustrate":"The expect('08020093') data is inconsistent with the actual('08020094') data",
+            "travelPath":{
+              "abstractTravelPath":"$[*][*][*]",
+              "actualTravelPath":"$[1][0][0]",
+              "expectTravelPath":"$[1][0][0]"
             }
           }
         ],
-        "match": false
+        "match":false
       },
       "option": {
         "ignoreOrder": false,
         "ignorePath": [
-          "root[].a"
+          "$[*].a"
         ]
       }
     },
@@ -6804,19 +6818,19 @@
       ],
       "option": {
         "ignorePath": [
-          "root[][].a"
+          "$[*][*].a"
         ]
       },
       "ret": {
         "defectsList": [
           {
-            "actual": 2,
-            "expect": 3,
+            "actual": "2",
+            "expect": "3",
             "illustrate": "The expect('3') data is inconsistent with the actual('2') data",
             "travelPath": {
-              "abstractTravelPath": "root[][].b",
-              "actualTravelPath": "root[0][1].b",
-              "expectTravelPath": "root[0][1].b"
+              "abstractTravelPath": "$[*][*].b",
+              "actualTravelPath": "$[0][1].b",
+              "expectTravelPath": "$[0][1].b"
             }
           }
         ],
@@ -7185,29 +7199,29 @@
       ],
       "option": {
         "ignorePath": [
-          "root[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][].a"
+          "$[*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*].a"
         ]
       },
       "ret": {
         "defectsList": [
           {
-            "actual": 3,
-            "expect": 2,
+            "actual": "3",
+            "expect": "2",
             "illustrate": "The expect('2') data is inconsistent with the actual('3') data",
-            "travelPath": {
-              "abstractTravelPath": "root[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][].b",
-              "actualTravelPath": "root[0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0].b",
-              "expectTravelPath": "root[0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0].b"
+            "travelPath":{
+              "abstractTravelPath":"$[*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*].b",
+              "actualTravelPath":"$[0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0].b",
+              "expectTravelPath":"$[0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0].b"
             }
           },
           {
-            "actual": 1,
-            "expect": 3,
+            "actual": "1",
+            "expect": "3",
             "illustrate": "The expect('3') data is inconsistent with the actual('1') data",
-            "travelPath": {
-              "abstractTravelPath": "root[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][].C",
-              "actualTravelPath": "root[0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][1].C",
-              "expectTravelPath": "root[0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][1].C"
+            "travelPath":{
+              "abstractTravelPath":"$[*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*].C",
+              "actualTravelPath":"$[0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][1].C",
+              "expectTravelPath":"$[0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][1].C"
             }
           }
         ],
@@ -7288,29 +7302,29 @@
       ],
       "option": {
         "ignorePath": [
-          "root[][].a.a"
+          "$[*][*].a.a"
         ]
       },
       "ret": {
         "defectsList": [
           {
-            "actual": 2,
-            "expect": 3,
+            "actual": "2",
+            "expect": "3",
             "illustrate": "The expect('3') data is inconsistent with the actual('2') data",
             "travelPath": {
-              "abstractTravelPath": "root[][].a.b",
-              "actualTravelPath": "root[3][0].a.b",
-              "expectTravelPath": "root[3][0].a.b"
+              "abstractTravelPath": "$[*][*].a.b",
+              "actualTravelPath": "$[3][0].a.b",
+              "expectTravelPath": "$[3][0].a.b"
             }
           },
           {
-            "actual": 3,
-            "expect": 2,
+            "actual": "3",
+            "expect": "2",
             "illustrate": "The expect('2') data is inconsistent with the actual('3') data",
             "travelPath": {
-              "abstractTravelPath": "root[][].c",
-              "actualTravelPath": "root[3][0].c",
-              "expectTravelPath": "root[3][0].c"
+              "abstractTravelPath": "$[*][*].c",
+              "actualTravelPath": "$[3][0].c",
+              "expectTravelPath": "$[3][0].c"
             }
           }
         ],
@@ -7861,19 +7875,19 @@
       ],
       "option": {
         "ignorePath": [
-          "root[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][].a.a"
-        ]
+          "$[*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*].a.a"
+          ]
       },
       "ret": {
         "defectsList": [
           {
-            "actual": 1,
-            "expect": 3,
+            "actual": "1",
+            "expect": "3",
             "illustrate": "The expect('3') data is inconsistent with the actual('1') data",
             "travelPath": {
-              "abstractTravelPath": "root[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][].b[].c",
-              "actualTravelPath": "root[3][1][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0].b[0].c",
-              "expectTravelPath": "root[3][1][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0].b[0].c"
+              "abstractTravelPath": "$[*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*].b[*].c",
+              "actualTravelPath": "$[3][1][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0].b[0].c",
+              "expectTravelPath": "$[3][1][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0].b[0].c"
             }
           }
         ],
@@ -8492,27 +8506,27 @@
       ],
       "option": {
         "ignorePath": [
-          "root[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][].a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a"
+          "$[*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*].a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a"
         ]
       },
       "ret": {
         "defectsList": [
           {
-            "actual": 22,
+            "actual": "22",
             "illustrate": "Only one set of keys exists expect('null'),actual('b')",
             "travelPath": {
-              "abstractTravelPath": "root[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][].a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.b",
-              "actualTravelPath": "root[3][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0].a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.b",
-              "expectTravelPath": "root[3][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0].a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.null"
+              "abstractTravelPath": "$[*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*].a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.b",
+              "actualTravelPath": "$[3][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0].a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.b",
+              "expectTravelPath": "$[3][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0].a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.null"
             }
           },
           {
-            "actual": 3,
+            "actual": "3",
             "illustrate": "Only one set of keys exists expect('null'),actual('b')",
             "travelPath": {
-              "abstractTravelPath": "root[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][].a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.b",
-              "actualTravelPath": "root[3][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0].a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.b",
-              "expectTravelPath": "root[3][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0].a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.null"
+              "abstractTravelPath": "$[*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*].a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.b",
+              "actualTravelPath": "$[3][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0].a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.b",
+              "expectTravelPath": "$[3][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0][0].a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.null"
             }
           }
         ],
@@ -8546,7 +8560,7 @@
       "expect": [],
       "option": {
         "ignorePath": [
-          "root"
+          "$"
         ]
       },
       "ret": {
@@ -8567,13 +8581,36 @@
       ],
       "expect": [
         {
-          "a": 1
+          "a": 12
         }
       ],
       "option": {
         "ignorePath": [
-          "root[][]"
+          "$[*][*]"
         ]
+      },
+      "ret": {
+        "defectsList": [
+          {
+            "actual": "2",
+            "illustrate": "Only one set of keys exists expect('null'),actual('v')",
+            "travelPath": {
+              "abstractTravelPath": "$[*][*].a[*].v",
+              "actualTravelPath": "$[0][0].a[0].v",
+              "expectTravelPath": "$[0][0].a[0].null"
+            }
+          },
+          {
+            "actual": "12",
+            "illustrate": "Only one set of keys exists expect('null'),actual('a')",
+            "travelPath": {
+              "abstractTravelPath": "$[*][*].a[*].a",
+              "actualTravelPath": "$[0][0].a[1].a",
+              "expectTravelPath": "$[0][0].a[1].null"
+            }
+          }
+        ],
+        "match": false
       }
     },
     {
@@ -8609,27 +8646,27 @@
       ],
       "option": {
         "ignorePath": [
-          "root[][].a[].b"
+          "$[*][*].a[*].b"
         ]
       },
       "ret": {
         "defectsList": [
           {
-            "actual": 2,
+            "actual": "2",
             "illustrate": "Only one set of keys exists expect('null'),actual('v')",
             "travelPath": {
-              "abstractTravelPath": "root[][].a[].v",
-              "actualTravelPath": "root[0][0].a[0].v",
-              "expectTravelPath": "root[0][0].a[0].null"
+              "abstractTravelPath": "$[*][*].a[*].v",
+              "actualTravelPath": "$[0][0].a[0].v",
+              "expectTravelPath": "$[0][0].a[0].null"
             }
           },
           {
-            "actual": 12,
+            "actual": "12",
             "illustrate": "Only one set of keys exists expect('null'),actual('a')",
             "travelPath": {
-              "abstractTravelPath": "root[][].a[].a",
-              "actualTravelPath": "root[0][0].a[1].a",
-              "expectTravelPath": "root[0][0].a[1].null"
+              "abstractTravelPath": "$[*][*].a[*].a",
+              "actualTravelPath": "$[0][0].a[1].a",
+              "expectTravelPath": "$[0][0].a[1].null"
             }
           }
         ],
@@ -9168,6 +9205,9 @@
         "mapping": {
           "a": "b"
         }
+      },
+      "ret": {
+        "match": true
       }
     },
     {
@@ -9783,10 +9823,12 @@
           "b": "a"
         }
       },
-      "ret": {"match":true}
+      "ret": {
+        "match": true
+      }
     },
     {
-      "caseName": "数组对象中key不一致对应  TODO",
+      "caseName": "数组对象中key不一致对应",
       "actual": [
         {
           "a": 1
@@ -9808,16 +9850,16 @@
           "b": "a"
         }
       },
-      "ret" :  {
+      "ret": {
         "defectsList": [
           {
-            "actual": 2,
-            "expect": 3,
+            "actual": "2",
+            "expect": "3",
             "illustrate": "The expect('3') data is inconsistent with the actual('2') data",
             "travelPath": {
-              "abstractTravelPath": "root[].a",
-              "actualTravelPath": "root[1].b",
-              "expectTravelPath": "root[1].a"
+              "abstractTravelPath": "$[*].a",
+              "actualTravelPath": "$[1].b",
+              "expectTravelPath": "$[1].a"
             }
           }
         ],
@@ -9845,7 +9887,21 @@
           "c": "d"
         }
       },
-      "ret" :{"defectsList":[{"actual":3,"expect":4,"illustrate":"The expect('4') data is inconsistent with the actual('3') data","travelPath":{"abstractTravelPath":"root[].d","actualTravelPath":"root[0].c","expectTravelPath":"root[0].d"}}],"match":false}
+      "ret": {
+        "defectsList": [
+          {
+            "actual": "3",
+            "expect": "4",
+            "illustrate": "The expect('4') data is inconsistent with the actual('3') data",
+            "travelPath": {
+              "abstractTravelPath": "$[*].d",
+              "actualTravelPath": "$[0].c",
+              "expectTravelPath": "$[0].d"
+            }
+          }
+        ],
+        "match": false
+      }
     },
     {
       "caseName": "配置mapping 将a指定为b 指定后值不一致",
@@ -9867,13 +9923,13 @@
       "ret": {
         "defectsList": [
           {
-            "actual": 1,
-            "expect": 2,
+            "actual": "1",
+            "expect": "2",
             "illustrate": "The expect('2') data is inconsistent with the actual('1') data",
             "travelPath": {
-              "abstractTravelPath": "root[].b",
-              "actualTravelPath": "root[0].a",
-              "expectTravelPath": "root[0].b"
+              "abstractTravelPath": "$[*].b",
+              "actualTravelPath": "$[0].a",
+              "expectTravelPath": "$[0].b"
             }
           }
         ],
@@ -9903,7 +9959,29 @@
           "a": "b"
         }
       },
-      "ret": {"defectsList":[{"expect":3,"illustrate":"Only one set of keys exists expect('c'),actual('null')","travelPath":{"abstractTravelPath":"root[].c","actualTravelPath":"root[1].null","expectTravelPath":"root[1].c"}},{"actual":3,"illustrate":"Only one set of keys exists expect('null'),actual('a')","travelPath":{"abstractTravelPath":"root[].a","actualTravelPath":"root[1].a","expectTravelPath":"root[1].null"}}],"match":false}
+      "ret": {
+        "defectsList": [
+          {
+            "expect": "3",
+            "illustrate": "Only one set of keys exists expect('c'),actual('null')",
+            "travelPath": {
+              "abstractTravelPath": "$[*].c",
+              "actualTravelPath": "$[1].null",
+              "expectTravelPath": "$[1].c"
+            }
+          },
+          {
+            "actual": "3",
+            "illustrate": "Only one set of keys exists expect('null'),actual('a')",
+            "travelPath": {
+              "abstractTravelPath": "$[*].a",
+              "actualTravelPath": "$[1].a",
+              "expectTravelPath": "$[1].null"
+            }
+          }
+        ],
+        "match": false
+      }
     },
     {
       "caseName": "忽略单个key key不匹配 ",
@@ -9949,12 +10027,12 @@
       "ret": {
         "defectsList": [
           {
-            "expect": 3,
+            "expect": "3",
             "illustrate": "Only one set of keys exists expect('b'),actual('null')",
             "travelPath": {
-              "abstractTravelPath": "root[].b",
-              "actualTravelPath": "root[4].null",
-              "expectTravelPath": "root[4].b"
+              "abstractTravelPath": "$[*].b",
+              "actualTravelPath": "$[4].null",
+              "expectTravelPath": "$[4].b"
             }
           }
         ],
@@ -10006,13 +10084,13 @@
       "ret": {
         "defectsList": [
           {
-            "actual": 1,
-            "expect": 2,
+            "actual": "1",
+            "expect": "2",
             "illustrate": "The expect('2') data is inconsistent with the actual('1') data",
             "travelPath": {
-              "abstractTravelPath": "root[].c",
-              "actualTravelPath": "root[4].c",
-              "expectTravelPath": "root[4].c"
+              "abstractTravelPath": "$[*].c",
+              "actualTravelPath": "$[4].c",
+              "expectTravelPath": "$[4].c"
             }
           }
         ],
@@ -10061,7 +10139,29 @@
           "b": "c"
         }
       },
-      "ret": {"defectsList":[{"expect":1,"illustrate":"Only one set of keys exists expect('d'),actual('null')","travelPath":{"abstractTravelPath":"root[].d","actualTravelPath":"root[4].null","expectTravelPath":"root[4].d"}},{"actual":1,"illustrate":"Only one set of keys exists expect('null'),actual('b')","travelPath":{"abstractTravelPath":"root[].b","actualTravelPath":"root[4].b","expectTravelPath":"root[4].null"}}],"match":false}
+      "ret": {
+        "defectsList": [
+          {
+            "expect": "1",
+            "illustrate": "Only one set of keys exists expect('d'),actual('null')",
+            "travelPath": {
+              "abstractTravelPath": "$[*].d",
+              "actualTravelPath": "$[4].null",
+              "expectTravelPath": "$[4].d"
+            }
+          },
+          {
+            "actual": "1",
+            "illustrate": "Only one set of keys exists expect('null'),actual('b')",
+            "travelPath": {
+              "abstractTravelPath": "$[*].b",
+              "actualTravelPath": "$[4].b",
+              "expectTravelPath": "$[4].null"
+            }
+          }
+        ],
+        "match": false
+      }
     },
     {
       "caseName": "配置ignoreOrder和ignorePath 增加不匹配字段",
@@ -10099,18 +10199,18 @@
       "option": {
         "ignoreOrder": true,
         "ignorePath": [
-          "root[].c"
+          "$[*].c"
         ]
       },
       "ret": {
         "defectsList": [
           {
-            "actual": 1,
+            "actual": "1",
             "illustrate": "Only one set of keys exists expect('null'),actual('d')",
             "travelPath": {
-              "abstractTravelPath": "root[].d",
-              "actualTravelPath": "root[0].d",
-              "expectTravelPath": "root[0].null"
+              "abstractTravelPath": "$[*].d",
+              "actualTravelPath": "$[0].d",
+              "expectTravelPath": "$[0].null"
             }
           }
         ],
@@ -10161,12 +10261,12 @@
       "ret": {
         "defectsList": [
           {
-            "actual": 1,
+            "actual": "1",
             "illustrate": "Only one set of keys exists expect('null'),actual('d')",
             "travelPath": {
-              "abstractTravelPath": "root[].d",
-              "actualTravelPath": "root[2].d",
-              "expectTravelPath": "root[1].null"
+              "abstractTravelPath": "$[*].d",
+              "actualTravelPath": "$[2].d",
+              "expectTravelPath": "$[1].null"
             }
           }
         ],
@@ -10213,7 +10313,29 @@
           "f"
         ]
       },
-      "ret": {"defectsList":[{"expect":1,"illustrate":"Only one set of keys exists expect('c'),actual('null')","travelPath":{"abstractTravelPath":"root[].c","actualTravelPath":"root[3].null","expectTravelPath":"root[3].c"}},{"actual":1,"illustrate":"Only one set of keys exists expect('null'),actual('d')","travelPath":{"abstractTravelPath":"root[].d","actualTravelPath":"root[3].d","expectTravelPath":"root[3].null"}}],"match":false}
+      "ret": {
+        "defectsList": [
+          {
+            "expect": "1",
+            "illustrate": "Only one set of keys exists expect('c'),actual('null')",
+            "travelPath": {
+              "abstractTravelPath": "$[*].c",
+              "actualTravelPath": "$[3].null",
+              "expectTravelPath": "$[3].c"
+            }
+          },
+          {
+            "actual": "1",
+            "illustrate": "Only one set of keys exists expect('null'),actual('d')",
+            "travelPath": {
+              "abstractTravelPath": "$[*].d",
+              "actualTravelPath": "$[3].d",
+              "expectTravelPath": "$[3].null"
+            }
+          }
+        ],
+        "match": false
+      }
     },
     {
       "caseName": "配置ignorePath和ignoreKey 增加不同位置忽略字段 增加不匹配字段",
@@ -10252,7 +10374,7 @@
       ],
       "option": {
         "ignorePath": [
-          "root[].n"
+          "$[*].n"
         ],
         "ignoreKey": [
           "f"
@@ -10264,9 +10386,9 @@
             "actual": "f",
             "illustrate": "Only one set of keys exists expect('null'),actual('F')",
             "travelPath": {
-              "abstractTravelPath": "root[].F",
-              "actualTravelPath": "root[3].F",
-              "expectTravelPath": "root[3].null"
+              "abstractTravelPath": "$[*].F",
+              "actualTravelPath": "$[3].F",
+              "expectTravelPath": "$[3].null"
             }
           }
         ],
@@ -10302,7 +10424,7 @@
           "c": 2
         },
         {
-          "c": 1
+          "c": 2
         }
       ],
       "option": {
@@ -10310,9 +10432,10 @@
           "b": "c"
         },
         "ignorePath": [
-          "root[].f"
+          "$[*].f"
         ]
-      }
+      },
+      "ret": {}
     },
     {
       "caseName": "配置mapping和ignoreOrder和ignorePath 预期中存在实际没有得值e TODO",
@@ -10359,10 +10482,23 @@
           "b": "c"
         },
         "ignorePath": [
-          "root[].f"
+          "$[*].f"
         ]
       },
-      "ret": {"defectsList":[{"expect":1,"illustrate":"Only one set of keys exists expect('e'),actual('null')","travelPath":{"abstractTravelPath":"root[].e","actualTravelPath":"root[0].null","expectTravelPath":"root[2].e"}}],"match":false}
+      "ret": {
+        "defectsList": [
+          {
+            "expect": "1",
+            "illustrate": "Only one set of keys exists expect('e'),actual('null')",
+            "travelPath": {
+              "abstractTravelPath": "$[*].e",
+              "actualTravelPath": "$[0].null",
+              "expectTravelPath": "$[2].e"
+            }
+          }
+        ],
+        "match": false
+      }
     },
     {
       "caseName": "配置mapping和ignoreOrder和ignoreKey 在预期中存在替换的字段 TODO",
@@ -10410,22 +10546,13 @@
       "ret": {
         "defectsList":[
           {
-            "actual":2,
-            "illustrate":"The expect type ('null') is inconsistent with the actual type ('java.lang.Integer')",
-            "travelPath":{
-              "abstractTravelPath":"root[].b",
-              "actualTravelPath":"root[2].null",
-              "expectTravelPath":"root[1].b"
-            }
-          },
-          {
-            "actual":1,
-            "expect":2,
+            "actual":"1",
+            "expect":"2",
             "illustrate":"The expect('2') data is inconsistent with the actual('1') data",
             "travelPath":{
-              "abstractTravelPath":"root[].a",
-              "actualTravelPath":"root[2].a",
-              "expectTravelPath":"root[1].a"
+              "abstractTravelPath":"$[*].a",
+              "actualTravelPath":"$[2].a",
+              "expectTravelPath":"$[1].a"
             }
           }
         ],
@@ -10473,13 +10600,35 @@
           "b": "c"
         },
         "ignorePath": [
-          "root[].f"
+          "$[*].f"
         ],
         "ignoreKey": [
           "n"
         ]
       },
-      "ret": {"defectsList":[{"actual":1,"illustrate":"Only one set of keys exists expect('null'),actual('m')","travelPath":{"abstractTravelPath":"root[].m","actualTravelPath":"root[0].m","expectTravelPath":"root[0].null"}},{"actual":1,"illustrate":"Only one set of keys exists expect('null'),actual('m')","travelPath":{"abstractTravelPath":"root[].m","actualTravelPath":"root[2].m","expectTravelPath":"root[2].null"}}],"match":false}
+      "ret": {
+        "defectsList": [
+          {
+            "actual": "1",
+            "illustrate": "Only one set of keys exists expect('null'),actual('m')",
+            "travelPath": {
+              "abstractTravelPath": "$[*].m",
+              "actualTravelPath": "$[0].m",
+              "expectTravelPath": "$[0].null"
+            }
+          },
+          {
+            "actual": "1",
+            "illustrate": "Only one set of keys exists expect('null'),actual('m')",
+            "travelPath": {
+              "abstractTravelPath": "$[*].m",
+              "actualTravelPath": "$[2].m",
+              "expectTravelPath": "$[2].null"
+            }
+          }
+        ],
+        "match": false
+      }
     },
     {
       "caseName": "配置ignoreOrder和ignorePath和ignoreKey 增加不同位置的内容 TODO",
@@ -10518,13 +10667,15 @@
       "option": {
         "ignoreOrder": true,
         "ignorePath": [
-          "root[].c"
+          "$[*].c"
         ],
         "ignoreKey": [
           "k"
         ]
       },
-      "ret": {"match":true}
+      "ret": {
+        "match": true
+      }
     }
   ]
 }

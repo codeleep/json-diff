@@ -1,9 +1,5 @@
 package me.codeleep.jsondiff.core.utils;
 
-import me.codeleep.jsondiff.common.exception.JsonDiffException;
-import me.codeleep.jsondiff.common.model.neat.JsonDiffArray;
-import me.codeleep.jsondiff.common.model.neat.JsonDiffObject;
-
 import static me.codeleep.jsondiff.common.model.Constant.NULL;
 
 /**
@@ -26,33 +22,6 @@ public class ClassUtil {
         return obj1 == null && obj2 == null;
     }
 
-    /**
-     * 判断当前对象是否为json数据格式中的基本类型
-     * @param obj 判断的对象
-     * @return 是否为基本类型
-     */
-    public static boolean isPrimitiveType(Object obj){
-        if(obj == null){
-            return true;
-        }
-
-        if(obj instanceof JsonDiffArray || obj instanceof JsonDiffObject){
-            return false;
-        }
-
-        if (String.class.isAssignableFrom(obj.getClass())) {
-            return true;
-        }
-        if (obj instanceof Number) {
-            return true;
-        }
-        try {
-            return ((Class<?>)obj.getClass().getField("TYPE").get(null)).isPrimitive();
-        } catch (Exception e) {
-            return false;
-        }
-    }
-
 
     /**
      * 获取className
@@ -64,13 +33,5 @@ public class ClassUtil {
             return NULL;
         }
         return obj.getClass().getName();
-    }
-
-    public static <T> T getClassNameInstance(Class<T> clazz) {
-        try {
-            return clazz.newInstance();
-        } catch (Exception e) {
-            throw new JsonDiffException(String.format("无法实例化: %s", clazz), e);
-        }
     }
 }

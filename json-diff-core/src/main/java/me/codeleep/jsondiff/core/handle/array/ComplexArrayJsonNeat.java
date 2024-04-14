@@ -39,7 +39,7 @@ public class ComplexArrayJsonNeat extends AbstractArrayJsonNeat<JsonDiffArray> {
                     continue;
                 }
                 TravelPath nextTravelPath = new TravelPath(this.travelPath, expectIndex, actualIndex);
-                JsonNeat<? extends JsonDiff> jsonNeat = RunTimeDataFactory.getOptionInstance().getJsonNeatFactory().generate( expect.get(expectIndex), actual.get(actualIndex), nextTravelPath);
+                JsonNeat<? extends JsonDiff> jsonNeat = RunTimeDataFactory.getOptionInstance().getJsonNeatFactory().generate(expect.get(expectIndex), actual.get(actualIndex), nextTravelPath);
                 if (jsonNeat == null) {
                     continue;
                 }
