@@ -14,7 +14,7 @@ import java.util.regex.Pattern;
  * @description: 格式化内容
  */
 public class FormatContent {
-    private static final String REGEX = "[a-zA-Z]+(\\.[a-zA-Z]+)+";
+    private static final String REGEX = "[a-zA-Z]+(\\.[a-zA-Z0-9]+)+";
     private static final Pattern pattern = Pattern.compile(REGEX);
 
     /**
