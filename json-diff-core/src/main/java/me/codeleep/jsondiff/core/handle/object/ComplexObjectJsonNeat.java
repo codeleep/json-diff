@@ -77,12 +77,21 @@ public class ComplexObjectJsonNeat extends AbstractObjectJsonNeat<JsonDiffObject
         // 移除忽略的Path
         HashSet<String> ignorePath = RunTimeDataFactory.getOptionInstance().getIgnorePath();
         List<MappingKey>  mappingKeys = keyMap.stream().filter(mappingKey -> {
-            String actualTravelPath = PathUtil.getObjectPath(travelPath.getActualTravelPath()) + mappingKey.getActualKey();
-            String expectTravelPath = PathUtil.getObjectPath(travelPath.getExpectTravelPath()) + mappingKey.getExpectKey();
-            String abstractActualTravelPath = PathUtil.getObjectPath(travelPath.getAbstractTravelPath()) + mappingKey.getActualKey();
-            String abstractExpectTravelPath = PathUtil.getObjectPath(travelPath.getAbstractTravelPath()) + mappingKey.getExpectKey();
-            if (ignorePath.contains(abstractActualTravelPath) || ignorePath.contains(abstractExpectTravelPath) || ignorePath.contains(actualTravelPath) || ignorePath.contains(expectTravelPath) ) {
-                return false;
+            String actualKey = mappingKey.getActualKey();
+            if (actualKey != null) {
+                String actualTravelPath = PathUtil.getObjectPath(travelPath.getActualTravelPath()) + mappingKey.getActualKey();
+                String abstractActualTravelPath = PathUtil.getObjectPath(travelPath.getAbstractTravelPath()) + mappingKey.getActualKey();
+                if (ignorePath.contains(actualTravelPath) || ignorePath.contains(abstractActualTravelPath)) {
+                    return false;
+                }
+            }
+            String expectKey = mappingKey.getExpectKey();
+            if (expectKey != null) {
+                String expectTravelPath = PathUtil.getObjectPath(travelPath.getExpectTravelPath()) + mappingKey.getExpectKey();
+                String abstractExpectTravelPath = PathUtil.getObjectPath(travelPath.getAbstractTravelPath()) + mappingKey.getExpectKey();
+                if (ignorePath.contains(expectTravelPath) || ignorePath.contains(abstractExpectTravelPath)) {
+                    return false;
+                }
             }
             return true;
         }).collect(Collectors.toList());

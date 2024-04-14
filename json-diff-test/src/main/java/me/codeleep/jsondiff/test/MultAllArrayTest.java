@@ -63,6 +63,10 @@ public class MultAllArrayTest {
         JsonCompareResult jsonCompareResult = defaultJsonDifference
                 .option(metaData.getOption())
                 .detectDiff(JSON.toJSONString(metaData.getExpect()), JSON.toJSONString(metaData.getActual()));
-        Assert.assertEquals(FormatContent.formatComparisonContent(jsonCompareResult), FormatContent.formatComparisonContent(metaData.getRet().toString()));
+        if (metaData.getRet() != null) {
+            Assert.assertEquals(FormatContent.formatComparisonContent(jsonCompareResult), FormatContent.formatComparisonContent(metaData.getRet().toString()));
+        } else {
+            Assert.assertEquals(FormatContent.formatComparisonContent(jsonCompareResult), FormatContent.formatComparisonContent("{\"match\":true}"));
+        }
     }
 }
