@@ -79,7 +79,9 @@ public class ComplexObjectJsonNeat extends AbstractObjectJsonNeat<JsonDiffObject
         List<MappingKey>  mappingKeys = keyMap.stream().filter(mappingKey -> {
             String actualTravelPath = PathUtil.getObjectPath(travelPath.getActualTravelPath()) + mappingKey.getActualKey();
             String expectTravelPath = PathUtil.getObjectPath(travelPath.getExpectTravelPath()) + mappingKey.getExpectKey();
-            if (ignorePath.contains(actualTravelPath) || ignorePath.contains(expectTravelPath) ) {
+            String abstractActualTravelPath = PathUtil.getObjectPath(travelPath.getAbstractTravelPath()) + mappingKey.getActualKey();
+            String abstractExpectTravelPath = PathUtil.getObjectPath(travelPath.getAbstractTravelPath()) + mappingKey.getExpectKey();
+            if (ignorePath.contains(abstractActualTravelPath) || ignorePath.contains(abstractExpectTravelPath) || ignorePath.contains(actualTravelPath) || ignorePath.contains(expectTravelPath) ) {
                 return false;
             }
             return true;
