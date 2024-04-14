@@ -102,12 +102,12 @@ public class UseExample {
 
 ### 2.配置
 
-| 配置             | 类型                           | 备注                                                         |
-| ---------------- | ------------------------------ | ------------------------------------------------------------ |
-| ignoreOrder      | boolean                        | 是否比较过程中忽略数组顺序                                   |
-| mapping          | Map<String, String>            | 将真实字段映射到期望字段，key是真实字段name，value是期望的字段name |
-| ignorePath       | Set\<String\>                  | 当对比的路径完全匹配时会被跳过。遇到数组使用 `[]` 即可。无需填入下标 |
-| ignoreKey        | Set\<String\>                  | 对比object时。或忽略该key。对整个json生效                    |
+| 配置             | 类型                           | 备注                                                                     |
+| ---------------- | ------------------------------ |------------------------------------------------------------------------|
+| ignoreOrder      | boolean                        | 是否比较过程中忽略数组顺序                                                          |
+| mapping          | Map<String, String>            | 将真实字段映射到期望字段，key是真实字段name，value是期望的字段name.当真实字段和期望的字段对应的key都存在时，该配置才生效 |
+| ignorePath       | Set\<String\>                  | 当对比的路径完全匹配时会被跳过。遇到数组使用 `[]` 即可。无需填入下标                                  |
+| ignoreKey        | Set\<String\>                  | 对比object时。或忽略该key。对整个json生效                                            |
 
 > 在 `2.0.1-RC1-RELEASE` 之后版本中移除了 `keyFunction` 配置参数。可以使用 `ignorePath` 来代替达到同样的效果。
 
