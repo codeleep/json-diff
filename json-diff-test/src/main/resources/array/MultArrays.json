@@ -4322,7 +4322,6 @@
     },
     {
       "caseName": "忽略根下的数组 后续改进【目前不支持】",
-      "skip": true,
       "actual": [
         [
           {
@@ -8589,6 +8588,29 @@
         "ignorePath": [
           "$[*][*]"
         ]
+      },
+      "ret": {
+        "defectsList": [
+          {
+            "actual": "2",
+            "illustrate": "Only one set of keys exists expect('null'),actual('v')",
+            "travelPath": {
+              "abstractTravelPath": "$[*][*].a[*].v",
+              "actualTravelPath": "$[0][0].a[0].v",
+              "expectTravelPath": "$[0][0].a[0].null"
+            }
+          },
+          {
+            "actual": "12",
+            "illustrate": "Only one set of keys exists expect('null'),actual('a')",
+            "travelPath": {
+              "abstractTravelPath": "$[*][*].a[*].a",
+              "actualTravelPath": "$[0][0].a[1].a",
+              "expectTravelPath": "$[0][0].a[1].null"
+            }
+          }
+        ],
+        "match": false
       }
     },
     {
@@ -9183,6 +9205,9 @@
         "mapping": {
           "a": "b"
         }
+      },
+      "ret": {
+        "match": true
       }
     },
     {
@@ -10409,7 +10434,8 @@
         "ignorePath": [
           "$[*].f"
         ]
-      }
+      },
+      "ret": {}
     },
     {
       "caseName": "配置mapping和ignoreOrder和ignorePath 预期中存在实际没有得值e TODO",
