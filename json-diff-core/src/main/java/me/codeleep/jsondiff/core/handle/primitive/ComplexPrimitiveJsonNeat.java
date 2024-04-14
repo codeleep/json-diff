@@ -35,6 +35,15 @@ public class ComplexPrimitiveJsonNeat extends AbstractPrimitiveJsonNeat<JsonDiff
             result.addDefects(defects);
             return result;
         }
+        if (!ClassUtil.isSameClass(expect.getTarget(), actual.getTarget())) {
+            Defects defects = new Defects()
+                    .setActual(actual)
+                    .setExpect(expect)
+                    .setTravelPath(travelPath)
+                    .setIllustrateTemplate(DATA_TYPE_INCONSISTENT, ClassUtil.getClassName(expect.getTarget()), ClassUtil.getClassName(actual.getTarget()));
+            result.addDefects(defects);
+            return result;
+        }
         if (expect.isEquals(actual)) {
             return result;
         }

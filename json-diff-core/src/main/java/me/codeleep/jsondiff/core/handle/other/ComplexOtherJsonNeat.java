@@ -35,6 +35,15 @@ public class ComplexOtherJsonNeat extends AbstractOtherJsonNeat<JsonDiffOther> {
             result.addDefects(defects);
             return result;
         }
+        if (!ClassUtil.isSameClass(expect.getOther(), actual.getOther())) {
+            Defects defects = new Defects()
+                    .setActual(actual)
+                    .setExpect(expect)
+                    .setTravelPath(travelPath)
+                    .setIllustrateTemplate(DATA_TYPE_INCONSISTENT, ClassUtil.getClassName(expect.getOther()), ClassUtil.getClassName(actual.getOther()));
+            result.addDefects(defects);
+            return result;
+        }
         if (expect.isEquals(actual)) {
             return result;
         }
