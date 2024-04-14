@@ -6,11 +6,11 @@
     <parent>
         <groupId>cn.xiaoandcai</groupId>
         <artifactId>json-diff-parent</artifactId>
-        <version>4.0.5-RC1-RELEASE</version>
+        <version>4.1.3-RC1-RELEASE</version>
         <relativePath>../../pom.xml</relativePath>
     </parent>
 
-    <version>4.0.5-RC1-RELEASE</version>
+    <version>4.1.3-RC1-RELEASE</version>
     <artifactId>json-diff-impl-fastjson</artifactId>
 
     <properties>
