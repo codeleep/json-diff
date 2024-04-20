@@ -18,10 +18,9 @@ import org.testng.annotations.Test;
  */
 public class MultAllObjectTest {
     private static final Logger logger = LoggerFactory.getLogger(MultAllObjectTest.class);
-
+    private static final DefaultJsonDifference defaultJsonDifference = new DefaultJsonDifference();
     @Test(dataProvider = "right", dataProviderClass = ObjectDataFactory.class)
     public void noOptionRightTest(MetaData metaData) {
-        DefaultJsonDifference defaultJsonDifference = new DefaultJsonDifference();
         logger.info(metaData.getCaseName());
         logger.debug(metaData.getExpect().toString() + "\n" + metaData.getActual().toString());
         JsonCompareResult jsonCompareResult = defaultJsonDifference
@@ -35,7 +34,6 @@ public class MultAllObjectTest {
 
     @Test(dataProvider = "err", dataProviderClass = ObjectDataFactory.class)
     public void noOptionErrTest(MetaData metaData) {
-        DefaultJsonDifference defaultJsonDifference = new DefaultJsonDifference();
         logger.info(metaData.getCaseName());
         logger.debug(metaData.getExpect().toString() + "\n" + metaData.getActual().toString());
         JsonCompareResult jsonCompareResult = defaultJsonDifference
@@ -45,7 +43,6 @@ public class MultAllObjectTest {
 
     @Test(dataProvider = "optionRight", dataProviderClass = ObjectDataFactory.class)
     public void optionRight(MetaData metaData) {
-        DefaultJsonDifference defaultJsonDifference = new DefaultJsonDifference();
         logger.info(metaData.getCaseName());
         logger.debug("\n" + metaData.getExpect().toString() + "\n" + metaData.getActual().toString() + "\n");
         JsonCompareResult jsonCompareResult = defaultJsonDifference
@@ -60,7 +57,6 @@ public class MultAllObjectTest {
 
     @Test(dataProvider = "optionErr", dataProviderClass = ObjectDataFactory.class)
     public void optionErr(MetaData metaData) {
-        DefaultJsonDifference defaultJsonDifference = new DefaultJsonDifference();
         logger.info(metaData.getCaseName());
         logger.debug("\n" + metaData.getExpect().toString() + "\n" + metaData.getActual().toString() + "\n");
         JsonCompareResult jsonCompareResult = defaultJsonDifference
