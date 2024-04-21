@@ -4,6 +4,7 @@
         <classes>
             <class name="me.codeleep.jsondiff.test.MultAllArrayTest"/>
             <class name="me.codeleep.jsondiff.test.MultAllObjectTest"/>
+            <class name="me.codeleep.jsondiff.test.HandleFactoryTest"/>
         </classes>
     </test>
 </suite>

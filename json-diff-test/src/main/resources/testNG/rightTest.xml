@@ -14,6 +14,11 @@
                     <include name="optionRight"/>
                 </methods>
             </class>
+            <class name="me.codeleep.jsondiff.test.HandleFactoryTest">
+                <methods>
+                    <include name="right"/>
+                </methods>
+            </class>
         </classes>
     </test>
 </suite>

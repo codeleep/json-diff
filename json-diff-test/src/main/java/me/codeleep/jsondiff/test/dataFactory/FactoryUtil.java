@@ -18,16 +18,20 @@ import java.util.*;
 public class FactoryUtil {
     /**
      * 加载数据
-     * @param path 加载路径
+     * @param path         加载路径
      * @param loadDataName 加载用例类型名称数组
-     * @param maxMap 存储每种类型用例的个数
-     * @param arrayData 存储用例
+     * @param maxMap       存储每种类型用例的个数
+     * @param arrayData    存储用例
      */
-    public static void load(String path,String[] loadDataName,Map<String, Integer> maxMap,Map<String, ArrayList<MetaData>> arrayData) {
+    public static void load(String path, String[] loadDataName, Map<String, Integer> maxMap, Map<String, ArrayList<MetaData>> arrayData) {
         String expectContent = ResourceUtils.loadResourceLine(path);
         JSONObject jsonObject = (JSONObject) JSON.parse(expectContent);
         for (String name : loadDataName) {
-            arrayData.put(name, JsonArrayToMetadataList(jsonObject.getJSONArray(name), name,maxMap));
+            if (jsonObject.getJSONArray(name) != null) {
+                arrayData.put(name, JsonArrayToMetadataList(jsonObject.getJSONArray(name), name, maxMap));
+            } else {
+                arrayData.put(name, null);
+            }
         }
     }
 
@@ -35,15 +39,15 @@ public class FactoryUtil {
      * 将JsonArray对象转换为List<Metadata> 并将每种类型的个数进行统计赋值
      * @param jsonArray 需要转换的对象
      * @param type      他是什么类型
-     * @param maxMap 存储每种类型用例的个数
+     * @param maxMap    存储每种类型用例的个数
      * @return ArrayList<MetaData>
      */
-    private static ArrayList<MetaData> JsonArrayToMetadataList(JSONArray jsonArray, String type,Map<String, Integer> maxMap) {
+    private static ArrayList<MetaData> JsonArrayToMetadataList(JSONArray jsonArray, String type, Map<String, Integer> maxMap) {
         ArrayList<MetaData> list = new ArrayList<>();
         int count = 0;
         for (Object i : jsonArray) {
             JSONObject jsonObject = (JSONObject) i;
-            MetaData metaData = new MetaData(jsonObject.getString("caseName"),jsonObject.get("expect"),
+            MetaData metaData = new MetaData(jsonObject.getString("caseName"), jsonObject.get("expect"),
                     jsonObject.get("actual"),
                     jsonObject.get("ret"),
                     getOptionObject((JSONObject) jsonObject.get("option")));
@@ -51,7 +55,7 @@ public class FactoryUtil {
             count++;
         }
 
-        maxMap.put(type,count);
+        maxMap.put(type, count);
         return list;
     }
 
@@ -66,15 +70,15 @@ public class FactoryUtil {
             return null;
         JsonComparedOption jsonComparedOption = new JsonComparedOption();
         boolean ignoreOrder = false;
-        try{
+        try {
             ignoreOrder = jsonObject.getBoolean("ignoreOrder") != null && jsonObject.getBoolean("ignoreOrder");
-        }catch (ExceptionInInitializerError e){
+        } catch (ExceptionInInitializerError e) {
             e.printStackTrace();
         }
         jsonComparedOption.setIgnoreOrder(ignoreOrder);
         String mapping = jsonObject.getString("mapping");
-        if(mapping != null && !mapping.isEmpty()){
-            jsonComparedOption.setMapping((HashMap<String,String>)JSONObject.parseObject(mapping,Map.class) );
+        if (mapping != null && !mapping.isEmpty()) {
+            jsonComparedOption.setMapping((HashMap<String, String>) JSONObject.parseObject(mapping, Map.class));
         }
         jsonComparedOption.setIgnorePath(ArrStringToSet(jsonObject.getString("ignorePath")));
         jsonComparedOption.setIgnoreKey(ArrStringToSet(jsonObject.getString("ignoreKey")));
@@ -86,12 +90,12 @@ public class FactoryUtil {
      * @param stringList json array字符串
      * @return HashSet 转化后的set对象
      */
-     private static HashSet<String> ArrStringToSet(String stringList){
-         if (stringList == null || stringList.isEmpty()){
-             return null;
-         }
-         List<String> arrayList = JSON.parseArray(stringList,String.class);
-       return new HashSet<>(arrayList);
-     }
+    private static HashSet<String> ArrStringToSet(String stringList) {
+        if (stringList == null || stringList.isEmpty()) {
+            return null;
+        }
+        List<String> arrayList = JSON.parseArray(stringList, String.class);
+        return new HashSet<>(arrayList);
+    }
 
 }

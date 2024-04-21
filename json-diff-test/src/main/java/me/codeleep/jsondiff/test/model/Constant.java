@@ -11,6 +11,7 @@ public class Constant {
      */
     public static final String ARRAY_PATH = "array/MultArrays.json";
     public static final String OBJECT_PATH = "object/MultObjects.json";
+    public static final String HANDLE_PATH = "handle/MultHandle.json";
     /**
      * 存储在数组中的测试数据类型
      */
