@@ -3,6 +3,8 @@ package me.codeleep.jsondiff.test;
 import com.alibaba.fastjson2.JSON;
 import me.codeleep.jsondiff.DefaultJsonDifference;
 import me.codeleep.jsondiff.common.model.JsonCompareResult;
+import me.codeleep.jsondiff.common.utils.ImplType;
+import me.codeleep.jsondiff.core.config.JsonDiffOption;
 import me.codeleep.jsondiff.test.model.MetaData;
 import me.codeleep.jsondiff.test.dataFactory.ArrayDataFactory;
 import me.codeleep.jsondiff.test.utils.FormatContent;
@@ -16,12 +18,13 @@ import org.testng.annotations.Test;
  * @createTime: 2023/3/2 21:55
  * @description: 数组类型的测试类
  */
-public class MultAllArrayTest {
-    private static final Logger logger = LoggerFactory.getLogger(MultAllArrayTest.class);
+public class FastJson2MultAllArrayTest {
+    private static final Logger logger = LoggerFactory.getLogger(FastJson2MultAllArrayTest.class);
     private final DefaultJsonDifference defaultJsonDifference = new DefaultJsonDifference();
 
     @Test(dataProvider = "right", dataProviderClass = ArrayDataFactory.class)
     public void noOptionRightTest(MetaData metaData) {
+        JsonDiffOption.setDefaultJsonFramework(ImplType.FASTJSON2);
         logger.info(metaData.getCaseName());
         logger.debug("\n" + metaData.getExpect().toString() + "\n" + metaData.getActual().toString());
         JsonCompareResult jsonCompareResult = defaultJsonDifference
@@ -35,6 +38,7 @@ public class MultAllArrayTest {
 
     @Test(dataProvider = "err", dataProviderClass = ArrayDataFactory.class)
     public void noOptionErrTest(MetaData metaData) {
+        JsonDiffOption.setDefaultJsonFramework(ImplType.FASTJSON2);
         logger.info(metaData.getCaseName());
         logger.debug("\n" + metaData.getExpect().toString() + "\n" + metaData.getActual().toString() + "\n" + metaData.getOption());
         JsonCompareResult jsonCompareResult = defaultJsonDifference
@@ -44,6 +48,7 @@ public class MultAllArrayTest {
 
     @Test(dataProvider = "optionRight", dataProviderClass = ArrayDataFactory.class)
     public void optionRight(MetaData metaData) {
+        JsonDiffOption.setDefaultJsonFramework(ImplType.FASTJSON2);
         logger.info(metaData.getCaseName());
         logger.debug("\n" + metaData.getExpect().toString() + "\n" + metaData.getActual().toString() + "\n");
         JsonCompareResult jsonCompareResult = defaultJsonDifference
@@ -58,6 +63,7 @@ public class MultAllArrayTest {
 
     @Test(dataProvider = "optionErr", dataProviderClass = ArrayDataFactory.class)
     public void optionErr(MetaData metaData) {
+        JsonDiffOption.setDefaultJsonFramework(ImplType.FASTJSON2);
         logger.info(metaData.getCaseName());
         logger.debug("\n" + metaData.getExpect().toString() + "\n" + metaData.getActual().toString() + "\n");
         JsonCompareResult jsonCompareResult = defaultJsonDifference

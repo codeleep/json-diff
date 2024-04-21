@@ -8,7 +8,9 @@ import me.codeleep.jsondiff.common.model.neat.JsonDiff;
 import me.codeleep.jsondiff.common.model.neat.JsonDiffArray;
 import me.codeleep.jsondiff.common.model.neat.JsonDiffObject;
 import me.codeleep.jsondiff.common.model.neat.JsonNeat;
+import me.codeleep.jsondiff.common.utils.ImplType;
 import me.codeleep.jsondiff.core.config.JsonComparedOption;
+import me.codeleep.jsondiff.core.config.JsonDiffOption;
 import me.codeleep.jsondiff.core.handle.AbstractHandleFactory;
 import me.codeleep.jsondiff.core.handle.array.ComplexArrayJsonNeat;
 import me.codeleep.jsondiff.core.handle.object.ComplexObjectJsonNeat;
@@ -26,10 +28,11 @@ import org.testng.annotations.Test;
  * @createTime: 2024/4/20
  * @description: 实现对于自定义比较器的使用测试
  */
-public class HandleFactoryTest {
+public class FastJson2HandleFactoryTest {
     private static final DefaultJsonDifference defaultJsonDifference = new DefaultJsonDifference();
     @Test(dataProvider = "right", dataProviderClass = HandleFactoryDataFactory.class)
     public void RightTest(MetaData metaData) {
+        JsonDiffOption.setDefaultJsonFramework(ImplType.FASTJSON2);
         JsonComparedOption jsonComparedOption = new JsonComparedOption();
         jsonComparedOption.setJsonNeatFactory(new AbstractHandleFactory() {
              class ComplexObjectJsonNeatTest extends ComplexObjectJsonNeat {
