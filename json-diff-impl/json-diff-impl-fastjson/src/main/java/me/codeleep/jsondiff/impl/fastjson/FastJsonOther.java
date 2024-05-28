@@ -22,10 +22,10 @@ public class FastJsonOther implements JsonDiffOther {
 
     @Override
     public boolean isEquals(JsonDiffOther jsonDiffOther) {
-        if (jsonDiffOther == null && object == null)  {
+        if (jsonDiffOther != null && jsonDiffOther.getOther() == null && object == null)  {
             return true;
         }
-        if (jsonDiffOther == null) {
+        if (jsonDiffOther == null || jsonDiffOther.getOther() == null) {
             return false;
         }
         Object target = jsonDiffOther.getOther();

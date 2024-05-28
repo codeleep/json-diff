@@ -17,10 +17,10 @@ public class FastJson2Primitive implements JsonDiffPrimitive {
 
     @Override
     public boolean isEquals(JsonDiffPrimitive jsonDiffPrimitive) {
-        if (jsonDiffPrimitive == null && object == null)  {
+        if (jsonDiffPrimitive != null && jsonDiffPrimitive.getTarget() == null && object == null)  {
             return true;
         }
-        if (jsonDiffPrimitive == null) {
+        if (jsonDiffPrimitive == null || jsonDiffPrimitive.getTarget() == null) {
             return false;
         }
         Object target = jsonDiffPrimitive.getTarget();

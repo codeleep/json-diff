@@ -31,6 +31,18 @@
             <scope>compile</scope>
         </dependency>
         <dependency>
+            <groupId>cn.xiaoandcai</groupId>
+            <artifactId>json-diff-impl-fastjson</artifactId>
+            <version>${project.version}</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>cn.xiaoandcai</groupId>
+            <artifactId>json-diff-impl-fastjson2</artifactId>
+            <version>${project.version}</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
             <groupId>com.alibaba.fastjson2</groupId>
             <artifactId>fastjson2</artifactId>
             <version>2.0.7</version>
@@ -59,11 +71,6 @@
             <groupId>com.alibaba</groupId>
             <artifactId>fastjson</artifactId>
             <version>1.2.74</version>
-        </dependency>
-        <dependency>
-            <groupId>com.alibaba.fastjson2</groupId>
-            <artifactId>fastjson2</artifactId>
-            <version>2.0.7</version>
         </dependency>
         <dependency>
             <groupId>com.google.code.gson</groupId>

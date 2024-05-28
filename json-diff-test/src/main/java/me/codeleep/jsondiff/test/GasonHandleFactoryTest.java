@@ -58,7 +58,7 @@ public class GasonHandleFactoryTest {
             }
 
             @Override
-            public JsonNeat<? extends JsonDiff> generate(JsonDiff expect, JsonDiff actual, TravelPath travelPath) {
+            public JsonNeat<? extends JsonDiff> generate( TravelPath travelPath, JsonDiff expect, JsonDiff actual) {
                 if (!ClassUtil.isSameClass(expect, actual)) {
                     return null;
                 }

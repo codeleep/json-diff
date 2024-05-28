@@ -23,7 +23,7 @@ public class DefaultJsonDifference {
     }
 
     public JsonCompareResult detectDiff(JsonDiff expect, JsonDiff actual) {
-        JsonNeat<? extends JsonDiff> jsonNeat = RunTimeDataFactory.getOptionInstance().getJsonNeatFactory().generate(expect, actual, new TravelPath());
+        JsonNeat<? extends JsonDiff> jsonNeat = RunTimeDataFactory.getOptionInstance().getJsonNeatFactory().generate(new TravelPath(), expect, actual);
         if (jsonNeat == null) {
             throw new JsonDiffException("Unable to find JsonNeat");
         }

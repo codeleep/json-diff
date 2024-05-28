@@ -28,7 +28,7 @@ public class FastJson2Util {
     }
 
     public static boolean isJavaPrimitive(Object value) {
-        return value instanceof String || value instanceof Integer || value instanceof BigInteger || value instanceof BigDecimal || value instanceof Boolean || value instanceof Double || value instanceof Float || value instanceof Long || value instanceof Short || value instanceof Byte || value instanceof Character;
+        return value == null || value instanceof String || value instanceof Integer || value instanceof BigInteger || value instanceof BigDecimal || value instanceof Boolean || value instanceof Double || value instanceof Float || value instanceof Long || value instanceof Short || value instanceof Byte || value instanceof Character;
     }
 
 }
