@@ -12,8 +12,8 @@ public enum ImplType {
 
     FASTJSON("fastjson", "me.codeleep.jsondiff.impl.fastjson.FastJsonBuilder"),
     FASTJSON2("fastjson2", "me.codeleep.jsondiff.impl.fastjson2.FastJson2Builder"),
-    JACKSON("jackson", "me.codeleep.jsondiff.impl.gson.GsonBuilder"),
-    GSON("gson", "me.codeleep.jsondiff.impl.jackson.JacksonBuilder");
+    JACKSON("jackson", "me.codeleep.jsondiff.impl.jackson.JacksonBuilder"),
+    GSON("gson", "me.codeleep.jsondiff.impl.gson.GsonBuilder");
 
     private String type;
 
